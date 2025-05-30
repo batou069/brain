@@ -1,0 +1,280 @@
+{
+  "main": {
+    "id": "1de3a44078184d60",
+    "type": "split",
+    "children": [
+      {
+        "id": "dd906039b42ded74",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3cd05316a1e5ba59",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "00_Meta/Prompt.md",
+                "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "Prompt"
+            }
+          },
+          {
+            "id": "14bfc2d8ae482c38",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "test.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "test"
+            }
+          },
+          {
+            "id": "3677099cf932a45a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "140_Data_Science_AI/Pandas/Pandas_Plotting 1.md",
+                "mode": "preview",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "Pandas_Plotting 1"
+            }
+          },
+          {
+            "id": "c03ca8e621329698",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "150_Mathematics/_Mathematics_MOC.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "_Mathematics_MOC"
+            }
+          },
+          {
+            "id": "cd5da79cc2b6208a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ai math.md",
+                "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "ai math"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d8e3dfca2978cea9",
+    "type": "split",
+    "children": [
+      {
+        "id": "fd7ace101662130d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c1ead75e05d893d3",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "36d1664ac91282b2",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "describe",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "ac3cb177f42b2928",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 737.5
+  },
+  "right": {
+    "id": "0331ea5ae170883a",
+    "type": "split",
+    "children": [
+      {
+        "id": "84b9c0fe44173363",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5987436291ede041",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "10_Linux/Virtual_memory.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Virtual_memory"
+            }
+          },
+          {
+            "id": "217cc6a1a1859a85",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "9a2b8adddc12f3c0",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "e42ea98f33cf7029",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "60_Algorithms/Heap_Sort.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Heap_Sort"
+            }
+          },
+          {
+            "id": "cde36af9a7050089",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 469.5,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "quickadd:QuickAdd": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "templater-obsidian:Templater": false,
+      "omnisearch:Omnisearch": false
+    }
+  },
+  "active": "cd5da79cc2b6208a",
+  "lastOpenFiles": [
+    "150_Mathematics/Linear_Algebra/Singular_Values.md",
+    "Linear_Algebra/Eigenvalues_Eigenvectors.md",
+    "Linear_Algebra",
+    "150_Mathematics/Linear_Algebra/Element_wise_Matrix_Operations.md",
+    "150_Mathematics/Linear_Algebra/Transformation_Matrix.md",
+    "150_Mathematics/Linear_Algebra/Matrix_Product.md",
+    "150_Mathematics/Linear_Algebra/Matrix.md",
+    "150_Mathematics/Linear_Algebra/Cosine_Similarity.md",
+    "150_Mathematics/_Mathematics_MOC.md",
+    "150_Mathematics/Linear_Algebra/Vector.md",
+    "150_Mathematics/Linear_Algebra/Column_Vector.md",
+    "150_Mathematics/Linear_Algebra/Row_Vector.md",
+    "150_Mathematics/Linear_Algebra/Dot_Product.md",
+    "150_Mathematics/Functions/_Functions_MOC.md",
+    "150_Mathematics/Calculus/Calculus_Optimization.md",
+    "150_Mathematics/Calculus/Calculus_Integrals.md",
+    "150_Mathematics/Calculus/Calculus_Derivatives.md",
+    "ai math.md",
+    "150_Mathematics/Functions",
+    "150_Mathematics/Linear_Algebra/_Linear_Algebra_MOC.md",
+    "150_Mathematics/Linear_Algebra",
+    "150_Mathematics/Calculus/_Calculus_MOC.md",
+    "150_Mathematics/Calculus",
+    "test.md",
+    "150_Mathematics",
+    "groktest.md",
+    "140_Data_Science_AI/Pandas/Pandas_Descriptive_Statistics_Methods.md",
+    "Untitled 1.md",
+    "_Index.md",
+    "obsidian2 ai.md",
+    "140_Data_Science_AI/Pandas/Pandas_String_Methods_Advanced.md",
+    "140_Data_Science_AI/Workflows_Concepts",
+    "140_Data_Science_AI/Pandas/Untitled",
+    "140_Data_Science_AI/Pandas",
+    "140_Data_Science_AI/Pillow_PIL",
+    "140_Data_Science_AI/Matplotlib",
+    "50_Data_Structures/00_Meta/Pasted image 20250421003701.png"
+  ]
+}
