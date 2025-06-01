@@ -4,81 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "dd906039b42ded74",
+        "id": "3e373955f8358aaf",
         "type": "tabs",
         "children": [
           {
-            "id": "3cd05316a1e5ba59",
+            "id": "ad12618c5f99f536",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "00_Meta/Prompt.md",
-                "mode": "source",
-                "source": true
-              },
-              "icon": "lucide-file",
-              "title": "Prompt"
-            }
-          },
-          {
-            "id": "14bfc2d8ae482c38",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "test.md",
-                "mode": "preview",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "test"
-            }
-          },
-          {
-            "id": "3677099cf932a45a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "140_Data_Science_AI/Pandas/Pandas_Plotting 1.md",
+                "file": "160_Python_Libraries/SciPy_Library.md",
                 "mode": "preview",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "Pandas_Plotting 1"
+              "title": "SciPy_Library"
             }
           },
           {
-            "id": "c03ca8e621329698",
+            "id": "1c118c50fe9dead5",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "150_Mathematics/_Mathematics_MOC.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "_Mathematics_MOC"
-            }
-          },
-          {
-            "id": "cd5da79cc2b6208a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "ai math.md",
-                "mode": "source",
+                "file": "160_Python_Libraries/_Python_Libraries_MOC.md",
+                "mode": "preview",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "ai math"
+              "title": "_Python_Libraries_MOC"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -110,7 +68,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "describe",
+                "query": "heatmap",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": true,
@@ -135,7 +93,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 737.5
+    "width": 237.5
   },
   "right": {
     "id": "0331ea5ae170883a",
@@ -237,44 +195,44 @@
       "omnisearch:Omnisearch": false
     }
   },
-  "active": "cd5da79cc2b6208a",
+  "active": "1c118c50fe9dead5",
   "lastOpenFiles": [
-    "150_Mathematics/Linear_Algebra/Singular_Values.md",
-    "Linear_Algebra/Eigenvalues_Eigenvectors.md",
-    "Linear_Algebra",
-    "150_Mathematics/Linear_Algebra/Element_wise_Matrix_Operations.md",
-    "150_Mathematics/Linear_Algebra/Transformation_Matrix.md",
-    "150_Mathematics/Linear_Algebra/Matrix_Product.md",
-    "150_Mathematics/Linear_Algebra/Matrix.md",
-    "150_Mathematics/Linear_Algebra/Cosine_Similarity.md",
+    "WIP/Untitled.md",
+    "160_Python_Libraries/SciPy_Library.md",
+    "140_Data_Science_AI/Workflows_Concepts/Data_Visualization_for_EDA.md",
+    "160_Python_Libraries/_Python_Libraries_MOC.md",
+    "_Index.md",
+    "WIP",
+    "160_Python_Libraries/Graph_tool_Library.md",
+    "WIP/QA.md",
+    "WIP/asd.md",
+    "WIP/test.md",
+    "160_Python_Libraries/PyWavelets_Library.md",
+    "WIP/test2.md",
+    "WIP/SQL_vs_R_vs_NumPy_vs_Pandas.md",
+    "WIP/groktest.md",
     "150_Mathematics/_Mathematics_MOC.md",
-    "150_Mathematics/Linear_Algebra/Vector.md",
-    "150_Mathematics/Linear_Algebra/Column_Vector.md",
-    "150_Mathematics/Linear_Algebra/Row_Vector.md",
-    "150_Mathematics/Linear_Algebra/Dot_Product.md",
-    "150_Mathematics/Functions/_Functions_MOC.md",
+    "160_Python_Libraries/Hyperspy_Library.md",
+    "160_Python_Libraries/Scikit_image_Library.md",
+    "160_Python_Libraries/Statsmodels_Library..md",
+    "160_Python_Libraries",
+    "140_Data_Science_AI/Pandas/Untitled 2.md",
+    "150_Mathematics/Calculus/Hessian.md",
+    "150_Mathematics/Calculus/Focus_Directrix_Parabola.md",
     "150_Mathematics/Calculus/Calculus_Optimization.md",
     "150_Mathematics/Calculus/Calculus_Integrals.md",
-    "150_Mathematics/Calculus/Calculus_Derivatives.md",
-    "ai math.md",
-    "150_Mathematics/Functions",
-    "150_Mathematics/Linear_Algebra/_Linear_Algebra_MOC.md",
-    "150_Mathematics/Linear_Algebra",
     "150_Mathematics/Calculus/_Calculus_MOC.md",
+    "150_Mathematics/Calculus/Calculus_Derivatives.md",
+    "WIP/gemai.md",
+    "140_Data_Science_AI/_Data_Science_AI_MOC.md",
+    "150_Mathematics/Geometry",
+    "Linear_Algebra",
+    "150_Mathematics/Functions",
+    "150_Mathematics/Linear_Algebra",
     "150_Mathematics/Calculus",
-    "test.md",
     "150_Mathematics",
-    "groktest.md",
-    "140_Data_Science_AI/Pandas/Pandas_Descriptive_Statistics_Methods.md",
-    "Untitled 1.md",
-    "_Index.md",
-    "obsidian2 ai.md",
-    "140_Data_Science_AI/Pandas/Pandas_String_Methods_Advanced.md",
     "140_Data_Science_AI/Workflows_Concepts",
     "140_Data_Science_AI/Pandas/Untitled",
-    "140_Data_Science_AI/Pandas",
-    "140_Data_Science_AI/Pillow_PIL",
-    "140_Data_Science_AI/Matplotlib",
     "50_Data_Structures/00_Meta/Pasted image 20250421003701.png"
   ]
 }

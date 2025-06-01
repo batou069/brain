@@ -167,12 +167,11 @@ if __name__ == "__main__":
 # Anyblock reveals on mouseover
 
 [X|addClass(ab-deco-heimu)]
-- First Item
-	- Item A
-	- Item B
-- Second Item
-	- Thing C
-	- Thing D
+- OK
+	- ok 2
+- NENENE 
+	- poijopj
+	- pjopoj
 
 # Anyblock nested structure
 
@@ -180,21 +179,22 @@ if __name__ == "__main__":
 - Creation
 	[list2tab]	
 	- Conversion
-		[list2card|addClass(ab-col3)]
-		- Converting Python sequences to NumPy arrays
-		  NumPy arrays can be defined using Python sequences such as lists and tuples. Lists and tuples are defined using [...] and (...), respectively. Lists and tuples can define ndarray creation:
-		  - a list of numbers will create a 1D array,
-		   - a list of lists will create a 2D array,
-		   - further nested lists will create higher-dimensional arrays. In general, any array object is called an ndarray in NumPy.
-		- np.array()
-			  ```python
-			  import numpy as np
-		   	  a1D = np.array([1, 2, 3, 4])
-			  a2D = np.array([[1, 2], [3, 4]])
-			  a3D = np.array([[[1, 2], [3, 4]], [[5, 6], [7, 8]]])
-			 ```
-
-		- The default NumPy behavior is to create arrays in either 32 or 64-bit signed integers<br>(platform dependent and matches C `long` size) or double precision floating point numbers.<br>If you expect your integer arrays to be a specific type, then<br>you need to specify the dtype while you create the array.
+		[list2mdtable]
+		- Column 1:
+			- Column 2:
+				- Column 3:
+		- np.arrange() is in col 1
+			-  
+			  this is col2
+	     	  ```python
+	     	  import numpy as np
+	     	   np.arange(10)
+	     	   np.arange(2, 10, dtype=float)
+	     	   np.arange(2, 3, 0.1)
+	     	   ```   
+		     this is another row in col2 
+				- col3 sub1
+				  > col3 sub2
 	- 1D arrays 
 		[list2mdtable]
 		- Column 1:
@@ -374,3 +374,27 @@ if __name__ == "__main__":
 ```datablock
 
 ```
+
+
+
+
+
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

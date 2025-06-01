@@ -45,20 +45,21 @@ Data visualization is a cornerstone of [[Exploratory_Data_Analysis_Workflow|Expl
 
 ## Common Plot Types for EDA and Their Uses
 
-[list2card|addClass(ab-col1)|#Common EDA Plots]
-- **Univariate Analysis (Analyzing Single Variables)**
+[list2tab]
+- Univariate Analysis
+	### Analyzing Single Variables
     - **Histograms**
         - **Purpose:** Show the distribution of a single numerical variable by dividing data into bins and counting occurrences.
         - **Tools:** `plt.hist()`, `df['col'].hist()`, `sns.histplot()`
         - **Insights:** Shape of distribution (normal, skewed, bimodal), central tendency, spread, presence of outliers.
         ```python
-        # import matplotlib.pyplot as plt
-        # import seaborn as sns
-        # import pandas as pd
-        # data = pd.Series([1,1,2,2,2,3,3,4,5,6,7,7,7,7,8])
-        # sns.histplot(data, kde=True) # kde adds a Kernel Density Estimate
-        # plt.title("Histogram with KDE")
-        # plt.show()
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+        import pandas as pd
+        data = pd.Series([1,1,2,2,2,3,3,4,5,6,7,7,7,7,8])
+        sns.histplot(data, kde=True) # kde adds a Kernel Density Estimate
+        plt.title("Histogram with KDE")
+        plt.show()
         ```
     - **Density Plots (Kernel Density Estimate - KDE)**
         - **Purpose:** A smoothed version of a histogram, useful for visualizing the shape of a distribution.
@@ -69,24 +70,25 @@ Data visualization is a cornerstone of [[Exploratory_Data_Analysis_Workflow|Expl
         - **Tools:** `plt.boxplot()`, `df.boxplot()`, `sns.boxplot()`
         - **Insights:** Central tendency, spread (IQR = Q3 - Q1), skewness, identification of outliers.
         ```python
-        # sns.boxplot(y=data)
-        # plt.title("Box Plot")
-        # plt.show()
+        sns.boxplot(y=data)
+        plt.title("Box Plot")
+        plt.show()
         ```
     - **Bar Charts / Count Plots**
         - **Purpose:** Show the frequency of each category in a categorical variable.
         - **Tools:** `df['cat_col'].value_counts().plot(kind='bar')`, `sns.countplot(x='cat_col', data=df)`
         - **Insights:** Most/least common categories, distribution of categorical data.
-- **Bivariate Analysis (Analyzing Relationships Between Two Variables)**
+- Bivariate Analysis 
+	### Analyzing Relationships Between Two Variables
     - **Scatter Plots**
         - **Purpose:** Show the relationship between two numerical variables. Each point represents an observation.
         - **Tools:** `plt.scatter()`, `df.plot(kind='scatter', x='col1', y='col2')`, `sns.scatterplot()`
         - **Insights:** Correlation (positive, negative, none), linearity, clusters, outliers.
         ```python
-        # df_scatter = pd.DataFrame({'x': range(20), 'y': range(20) + np.random.randn(20)*2})
-        # sns.scatterplot(x='x', y='y', data=df_scatter)
-        # plt.title("Scatter Plot")
-        # plt.show()
+        df_scatter = pd.DataFrame({'x': range(20), 'y': range(20) + np.random.randn(20)*2})
+        sns.scatterplot(x='x', y='y', data=df_scatter)
+        plt.title("Scatter Plot")
+        plt.show()
         ```
     - **Line Plots**
         - **Purpose:** Typically used to show trends over time (time series data) or the relationship between two ordered numerical variables.
@@ -97,11 +99,11 @@ Data visualization is a cornerstone of [[Exploratory_Data_Analysis_Workflow|Expl
         - **Tools:** `sns.heatmap(df.corr(), annot=True, cmap='coolwarm')`
         - **Insights:** Quickly identify strong/weak positive/negative correlations between pairs of numerical variables.
         ```python
-        # df_corr = pd.DataFrame(np.random.rand(5,3), columns=['A','B','C'])
-        # correlation_matrix = df_corr.corr()
-        # sns.heatmap(correlation_matrix, annot=True, cmap='viridis')
-        # plt.title("Correlation Heatmap")
-        # plt.show()
+        df_corr = pd.DataFrame(np.random.rand(5,3), columns=['A','B','C'])
+        correlation_matrix = df_corr.corr()
+        sns.heatmap(correlation_matrix, annot=True, cmap='viridis')
+        plt.title("Correlation Heatmap")
+        plt.show()
         ```
     - **Box Plots per Category**
         - **Purpose:** Compare the distribution of a numerical variable across different categories of a categorical variable.
@@ -115,7 +117,8 @@ Data visualization is a cornerstone of [[Exploratory_Data_Analysis_Workflow|Expl
         - **Purpose:** Show the relationship or joint distribution of two categorical variables.
         - **Tools:** `pd.crosstab(df.cat1, df.cat2).plot(kind='bar', stacked=True)`
         - **Insights:** Proportions or counts of one categorical variable within each category of another.
-- **Multivariate Analysis (Analyzing More Than Two Variables)**
+- Multivariate Analysis 
+	### (Analyzing More Than Two Variables)
     - **Pair Plots (Scatter Plot Matrix)**
         - **Purpose:** Create a grid of scatter plots for all pairs of numerical variables in a DataFrame. Histograms or density plots are often shown on the diagonal.
         - **Tools:** `sns.pairplot(df, hue='cat_col')` (can use `hue` to add a categorical dimension)

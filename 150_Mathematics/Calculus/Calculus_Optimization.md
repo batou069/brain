@@ -94,11 +94,11 @@ The minimum value is $f(2) = 2^2 - 4(2) + 5 = 4 - 8 + 5 = 1$.
 ```mermaid
 graph TD
     subgraph OptimizationProcess ["Optimization Process for f(x)"]
-        A[Objective Function f(x)] --> B{Find Critical Points f'(x)=0};
-        B --> C{Second Derivative Test f''(x)};
-        C -- f''(c) > 0 --> D[Local Minimum at x=c];
-        C -- f''(c) < 0 --> E[Local Maximum at x=c];
-        C -- f''(c) = 0 --> F[Test Inconclusive];
+        A[Objective Function f x ] --> B{Find Critical Points f' x=0};
+        B --> C{Second Derivative Test f'' x  };
+        C -- f'' c  > 0 --> D[Local Minimum at x=c];
+        C -- f'' c  < 0 --> E[Local Maximum at x=c];
+        C -- f'' c  = 0 --> F[Test Inconclusive];
     end
 ```
 

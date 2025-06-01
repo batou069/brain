@@ -78,19 +78,21 @@ One can continue to take derivatives to get third, fourth, and higher-order deri
 
 ```mermaid
 graph TD
-    subgraph FunctionGraph["Graph of y = f(x)"]
-        A((Point (x, f(x))))
-        T1---A---T2  % Tangent Line
-        C[Curve representing f(x)] -.-> A
+    subgraph FunctionGraph["Graph of y = f x"]
+        A[Point x f x]
+        T1[ ] --- A --- T2[ ]  
+        %% Tangent Line
+        C[Curve y = f x] --> A
     end
-    FunctionGraph -->|Slope at (x,f(x)) is| Derivative["f'(x)"]
+    FunctionGraph -->|Slope at x is| Derivative[f' x]
 
     style A fill:#fff,stroke:#333,stroke-width:2px
-    style T1 fill:#fff,stroke:#f00,stroke-width:1px,stroke-dasharray: 5 5
-    style T2 fill:#fff,stroke:#f00,stroke-width:1px,stroke-dasharray: 5 5
-    linkStyle 0 stroke-width:2px,fill:none,stroke:blue;
-    linkStyle 1 stroke-width:2px,fill:none,stroke:blue;
-    linkStyle 2 stroke-width:2px,fill:none,stroke:red;
+    style T1 fill:none,stroke:#f00,stroke-width:1px,stroke-dasharray:5,5
+    style T2 fill:none,stroke:#f00,stroke-width:1px,stroke-dasharray:5,5
+    style C fill:none,stroke:#00f,stroke-width:2px
+    linkStyle 0 stroke:#f00,stroke-width:2px
+    linkStyle 1 stroke:#f00,stroke-width:2px
+    linkStyle 2 stroke:#00f,stroke-width:2px
 ```
 > The diagram illustrates that the derivative $f'(x)$ at a point $(x, f(x))$ on the curve of $y=f(x)$ is the slope of the tangent line (T1-A-T2) to the curve at that point.
 

@@ -13,9 +13,10 @@ aliases:
 related:
   - "[[Pandas_DataFrame]]"
   - "[[Pandas_Series]]"
-  - "[[Pandas_Join_vs_Merge]]" # For database-style joins
-  - "[[NumPy_concatenate]]" # Placeholder for NumPy's version
-worksheet: [WS_Pandas_Main]
+  - "[[Pandas_Join_vs_Merge]]"
+  - "[[NumPy_concatenate]]"
+worksheet:
+  - WS_Pandas_Main
 date_created: <% tp.file.creation_date("YYYY-MM-DD") %>
 ---
 # Pandas `pd.concat()`
@@ -133,3 +134,48 @@ date_created: <% tp.file.creation_date("YYYY-MM-DD") %>
 
 ---
 **Source:** WS_Pandas_Main, Pandas Documentation
+
+[list2tab]
+- Creation
+	[list2tab]	
+	- Empty df
+		[list2mdtable]
+		- Column 1:
+			- Column 2:
+				- Column 3:
+					- Column 4:
+		- np.arrange() is in col 1
+			-  this is col2
+	     	  ```python
+	     	  import numpy as np
+	     	   np.arange(10)
+	     	   np.arange(2, 10, dtype=float)
+	     	   np.arange(2, 3, 0.1)
+	     	   ```   
+		     this is another row in col2 
+				  - col3 sub1
+				    > col3 sub2
+				    > 	- col4 row1
+				    > 	- col4 row2
+
+	- 1D arrays 
+		[list2mdtable]
+		- SQL:
+			- Pandas:
+				- Pure Numpy:
+					- R:
+		- Some header about sql expression
+			```sql
+			SELECT * FROM Table;*
+			```
+			- this is col2
+	     	  ```python
+	     	  import 
+	     	   ```   
+		     this is another row in col2 
+				- col3 sub1
+				  > col3 sub2
+- Manipulation
+	content
+
+
