@@ -19,27 +19,6 @@ related:
 worksheet: [WS9] # Implied concept
 date_created: 2025-04-21
 ---
----
-tags:
-  - data_structures
-  - concept
-  - building_block
-  - linked_list
-  - tree
-  - graph
-aliases:
-  - Node (Data Structure)
-related:
-  - "[[Data_Structure]]"
-  - "[[Linked_List_ADT]]"
-  - "[[Tree_DS]]"
-  - "[[Graph_DS]]"
-  - "[[Pointer_C]]"
-  - "[[struct_C]]"
-  - "[[Dynamic_Allocation_C]]"
-worksheet: [WS9] # Implied concept
-date_created: 2025-04-21
----
 # Node (Data Structure Component)
 
 ## Definition

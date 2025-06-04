@@ -4,5 +4,6 @@
   "attachmentFolderPath": "./00_Meta",
   "alwaysUpdateLinks": true,
   "promptDelete": false,
-  "readableLineLength": false
+  "readableLineLength": true,
+  "trashOption": "local"
 }

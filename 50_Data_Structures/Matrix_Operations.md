@@ -30,20 +30,17 @@ date_created: 2025-04-12
 [[Matrix_Math|Matrices]] support several standard algebraic operations, provided their dimensions are compatible. Key operations include addition, subtraction, scalar multiplication, matrix multiplication, and transpose.
 
 ## Core Operations
-
-1.  **[[Matrix_Addition|Addition]] / [[Matrix_Subtraction|Subtraction]]:**
+[list2mdtable]
+- **[[Matrix_Addition|Addition]] / [[Matrix_Subtraction|Subtraction]]:**
     -   **Condition:** Matrices must have the **same dimensions**.
     -   **Operation:** Performed element-wise. `(A ± B)_ij = A_ij ± B_ij`.
     -   **Properties:** Commutative, Associative.
-
-2.  **[[Scalar_Matrix_Multiplication|Scalar Multiplication]]:**
+- **[[Scalar_Matrix_Multiplication|Scalar Multiplication]]:**
     -   **Operation:** Multiply every element of the matrix by a scalar `c`. `(c * A)_ij = c * A_ij`.
-
-3.  **[[Matrix_Transpose|Transpose]]:**
+- **[[Matrix_Transpose|Transpose]]:**
     -   **Operation:** Swap rows and columns. `(A^T)_ij = A_ji`. If `A` is `m x n`, `A^T` is `n x m`.
     -   **Properties:** `(A^T)^T = A`, `(A + B)^T = A^T + B^T`, `(c*A)^T = c*A^T`, `(A * B)^T = B^T * A^T`.
-
-4.  **[[Matrix_Multiplication|Matrix Multiplication]]:**
+- **[[Matrix_Multiplication|Matrix Multiplication]]:**
     -   **Condition:** To multiply `A * B`, the number of columns in `A` must equal the number of rows in `B`. If `A` is `m x n` and `B` is `n x p`, the result `C` is `m x p`.
     -   **Operation:** The element `C_ij` is the [[Dot_Product]] of the `i`-th row of `A` and the `j`-th column of `B`. `C_ij = Σ (A_ik * B_kj)` (sum over `k`).
     -   **Properties:** Associative, Distributive over addition. **Not Commutative** generally (`AB != BA`).

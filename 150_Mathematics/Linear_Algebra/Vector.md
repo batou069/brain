@@ -42,16 +42,17 @@ The first form is a [[Column_Vector|column vector]], and the second is often use
 
 ## Key Properties and Concepts
 [list2tab|#Vector Properties]
-- **Magnitude (Length or Norm)**
+- Magnitude
+	(Length or Norm)
     - The magnitude of a vector $\mathbf{v} = (v_1, v_2, \dots, v_n)$ is typically its Euclidean length (or L2 norm), calculated as:
       $$ \|\mathbf{v}\| = \sqrt{v_1^2 + v_2^2 + \dots + v_n^2} $$
     - Other [[p-norm|norms]] (like L1 norm) can also define a vector's "length".
-- **Direction**
+- Direction
     - The orientation of the vector in space. Often represented by a unit vector (a vector with magnitude 1) pointing in the same direction.
     - For $\mathbf{v} \neq \mathbf{0}$, the unit vector $\hat{\mathbf{u}}$ in the direction of $\mathbf{v}$ is $\hat{\mathbf{u}} = \frac{\mathbf{v}}{\|\mathbf{v}\|}$.
-- **Zero Vector**
+- Zero Vector
     - A vector with all components equal to zero, denoted $\mathbf{0}$ or $\vec{0}$. It has zero magnitude and no specific direction. It is the additive identity in a [[Vector_Space|vector space]].
-- **Vector Equality**
+- Vector Equality
     - Two vectors are equal if and only if they have the same dimension and their corresponding components are equal.
 
 ## Geometric Interpretation

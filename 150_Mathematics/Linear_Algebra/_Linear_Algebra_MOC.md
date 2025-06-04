@@ -23,14 +23,14 @@ Linear algebra is a branch of mathematics concerning [[Vector|vector spaces]] an
 ## Core Concepts
 
 [list2tab|#Linear Algebra Topics]
-- **Vectors**
+- Vectors
     - [[Vector|Definition and Properties]]
     - [[Row_Vector|Row Vector]] vs. [[Column_Vector|Column Vector]]
     - [[Vector_Operations|Vector Operations]] (Addition, Scalar Multiplication)
     - [[Dot_Product|Dot Product (Inner Product)]]
     - [[p-norm|Vector Norms (p-norm)]] (e.g., L1, L2, L-infinity norms)
     - [[Cosine_Similarity|Cosine Similarity]]
-- **Matrices**
+- Matrices
     - [[Matrix|Definition and Properties]]
     - [[Matrix_Operations|Matrix Operations]] (Addition, Scalar Multiplication)
     - [[Matrix_Product|Matrix Product]]
@@ -44,10 +44,10 @@ Linear algebra is a branch of mathematics concerning [[Vector|vector spaces]] an
     - [[Transformation_Matrix|Transformation Matrix]]
         - [[Matrix_Transformations_and_Distance|Effect on Distances]]
     - Special Matrices (Identity, Diagonal, Symmetric, Orthogonal)
-- **Eigen-Decomposition & Singular Value Decomposition (SVD)**
+- Eigen-Decomposition & Singular Value Decomposition (SVD)
     - [[Eigenvalues_Eigenvectors|Eigenvalues and Eigenvectors]]
     - [[Singular_Value_Decomposition|Singular Values and Singular Vectors (SVD)]]
-- **Advanced Topics**
+- Advanced Topics
     - [[Matrix_Calculus|Matrix Calculus]] (see also [[_Calculus_MOC]])
     - [[Vector_Space|Vector Spaces and Subspaces]]
     - [[Linear_Independence_Basis_Dimension|Linear Independence, Basis, and Dimension]]

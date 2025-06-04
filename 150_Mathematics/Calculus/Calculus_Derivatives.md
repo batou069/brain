@@ -37,25 +37,33 @@ This limit, if it exists, gives the derivative of $f$ at $x$. The process of fin
 
 ## Key Aspects & Interpretations
 [list2tab|#Derivative Aspects]
-- **Rate of Change**
+- Rate of Change
     - If $y = f(t)$ where $t$ represents time, then $f'(t)$ represents the rate of change of $y$ with respect to time. For example, if $y$ is position, $f'(t)$ is velocity.
-- **Slope of Tangent Line**
+- Slope of Tangent Line
     - The derivative $f'(a)$ is the slope of the line tangent to the graph of $y=f(x)$ at the point $(a, f(a))$.
-- **Approximation**
+- Approximation
     - For a small change $\Delta x$, the change in $f(x)$, $\Delta f = f(x+\Delta x) - f(x)$, can be approximated by $\Delta f \approx f'(x) \Delta x$.
-- **Increasing/Decreasing Functions**
+- Increasing/Decreasing Functions
     - If $f'(x) > 0$ on an interval, then $f(x)$ is increasing on that interval.
     - If $f'(x) < 0$ on an interval, then $f(x)$ is decreasing on that interval.
     - If $f'(x) = 0$ at a point, it may indicate a local maximum, local minimum, or an inflection point (critical points).
 
 ## Common Derivative Rules
-- **Constant Rule:** $\frac{d}{dx}(c) = 0$
-- **Power Rule:** $\frac{d}{dx}(x^n) = nx^{n-1}$
-- **Constant Multiple Rule:** $\frac{d}{dx}(cf(x)) = c f'(x)$
-- **Sum/Difference Rule:** $\frac{d}{dx}(f(x) \pm g(x)) = f'(x) \pm g'(x)$
-- **Product Rule:** $\frac{d}{dx}(f(x)g(x)) = f'(x)g(x) + f(x)g'(x)$
-- **Quotient Rule:** $\frac{d}{dx}\left(\frac{f(x)}{g(x)}\right) = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}$
-- **Chain Rule:** If $y = f(g(x))$, then $\frac{dy}{dx} = f'(g(x)) \cdot g'(x)$
+[list2mdtable]
+- **Constant Rule:** 
+	- $\frac{d}{dx}(c) = 0$
+- **Power Rule:**
+	- $\frac{d}{dx}(x^n) = nx^{n-1}$
+- **Constant Multiple Rule:**
+	- $\frac{d}{dx}(cf(x)) = c f'(x)$
+- **Sum/Difference Rule:** 
+	- $\frac{d}{dx}(f(x) \pm g(x)) = f'(x) \pm g'(x)$
+- **Product Rule:** 
+	- $\frac{d}{dx}(f(x)g(x)) = f'(x)g(x) + f(x)g'(x)$
+- **Quotient Rule:** 
+	- $\frac{d}{dx}\left(\frac{f(x)}{g(x)}\right) = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}$
+- **Chain Rule:** 
+	- If $y = f(g(x))$, then $\frac{dy}{dx} = f'(g(x)) \cdot g'(x)$
 - **Derivatives of Common Functions:**
     - $\frac{d}{dx}(e^x) = e^x$
     - $\frac{d}{dx}(\ln x) = \frac{1}{x}$

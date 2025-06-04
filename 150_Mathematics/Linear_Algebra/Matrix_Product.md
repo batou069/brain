@@ -64,16 +64,24 @@ $$
 So, $\mathbf{F} = \begin{pmatrix} 5 & 1 \\ 4 & 2 \end{pmatrix}$.
 
 ## Properties
-[list2tab|#Matrix Product Properties]
-- **Not Commutative (Generally):** $\mathbf{A}\mathbf{B} \neq \mathbf{B}\mathbf{A}$ in most cases.
-    - Even if both products are defined, they might have different dimensions or different values.
-- **Associative:** $(\mathbf{A}\mathbf{B})\mathbf{C} = \mathbf{A}(\mathbf{B}\mathbf{C})$. This property is crucial for [[Matrix_Multiplication_Associativity|optimizing the order of multiplications]].
-- **Distributive over Matrix Addition:**
+[list2table|#Matrix Product Properties]
+- Not Commutative (Generally): 
+	- $\mathbf{A}\mathbf{B} \neq \mathbf{B}\mathbf{A}$ in most cases.
+    Even if both products are defined, they might have different dimensions or different values.
+- Associative: 
+	- $(\mathbf{A}\mathbf{B})\mathbf{C} = \mathbf{A}(\mathbf{B}\mathbf{C})$. 
+	This property is crucial for [[Matrix_Multiplication_Associativity|optimizing the order of multiplications]].
+- Distributive over Matrix Addition:
     - $\mathbf{A}(\mathbf{B} + \mathbf{C}) = \mathbf{A}\mathbf{B} + \mathbf{A}\mathbf{C}$ (left distributivity)
     - $(\mathbf{A} + \mathbf{B})\mathbf{C} = \mathbf{A}\mathbf{C} + \mathbf{B}\mathbf{C}$ (right distributivity)
-- **Scalar Multiplication:** $k(\mathbf{A}\mathbf{B}) = (k\mathbf{A})\mathbf{B} = \mathbf{A}(k\mathbf{B})$, where $k$ is a scalar.
-- **Identity Element:** If $\mathbf{I}$ is the identity matrix of appropriate size, then $\mathbf{A}\mathbf{I} = \mathbf{A}$ and $\mathbf{I}\mathbf{A} = \mathbf{A}$.
-- **Transpose of a Product:** $(\mathbf{A}\mathbf{B})^T = \mathbf{B}^T \mathbf{A}^T$. The order is reversed.
+- Scalar Multiplication: 
+	- $k(\mathbf{A}\mathbf{B}) = (k\mathbf{A})\mathbf{B} = \mathbf{A}(k\mathbf{B})$, where $k$ is a scalar.
+- Identity Element: 
+	- If $\mathbf{I}$ is the identity matrix of appropriate size, then
+	$\mathbf{A}\mathbf{I} = \mathbf{A}$ and $\mathbf{I}\mathbf{A} = \mathbf{A}$.
+- Transpose of a Product: 
+	- $(\mathbf{A}\mathbf{B})^T = \mathbf{B}^T \mathbf{A}^T$
+	The order is reversed.
 
 ## Applications
 - **Representing Linear Transformations:** If a vector $\mathbf{x}$ is transformed by a linear map represented by matrix $\mathbf{B}$, and then the result is transformed by another linear map represented by matrix $\mathbf{A}$, the combined transformation is represented by the matrix product $\mathbf{A}\mathbf{B}$. The transformed vector is $(\mathbf{A}\mathbf{B})\mathbf{x} = \mathbf{A}(\mathbf{B}\mathbf{x})$. (See [[Transformation_Matrix]])

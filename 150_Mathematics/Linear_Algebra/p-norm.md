@@ -45,7 +45,8 @@ for a real number $p \ge 1$.
 >[!question] What are the common names for the 1-norm, 2-norm, and ∞-norm? Why are they called like that?
 
 [list2tab|#Common p-norms]
-- **L1-norm ($p=1$)**
+- L1-norm 
+	($p=1$)
     - **Formula:** $\|\mathbf{x}\|_1 = \sum_{i=1}^{n} |x_i| = |x_1| + |x_2| + \dots + |x_n|$
     - **Common Names:**
         - **Manhattan Norm:** This name comes from the grid-like path a taxi would take in Manhattan (where streets are often in a grid). The L1 distance between two points $(x_1, y_1)$ and $(x_2, y_2)$ is $|x_1-x_2| + |y_1-y_2|$, which is the distance traveled along grid lines.
@@ -54,7 +55,8 @@ for a real number $p \ge 1$.
     - **Why these names?** They reflect the idea of summing absolute differences along axes, akin to moving along a city grid.
     - **Use Cases:** Promotes sparsity in machine learning (e.g., L1 regularization like Lasso), robust to outliers in some contexts, feature selection.
 
-- **L2-norm ($p=2$)**
+- L2-norm 
+	($p=2$)
     - **Formula:** $\|\mathbf{x}\|_2 = \sqrt{\sum_{i=1}^{n} |x_i|^2} = \sqrt{x_1^2 + x_2^2 + \dots + x_n^2}$
     - **Common Names:**
         - **Euclidean Norm:** This is the ordinary "straight-line" distance from the origin to the point represented by the vector in Euclidean space. It's derived from the Pythagorean theorem.
@@ -62,7 +64,8 @@ for a real number $p \ge 1$.
     - **Why these names?** It corresponds to our intuitive notion of distance in Euclidean geometry. It's also related to the [[Dot_Product|dot product]]: $\|\mathbf{x}\|_2 = \sqrt{\mathbf{x} \cdot \mathbf{x}}$.
     - **Use Cases:** Most common norm, used in many geometric calculations, distance measurements (Euclidean distance), L2 regularization (Ridge regression, weight decay), least squares.
 
-- **L$\infty$-norm ($p \to \infty$)**
+- L-Infinity
+	$\infty$-norm ($p \to \infty$)
     - **Formula:** $\|\mathbf{x}\|_\infty = \max_{i} |x_i| = \max(|x_1|, |x_2|, \dots, |x_n|)$
     - **Common Names:**
         - **Maximum Norm (Max Norm):** This name directly describes what it calculates – the maximum absolute value among the vector's components.
@@ -72,7 +75,7 @@ for a real number $p \ge 1$.
       Consider $(\sum |x_i|^p)^{1/p}$. Let $|x_k|$ be $\max_i |x_i|$. Then $\|\mathbf{x}\|_p = |x_k| (\sum (|x_i|/|x_k|)^p)^{1/p}$. As $p \to \infty$, $(|x_i|/|x_k|)^p \to 0$ if $|x_i| < |x_k|$, and $\to 1$ if $|x_i| = |x_k|$. If there's a unique maximum, the sum inside parenthesis approaches 1.
     - **Use Cases:** Useful when the largest component is of primary interest, error analysis (maximum error), some types of regularization, feature scaling to a max value.
 
-- **L0-norm (Pseudo-norm)**
+- L0-norm (Pseudo-norm)
     - **Definition:** Although not strictly a norm (it violates the homogeneity property $\|k\mathbf{v}\| = |k| \|\mathbf{v}\|$ for $k \neq \pm 1$), the "L0-norm" is often used to denote the number of non-zero elements in a vector.
     - **Formula:** $\|\mathbf{x}\|_0 = \sum_{i=1}^{n} \mathbb{I}(x_i \neq 0)$, where $\mathbb{I}$ is the indicator function.
     - **Use Cases:** Sparsity measure in compressed sensing and feature selection. Computationally hard to optimize directly, often approximated by L1-norm.
@@ -85,25 +88,33 @@ The set of all vectors $\mathbf{x}$ such that $\|\mathbf{x}\|_p = 1$ forms the "
 
 ```mermaid
 graph TD
-    subgraph L1_Norm_Unit_Circle ["L1 Unit Circle: ||x||_1 = 1"]
-        P1((1,0)) --- P2((0,1)) --- P3((-1,0)) --- P4((0,-1)) --- P1
+    subgraph L1_Norm["L1 Unit Circle: |x|_1 = 1"]
+        P1[1 0] --- P2[0 1]
+        P2 --- P3[-1 0]
+        P3 --- P4[0 -1]
+        P4 --- P1
     end
-    subgraph L2_Norm_Unit_Circle ["L2 Unit Circle: ||x||_2 = 1"]
-        C[Circle center 0,0 radius 1]
+    subgraph L2_Norm["L2 Unit Circle: |x|_2 = 1"]
+        C[Circle center 0 0 radius 1]
     end
-    subgraph Linf_Norm_Unit_Circle ["L-inf Unit Circle: ||x||_inf = 1"]
-        S1((1,1)) --- S2((-1,1)) --- S3((-1,-1)) --- S4((1,-1)) --- S1
+    subgraph Linf_Norm["L-infinity Unit Circle: |x|_inf = 1"]
+        S1[1 1] --- S2[-1 1]
+        S2 --- S3[-1 -1]
+        S3 --- S4[1 -1]
+        S4 --- S1
     end
 
-    style P1 fill:#afa
-    style P2 fill:#afa
-    style P3 fill:#afa
-    style P4 fill:#afa
-    style C fill:#aaf,stroke:#333,stroke-width:4px,r:50
-    style S1 fill:#faa
-    style S2 fill:#faa
-    style S3 fill:#faa
-    style S4 fill:#faa
+    style P1 fill:#afa,stroke:#333,stroke-width:2px
+    style P2 fill:#afa,stroke:#333,stroke-width:2px
+    style P3 fill:#afa,stroke:#333,stroke-width:2px
+    style P4 fill:#afa,stroke:#333,stroke-width:2px
+    style C fill:#aaf,stroke:#333,stroke-width:4px
+    style S1 fill:#faa,stroke:#333,stroke-width:2px
+    style S2 fill:#faa,stroke:#333,stroke-width:2px
+    style S3 fill:#faa,stroke:#333,stroke-width:2px
+    style S4 fill:#faa,stroke:#333,stroke-width:2px
+    linkStyle 0,1,2,3 stroke:#afa,stroke-width:2px
+    linkStyle 4,5,6,7 stroke:#faa,stroke-width:2px
 ```
 
 ## Applications

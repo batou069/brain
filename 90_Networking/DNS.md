@@ -33,20 +33,40 @@ The **Domain Name System (DNS)** is a hierarchical and distributed naming system
 - **Service Discovery:** Can provide information about available services for a domain (e.g., mail servers via MX records, service discovery via SRV records).
 - **Distributed Database:** DNS information is stored across a global hierarchy of authoritative name servers, making the system robust and scalable. No single server holds all information.
 
-## How it Works (Simplified Query Flow)
+[list2pumlWBS]
 
-1.  **User Request:** A user types `www.example.com` into a browser. The browser/OS needs the IP address.
-2.  **Local Check:** The OS checks its local cache and `hosts` file first.
-3.  **Recursive Resolver Query:** If not found locally, the OS queries its configured **[[Recursive_Resolver]]** (usually provided by the ISP or a public service like Google DNS `8.8.8.8` or Cloudflare `1.1.1.1`).
-4.  **Recursive Resolution Process:**
-    a.  The Recursive Resolver queries one of the **Root Name Servers** (`.`) to find the authoritative server for the top-level domain (TLD), `.com`.
-    b.  The Root Server responds with the address(es) of the `.com` TLD name servers.
-    c.  The Recursive Resolver queries a `.com` TLD server for `example.com`.
-    d.  The `.com` TLD server responds with the address(es) of the **[[Authoritative_Name_Server|Authoritative Name Server(s)]]** responsible for the `example.com` zone.
-    e.  The Recursive Resolver queries the `example.com` Authoritative Name Server for the specific record for `www.example.com` (typically an [[DNS_Record_Types|A record]] for IPv4 or [[DNS_Record_Types|AAAA record]] for IPv6).
-    f.  The Authoritative Name Server responds with the IP address(es) associated with `www.example.com`.
-5.  **Caching:** The Recursive Resolver caches the result (according to its Time-To-Live or TTL value) and returns the IP address to the user's OS.
-6.  **Connection:** The user's browser can now initiate a [[TCP]] connection to the obtained IP address (usually on port 80 or 443).
+- User Request: A user types `www.example.com` into a browser. The browser/OS needs the IP address.
+  - Local Check: OS checks its local cache and `hosts` file first.
+  - Recursive Resolver Query: If not found locally, the OS queries its configured [[Recursive_Resolver]] (usually provided by the ISP or a public service like Google DNS `8.8.8.8` or Cloudflare `1.1.1.1`)
+	  - Recursive Resolution Process
+	  - src/
+    - < assets/
+      - < a
+        - b
+        - < c
+      - d
+      - e
+    - components
+    - App.vue
+    - main.js
+  - static/
+  - test/
+
+
+## How it Works (Simplified Query Flow)
+[[list2pumlWBS]]
+-  User Request: A user types `www.example.com` into a browser. The browser/OS needs the IP address.
+	- Local Check: OS checks its local cache and `hosts` file first.
+	-  Recursive Resolver Query: If not found locally, the OS queries its configured [[Recursive_Resolver]] (usually provided by the ISP or a public service like Google DNS `8.8.8.8` or Cloudflare `1.1.1.1`).
+		-  Recursive Resolution Process
+			-  The Recursive Resolver queries one of the Root Name Servers (`.`) to find the authoritative server for the top-level domain (TLD), `.com`.
+			-  The Root Server responds with the address(es) of the `.com` TLD name servers.
+			-  The Recursive Resolver queries a `.com` TLD server for `example.com`.
+			-  The `.com` TLD server responds with the address(es) of the **[[Authoritative_Name_Server|Authoritative Name Server(s)]]** responsible for the `example.com` zone.
+			-  The Recursive Resolver queries the `example.com` Authoritative Name Server for the specific record for `www.example.com` (typically an [[DNS_Record_Types|A record]] for IPv4 or [[DNS_Record_Types|AAAA record]] for IPv6).
+			-  The Authoritative Name Server responds with the IP address(es) associated with `www.example.com`.
+- Caching: The Recursive Resolver caches the result (according to its Time-To-Live or TTL value) and returns the IP address to the user's OS.
+- Connection: The user's browser can now initiate a [[TCP]] connection to the obtained IP address (usually on port 80 or 443).
 
 ## Key Aspects
 

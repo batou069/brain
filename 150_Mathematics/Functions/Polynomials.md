@@ -26,6 +26,7 @@ A **polynomial** is an expression consisting of variables (also called indetermi
 A **polynomial function** in a single variable $x$ can be written in the general form:
 $$ P(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_2 x^2 + a_1 x + a_0 $$
 where:
+
 [list2table]
 - $a_n, a_{n-1}, \dots, a_0$ 
 	- are constants called the **coefficients** of the polynomial.
@@ -44,21 +45,23 @@ Polynomials can also involve multiple variables, e.g., $P(x,y) = 2x^2y + 3xy^3 -
 
 ## Classification by Degree
 [list2tab|#Polynomial Degrees]
-- **Degree 0: Constant Polynomial**
+- Degree 0: Constant Polynomial
     - $P(x) = a_0$ (where $a_0 \neq 0$)
     - Example: $P(x) = 5$. Graph is a horizontal line.
     - The zero polynomial $P(x)=0$ is sometimes said to have degree -1 or $-\infty$, or its degree is undefined.
-- **Degree 1: [[Linear_Function|Linear Polynomial]]**
+- Degree 1:
+	[[Linear_Function|Linear Polynomial]]
     - $P(x) = a_1 x + a_0$ (where $a_1 \neq 0$)
     - Example: $P(x) = 2x + 3$. Graph is a straight line.
-- **Degree 2: [[Quadratic_Function|Quadratic Polynomial]]**
+- Degree 2: 
+	[[Quadratic_Function|Quadratic Polynomial]]
     - $P(x) = a_2 x^2 + a_1 x + a_0$ (where $a_2 \neq 0$)
     - Example: $P(x) = x^2 - 3x + 2$. Graph is a parabola.
-- **Degree 3: Cubic Polynomial**
+- Degree 3: Cubic Polynomial
     - $P(x) = a_3 x^3 + a_2 x^2 + a_1 x + a_0$ (where $a_3 \neq 0$)
     - Example: $P(x) = x^3 - 6x^2 + 11x - 6$.
-- **Degree 4: Quartic Polynomial**
-- **Degree 5: Quintic Polynomial**
+- Degree 4: Quartic Polynomial
+- Degree 5: Quintic Polynomial
 
 ## Properties
 - **Continuity and Differentiability:** Polynomial functions are continuous and infinitely differentiable everywhere.

@@ -25,7 +25,7 @@
 *   **Concise explanation:** The process of finding the input values (arguments) that result in the minimum or maximum output (value) of a function, possibly subject to constraints.
 *   **Illustrative examples:** Finding the dimensions of a rectangular fence that maximize area for a fixed perimeter. Training a machine learning model by minimizing a loss function.
 *   **Syntax and real example (Conceptual):** For $f(x)=x^2-4x+5$, find $x$ where $f'(x)=2x-4=0 \Rightarrow x=2$ (minimum).
-*   **Exceptions, variations, and alternative approaches:** Constrained vs. unconstrained optimization. Convex vs. non-convex optimization. Algorithms like Gradient Descent, Newton's method, Linear Programming.
+*   **Exceptions, variations, and alternative approaches:** Constrained vs. unconstrained optimization. Convex vs. non-convex optimization. **Algorithms** like *Gradient* Descent, Newton's method, Linear Programming.
 *   **Key takeaway:** Finding the best possible solution (min/max).
 
 ---
@@ -143,7 +143,7 @@
 **2. Gamma function**
 *   **Concise explanation:** An extension of the factorial function to real and complex numbers. For a positive integer $n$, $\Gamma(n) = (n-1)!$.
 *   **Illustrative examples:** $\Gamma(1) = 0! = 1$, $\Gamma(4) = 3! = 6$, $\Gamma(1/2) = \sqrt{\pi}$.
-*   **Syntax and real example (Definition):** $\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt$ for Re(z) > 0.
+*   **Syntax and real example (Definition):** $\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt$ for $Re(z) > 0$.
 *   **Exceptions, variations, and alternative approaches:** Undefined for non-positive integers. Incomplete Gamma functions (lower, upper).
 *   **Key takeaway:** Generalizes factorial to non-integer and complex numbers.
 

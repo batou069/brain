@@ -27,15 +27,7 @@ A **Matrix** is a rectangular array or table of numbers, symbols, or expressions
 
 A matrix `A` with `m` rows and `n` columns (an `m x n` matrix) is typically written as:
 
-```latex
-A =
-\begin{bmatrix}
- a_{11} & a_{12} & \cdots & a_{1n} \\
- a_{21} & a_{22} & \cdots & a_{2n} \\
- \vdots & \vdots & \ddots & \vdots \\
- a_{m1} & a_{m2} & \cdots & a_{mn}
-\end{bmatrix}
-```
+$A = \begin{bmatrix}  a_{11} & a_{12} & \cdots & a_{1n} \\  a_{21} & a_{22} & \cdots & a_{2n} \\  \vdots & \vdots & \ddots & \vdots \\  a_{m1} & a_{m2} & \cdots & a_{mn} \end{bmatrix}$
 
 ## Key Terminology & Types
 
@@ -54,14 +46,14 @@ A =
 
 ```mermaid
 graph TD
-    subgraph Matrix A (3x2)
+    subgraph Matrix A [3x2]
         direction LR
-        R1["Row 1"] --> C11(a_11);
-        R1 --> C12(a_12);
-        R2["Row 2"] --> C21(a_21);
-        R2 --> C22(a_22);
-        R3["Row 3"] --> C31(a_31);
-        R3 --> C32(a_32);
+        R1["Row 1"] --> C11[a_11];
+        R1 --> C12[a_12];
+        R2["Row 2"] --> C21[a_21];
+        R2 --> C22[a_22];
+        R3["Row 3"] --> C31[a_31];
+        R3 --> C32[a_32];
 
         subgraph Columns
            direction TB

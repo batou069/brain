@@ -36,21 +36,21 @@ Any such linear transformation can be represented by an $m \times n$ matrix $\ma
 Let $\mathbf{x} = \begin{pmatrix} x \\ y \end{pmatrix}$ be a 2D column vector.
 
 [list2tab|#2D Transformations]
-- **Scaling**
+- Scaling
     - Scales coordinates by factors $s_x$ along the x-axis and $s_y$ along the y-axis.
     - Matrix: $\mathbf{S} = \begin{pmatrix} s_x & 0 \\ 0 & s_y \end{pmatrix}$
     - Transformed vector: $\mathbf{x}' = \mathbf{S}\mathbf{x} = \begin{pmatrix} s_x x \\ s_y y \end{pmatrix}$
-- **Rotation (Counter-Clockwise about Origin)**
-    - Rotates points by an angle $\theta$ counter-clockwise around the origin.
+- Rotation
+    - Rotates points by an angle $\theta$ *counter-clockwise*  around the origin.
     - Matrix: $\mathbf{R} = \begin{pmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{pmatrix}$
     - Transformed vector: $\mathbf{x}' = \mathbf{R}\mathbf{x}$
-- **Shearing**
+- Shearing
     - Slants the shape of an object.
     - Shear parallel to x-axis by factor $k$: $\mathbf{H}_x = \begin{pmatrix} 1 & k \\ 0 & 1 \end{pmatrix}$
       $\mathbf{x}' = \mathbf{H}_x\mathbf{x} = \begin{pmatrix} x + ky \\ y \end{pmatrix}$
     - Shear parallel to y-axis by factor $m$: $\mathbf{H}_y = \begin{pmatrix} 1 & 0 \\ m & 1 \end{pmatrix}$
       $\mathbf{x}' = \mathbf{H}_y\mathbf{x} = \begin{pmatrix} x \\ mx + y \end{pmatrix}$
-- **Reflection**
+- Reflection
     - Reflection across x-axis: $\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$
     - Reflection across y-axis: $\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}$
     - Reflection across origin: $\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}$ (equivalent to rotation by $180^\circ$)

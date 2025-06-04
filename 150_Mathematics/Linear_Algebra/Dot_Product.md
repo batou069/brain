@@ -45,45 +45,54 @@ $$ \mathbf{a} \cdot \mathbf{b} = \mathbf{a}_{\text{col}}^T \mathbf{b}_{\text{col
 >- $\|\mathbf{a}\|$ is the magnitude (L2 norm) of vector $\mathbf{a}$.
 >- $\|\mathbf{b}\|$ is the magnitude (L2 norm) of vector $\mathbf{b}$.
 >- $\theta$ is the angle between vectors $\mathbf{a}$ and $\mathbf{b}$.
->
->This formula provides several key insights:
->1.  **Projection:** The term $\|\mathbf{b}\| \cos \theta$ is the scalar projection of vector $\mathbf{b}$ onto vector $\mathbf{a}$. So, the dot product $\mathbf{a} \cdot \mathbf{b}$ is the magnitude of $\mathbf{a}$ multiplied by the scalar projection of $\mathbf{b}$ onto $\mathbf{a}$ (or vice-versa).
->    It tells us "how much" of one vector points in the direction of the other.
->    
->    ```mermaid
->    graph TD
->        O((Origin)) ---|Vector_a| A(( ))
->        O ---|Vector_b| B(( ))
->        B -- Projection_of_b_on_a --> POnA(((Projection Point P)))
->        A --- POnA
-    
->        subgraph AngleTheta
->            A -- Label_a --> O
->            O -- Label_b --> B
->        end
-    
->        note right of B : θ is angle AOB
->        note right of POnA : OP = ||b|| cos(θ)
->        DotProduct["a · b = ||a|| * (||b|| cos θ)"]
-    
->        style A fill:#afa,stroke-width:2px
->        style B fill:#aaf,stroke-width:2px
->        style POnA fill:#faa,stroke-width:1px,stroke-dasharray: 3 3
->    ```
->
->2.  **Angle Between Vectors:** The formula can be rearranged to find the angle between two non-zero vectors:
->    $$ \cos \theta = \frac{\mathbf{a} \cdot \mathbf{b}}{\|\mathbf{a}\| \|\mathbf{b}\|} $$
->    This is the basis for [[Cosine_Similarity|cosine similarity]].
->3.  **Orthogonality:**
->    - If $\mathbf{a} \cdot \mathbf{b} = 0$, and neither $\mathbf{a}$ nor $\mathbf{b}$ is the zero vector, then $\cos \theta = 0$, which means $\theta = 90^\circ$ (or $\pi/2$ radians). The vectors are **[[Orthogonal_Vectors|orthogonal]]** (perpendicular).
->    - If $\mathbf{a} \cdot \mathbf{b} > 0$, then $\cos \theta > 0$, so $0 \le \theta < 90^\circ$. The angle is acute (vectors point in a generally similar direction).
->    - If $\mathbf{a} \cdot \mathbf{b} < 0$, then $\cos \theta < 0$, so $90^\circ < \theta \le 180^\circ$. The angle is obtuse (vectors point in generally opposite directions).
->4.  **Alignment:**
->    - If $\mathbf{a}$ and $\mathbf{b}$ point in the exact same direction ($\theta = 0^\circ$, $\cos \theta = 1$), then $\mathbf{a} \cdot \mathbf{b} = \|\mathbf{a}\| \|\mathbf{b}\|$.
->    - If $\mathbf{a}$ and $\mathbf{b}$ point in exact opposite directions ($\theta = 180^\circ$, $\cos \theta = -1$), then $\mathbf{a} \cdot \mathbf{b} = -\|\mathbf{a}\| \|\mathbf{b}\|$.
->5.  **Magnitude Squared:** The dot product of a vector with itself gives the square of its magnitude:
->    $$ \mathbf{a} \cdot \mathbf{a} = \|\mathbf{a}\| \|\mathbf{a}\| \cos 0^\circ = \|\mathbf{a}\|^2 $$
->    Algebraically: $\mathbf{a} \cdot \mathbf{a} = a_1^2 + a_2^2 + \dots + a_n^2 = (\|\mathbf{a}\|_2)^2$.
+
+This formula provides several key insights:
+1.  **Projection:** The term $\|\mathbf{b}\| \cos \theta$ is the scalar projection of vector $\mathbf{b}$ onto vector $\mathbf{a}$. So, the dot product $\mathbf{a} \cdot \mathbf{b}$ is the magnitude of $\mathbf{a}$ multiplied by the scalar projection of $\mathbf{b}$ onto $\mathbf{a}$ (or vice-versa).
+   It tells us "how much" of one vector points in the direction of the other.
+   
+   ```mermaid
+   graph TD
+    subgraph AngleTheta["Angle theta between vectors a and b"]
+        O[Origin 0 0] ---|Vector a| A[Point A]
+        O ---|Vector b| B[Point B]
+        B ---|Projection of b on a| POnA[Projection Point P]
+        A --- POnA
+        A -->|Label a| O
+        O -->|Label b| B
+        NoteTheta[theta is angle AOB] --> B
+        NoteProjection[OP = norm b * cos theta] --> POnA
+        DotProduct[a . b = norm a * norm b * cos theta] --> O
+    end
+
+    style O fill:#ddd,stroke:#333,stroke-width:2px
+    style A fill:#afa,stroke:#333,stroke-width:2px
+    style B fill:#aaf,stroke:#333,stroke-width:2px
+    style POnA fill:#faa,stroke:#333,stroke-width:1px,stroke-dasharray:3,3
+    style NoteTheta fill:#fff,stroke:#333,stroke-width:1px
+    style NoteProjection fill:#fff,stroke:#333,stroke-width:1px
+    style DotProduct fill:#fff,stroke:#333,stroke-width:1px
+    linkStyle 0 stroke:#333,stroke-width:2px
+    linkStyle 1 stroke:#333,stroke-width:2px
+    linkStyle 2 stroke:#333,stroke-width:1px,stroke-dasharray:3,3
+    linkStyle 3 stroke:#333,stroke-width:1px
+    linkStyle 4 stroke:#333,stroke-width:1px
+    linkStyle 5 stroke:#333,stroke-width:1px
+    linkStyle 6 stroke:#333,stroke-width:1px
+    linkStyle 7 stroke:#333,stroke-width:1px
+   ```
+2.  **Angle Between Vectors:** The formula can be rearranged to find the angle between two non-zero vectors:
+   $$ \cos \theta = \frac{\mathbf{a} \cdot \mathbf{b}}{\|\mathbf{a}\| \|\mathbf{b}\|} $$
+   This is the basis for [[Cosine_Similarity|cosine similarity]].
+3.  **Orthogonality:**
+   - If $\mathbf{a} \cdot \mathbf{b} = 0$, and neither $\mathbf{a}$ nor $\mathbf{b}$ is the zero vector, then $\cos \theta = 0$, which means $\theta = 90^\circ$ (or $\pi/2$ radians). The vectors are **[[Orthogonal_Vectors|orthogonal]]** (perpendicular).
+   - If $\mathbf{a} \cdot \mathbf{b} > 0$, then $\cos \theta > 0$, so $0 \le \theta < 90^\circ$. The angle is acute (vectors point in a generally similar direction).
+   - If $\mathbf{a} \cdot \mathbf{b} < 0$, then $\cos \theta < 0$, so $90^\circ < \theta \le 180^\circ$. The angle is obtuse (vectors point in generally opposite directions).
+4.  **Alignment:**
+   - If $\mathbf{a}$ and $\mathbf{b}$ point in the exact same direction ($\theta = 0^\circ$, $\cos \theta = 1$), then $\mathbf{a} \cdot \mathbf{b} = \|\mathbf{a}\| \|\mathbf{b}\|$.
+   - If $\mathbf{a}$ and $\mathbf{b}$ point in exact opposite directions ($\theta = 180^\circ$, $\cos \theta = -1$), then $\mathbf{a} \cdot \mathbf{b} = -\|\mathbf{a}\| \|\mathbf{b}\|$.
+5.  **Magnitude Squared:** The dot product of a vector with itself gives the square of its magnitude:
+   $$ \mathbf{a} \cdot \mathbf{a} = \|\mathbf{a}\| \|\mathbf{a}\| \cos 0^\circ = \|\mathbf{a}\|^2 $$
+   Algebraically: $\mathbf{a} \cdot \mathbf{a} = a_1^2 + a_2^2 + \dots + a_n^2 = (\|\mathbf{a}\|_2)^2$.
 
 ## Properties
 - **Commutative:** $\mathbf{a} \cdot \mathbf{b} = \mathbf{b} \cdot \mathbf{a}$

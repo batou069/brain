@@ -39,10 +39,14 @@ where:
 
 ## Key Characteristics
 [list2tab|#Cosine Similarity Characteristics]
-- **Focus on Direction, Not Magnitude:** Cosine similarity is primarily concerned with the orientation (direction) of the vectors, not their magnitudes. Two vectors with very different lengths can still have a cosine similarity of 1 if they point in the same direction.
-- **Range:** The value is always between -1 and 1, inclusive.
-- **Common in High Dimensions:** It is particularly useful in high-dimensional spaces, where Euclidean distance can sometimes be misleading (due to the "curse of dimensionality").
-- **Non-negativity (Optional):** In some applications, especially where vector components are non-negative (e.g., term frequencies in text documents), cosine similarity values will range from 0 to 1.
+- Focus
+	Focus on Direction, Not Magnitude: Cosine similarity is primarily concerned with the orientation (direction) of the vectors, not their magnitudes. Two vectors with very different lengths can still have a cosine similarity of 1 if they point in the same direction.
+- Range
+	The value is always between -1 and 1, inclusive.
+- ND
+	Common in High Dimensions: It is particularly useful in high-dimensional spaces, where Euclidean distance can sometimes be misleading (due to the "curse of dimensionality").
+- Non-negativity
+	(Optional) In some applications, especially where vector components are non-negative (e.g., term frequencies in text documents), cosine similarity values will range from 0 to 1.
 
 ## Applications
 - **Text Analysis / Document Similarity (Natural Language Processing - NLP):**

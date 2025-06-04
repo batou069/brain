@@ -38,7 +38,7 @@ $$ \mathbf{A} = \begin{pmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_
 Here, $m=2$ (rows) and $n=3$ (columns). For instance, $a_{12} = 2$.
 
 ## Key Concepts & Types
-[list2tab|#Matrix Concepts & Types]
+[list2card|addClass(ab-col3)]
 - **Dimensions (Shape)**
     - The number of rows and columns ($m \times n$).
 - **Square Matrix**

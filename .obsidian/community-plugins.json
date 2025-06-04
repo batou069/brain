@@ -12,5 +12,6 @@
   "settings-search",
   "latex-render",
   "any-block",
-  "symbols-prettifier"
+  "symbols-prettifier",
+  "obsidian-style-settings"
 ]

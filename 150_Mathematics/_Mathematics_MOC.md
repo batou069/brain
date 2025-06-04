@@ -24,19 +24,19 @@ This section covers fundamental mathematical concepts essential for understandin
 
 ## Overview
 
-> [!NOTE] Math as L:anguage
+> [!NOTE] Math as Language
 > Contents
 
 [list2card|addClass(ab-col3)]
-- **[[150_Mathematics/Calculus/_Calculus_MOC|Calculus]]:** 
-	- Deals with rates of change ([[Calculus_Derivatives|Derivatives]]) and accumulation ([[Calculus_Integrals|Integrals]]). 
+- **[[150_Mathematics/Calculus/_Calculus_MOC|Calculus]]:**
+	- Deals with rates of change ([[Calculus_Derivatives|Derivatives]]) and accumulation ([[Calculus_Integrals|Integrals]]).
 	- Essential for [[Calculus_Optimization|Optimization]] algorithms used in training machine learning models
 	- [[Matrix_Calculus]], [[Hessian]], and [[Jacobian]] extend these concepts to multiple dimensions
-- **[[150_Mathematics/Linear_Algebra/_Linear_Algebra_MOC|Linear Algebra]]:** 
-	- The study of [[Vector|vectors]], [[Matrix|matrices]], and linear transformations. 
-	- Data is often represented as vectors and matrices, and many ML algorithms are based on linear algebraic operations like [[Matrix_Product|matrix multiplication]], [[Eigenvalues_Eigenvectors|eigen-decomposition]], and [[Singular_Value_Decomposition|singular value decomposition]]. 
+- **[[150_Mathematics/Linear_Algebra/_Linear_Algebra_MOC|Linear Algebra]]:**
+	- The study of [[Vector|vectors]], [[Matrix|matrices]], and linear transformations.
+	- Data is often represented as vectors and matrices, and many ML algorithms are based on linear algebraic operations like [[Matrix_Product|matrix multiplication]], [[Eigenvalues_Eigenvectors|eigen-decomposition]], and [[Singular_Value_Decomposition|singular value decomposition]].
 	- Concepts like [[Dot_Product|dot products]], [[p-norm|norms]], and [[Cosine_Similarity|cosine similarity]] are fundamental for measuring relationships and distances.
-- **[[150_Mathematics/Functions/_Functions_MOC|Mathematical Functions]]:** 
+- **[[150_Mathematics/Functions/_Functions_MOC|Mathematical Functions]]:**
 	- Various functions serve as building blocks for models, activation functions in neural networks, or describe data distributions:
 		- [[Polynomials|polynomials]]
 		- [[Exponential_Function|exponential]]

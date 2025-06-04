@@ -48,25 +48,35 @@ These functions can be defined in several ways:
 
     ```mermaid
     graph TD
-        subgraph UnitCircle["Unit Circle Definition"]
-            O((Origin (0,0))) --- P(("P(cos x, sin x)"))
-            O --- XAxisEnd((1,0))
-            AngleArc[Angle x] -- sweeps --> P
-            P -- "sin x" --> B((cos x, 0))
-            B -- "cos x" --> O
-        end
-        note right of P : Point P is on unit circle
-        XAxisEnd -- "x-axis" --> O
-        style O fill:#ddd
-        style P fill:#afa
-        style XAxisEnd fill:#ddd
-        style B fill:#ddd
+    subgraph UnitCircle["Unit Circle Definition"]
+        O[Origin 0 0] --- P[Point cos x sin x]
+        O --- XAxisEnd[Point 1 0]
+        AngleArc[Angle x] --> P
+        P ---|sin x| B[Point cos x 0]
+        B ---|cos x| O
+    end
+    Note[Point P is on unit circle] --> P
+    XAxisEnd ---|x-axis| O
+
+    style O fill:#ddd,stroke:#333,stroke-width:2px
+    style P fill:#afa,stroke:#333,stroke-width:2px
+    style XAxisEnd fill:#ddd,stroke:#333,stroke-width:2px
+    style B fill:#ddd,stroke:#333,stroke-width:2px
+    style AngleArc fill:none,stroke:#00f,stroke-width:2px
+    style Note fill:#fff,stroke:#333,stroke-width:1px
+    linkStyle 0 stroke:#333,stroke-width:2px
+    linkStyle 1 stroke:#333,stroke-width:2px
+    linkStyle 2 stroke:#00f,stroke-width:2px
+    linkStyle 3 stroke:#333,stroke-width:2px
+    linkStyle 4 stroke:#333,stroke-width:2px
+    linkStyle 5 stroke:#333,stroke-width:1px
     ```
 
 ## Key Trigonometric Functions & Their Properties
 
 [list2tab|#Trig Functions]
-- **Sine Function ($y = \sin x$)**
+- Sine Function
+	$y = \sin x$
     - **Domain:** $(-\infty, \infty)$
     - **Range:** $[-1, 1]$
     - **Period:** $2\pi$ (i.e., $\sin(x + 2\pi) = \sin x$)
@@ -75,7 +85,8 @@ These functions can be defined in several ways:
     - **Derivative:** $\frac{d}{dx} \sin x = \cos x$
     - **Integral:** $\int \sin x \,dx = -\cos x + C$
 
-- **Cosine Function ($y = \cos x$)**
+- Cosine Function
+	$y = \cos x$
     - **Domain:** $(-\infty, \infty)$
     - **Range:** $[-1, 1]$
     - **Period:** $2\pi$ (i.e., $\cos(x + 2\pi) = \cos x$)
@@ -85,7 +96,8 @@ These functions can be defined in several ways:
     - **Integral:** $\int \cos x \,dx = \sin x + C$
     - **Relationship to Sine:** $\cos x = \sin\left(x + \frac{\pi}{2}\right)$ (phase shift)
 
-- **Tangent Function ($y = \tan x = \frac{\sin x}{\cos x}$)**
+- Tangent Function
+	$y = \tan x = \frac{\sin x}{\cos x}$
     - **Domain:** All real numbers except $x = \frac{\pi}{2} + k\pi$ (where $\cos x = 0$)
     - **Range:** $(-\infty, \infty)$
     - **Period:** $\pi$ (i.e., $\tan(x + \pi) = \tan x$)
@@ -95,7 +107,7 @@ These functions can be defined in several ways:
     - **Derivative:** $\frac{d}{dx} \tan x = \sec^2 x = \frac{1}{\cos^2 x}$
     - **Integral:** $\int \tan x \,dx = -\ln|\cos x| + C = \ln|\sec x| + C$
 
-- **Other Functions:**
+- Other Functions:
     - **Cosecant:** $\csc x = \frac{1}{\sin x}$
     - **Secant:** $\sec x = \frac{1}{\cos x}$
     - **Cotangent:** $\cot x = \frac{1}{\tan x} = \frac{\cos x}{\sin x}$
@@ -120,38 +132,40 @@ These functions can be defined in several ways:
 
 ```mermaid
 graph TD
-    subgraph SineCosineGraphs["y = sin(x) and y = cos(x)"]
-        XAxis["x (0 to 2π)"] --- YAxis["y (-1 to 1)"]
-
-        Psin0((0,0)) --- PsinPi_2((π/2, 1)) --- PsinPi((π,0)) --- Psin3Pi_2((3π/2, -1)) --- Psin2Pi((2π,0))
-        Pcos0((0,1)) --- PcosPi_2((π/2, 0)) --- PcosPi((π,-1)) --- Pcos3Pi_2((3π/2, 0)) --- Pcos2Pi((2π,1))
-        
-        note right of PsinPi_2 : sin(x) peak
-        note right of Pcos0 : cos(x) peak
+    subgraph SineCosineGraphs["y = sin x and y = cos x"]
+        XAxis[x 0 to 2pi] --- YAxis[y -1 to 1]
+        Psin0[0 0] --- PsinPi_2[pi/2 1] --- PsinPi[pi 0] --- Psin3Pi_2[3pi/2 -1] --- Psin2Pi[2pi 0]
+        Pcos00[0 1] --- PcosPi_2[pi/2 0] --- PcosPi[pi -1] --- Pcos3Pi_2[3pi/2 0] --- Pcos2Pi[2pi 1]
+        NoteSin[sin x peak] --> PsinPi_2
+        NoteCos[cos x peak] --> Pcos0
     end
-    
-    linkStyle 1 stroke:blue,stroke-width:2px,interpolate:basis; % Sine curve
-    linkStyle 2 stroke:blue,stroke-width:2px,interpolate:basis;
-    linkStyle 3 stroke:blue,stroke-width:2px,interpolate:basis;
-    linkStyle 4 stroke:blue,stroke-width:2px,interpolate:basis;
-    
-    linkStyle 5 stroke:red,stroke-width:2px,interpolate:basis; % Cosine curve
-    linkStyle 6 stroke:red,stroke-width:2px,interpolate:basis;
-    linkStyle 7 stroke:red,stroke-width:2px,interpolate:basis;
-    linkStyle 8 stroke:red,stroke-width:2px,interpolate:basis;
 
-    %% Styling nodes for clarity
-    style Psin0 fill:#fff,stroke:blue
-    style PsinPi_2 fill:#fff,stroke:blue
-    style PsinPi fill:#fff,stroke:blue
-    style Psin3Pi_2 fill:#fff,stroke:blue
-    style Psin2Pi fill:#fff,stroke:blue
-    
-    style Pcos0 fill:#fff,stroke:red
-    style PcosPi_2 fill:#fff,stroke:red
-    style PcosPi fill:#fff,stroke:red
-    style Pcos3Pi_2 fill:#fff,stroke:red
-    style Pcos2Pi fill:#fff,stroke:red```
+    style Psin0 fill:#fff,stroke:#00f,stroke-width:2px
+    style PsinPi_2 fill:#fff,stroke:#00f,stroke-width:2px
+    style PsinPi fill:#fff,stroke:#00f,stroke-width:2px
+    style Psin3Pi_2 fill:#fff,stroke:#00f,stroke-width:2px
+    style Psin2Pi fill:#fff,stroke:#00f,stroke-width:2px
+    style Pcos0 fill:#fff,stroke:#f00,stroke-width:2px
+    style PcosPi_2 fill:#fff,stroke:#f00,stroke-width:2px
+    style PcosPi fill:#fff,stroke:#f00,stroke-width:2px
+    style Pcos3Pi_2 fill:#fff,stroke:#f00,stroke-width:2px
+    style Pcos2Pi fill:#fff,stroke:#f00,stroke-width:2px
+    style XAxis fill:none,stroke:#333,stroke-width:1px
+    style YAxis fill:none,stroke:#333,stroke-width:1px
+    style NoteSin fill:#fff,stroke:#333,stroke-width:1px
+    style NoteCos fill:#fff,stroke:#333,stroke-width:1px
+    linkStyle 0 stroke:#333,stroke-width:1px
+    linkStyle 1 stroke:#00f,stroke-width:2px
+    linkStyle 2 stroke:#00f,stroke-width:2px
+    linkStyle 3 stroke:#00f,stroke-width:2px
+    linkStyle 4 stroke:#00f,stroke-width:2px
+    linkStyle 5 stroke:#f00,stroke-width:2px
+    linkStyle 6 stroke:#f00,stroke-width:2px
+    linkStyle 7 stroke:#f00,stroke-width:2px
+    linkStyle 8 stroke:#f00,stroke-width:2px
+    linkStyle 9 stroke:#333,stroke-width:1px
+    linkStyle 10 stroke:#333,stroke-width:1px
+```
 > The blue curve represents $y = \sin x$ and the red curve represents $y = \cos x$.
 
 ## Applications

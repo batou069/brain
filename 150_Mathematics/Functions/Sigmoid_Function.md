@@ -42,7 +42,7 @@ where $e$ is [[Euler_Number_e|Euler's number]].
     - As $x \to \infty$, $e^{-x} \to 0$, so $\sigma(x) \to \frac{1}{1+0} = 1$. (Horizontal asymptote $y=1$)
     - As $x \to -\infty$, $e^{-x} \to \infty$, so $\sigma(x) \to \frac{1}{\text{large number}} \to 0$. (Horizontal asymptote $y=0$)
 - **Symmetry:** The curve is symmetric about the point $(0, 0.5)$. Specifically, $\sigma(-x) = 1 - \sigma(x)$.
-- **Derivative:**
+- **[[Calculus_Derivatives|Derivative]]:**
   $$ \frac{d}{dx} \sigma(x) = \sigma(x)(1 - \sigma(x)) $$
   The derivative is bell-shaped, with a maximum value of $0.25$ at $x=0$. It is always non-negative.
 - **Inverse Function:** The inverse of the sigmoid function is the **[[Logit_Function|logit function]]**. If $y = \sigma(x)$, then $x = \text{logit}(y) = \ln\left(\frac{y}{1-y}\right)$.
@@ -51,24 +51,30 @@ where $e$ is [[Euler_Number_e|Euler's number]].
 
 ```mermaid
 graph TD
-    subgraph SigmoidGraph["Graph of y = σ(x)"]
-        XAxis["x (-5 to 5)"] --- YAxis["y (0 to 1)"]
-        P0((0, 0.5))
-        Pneg5((-5, "$σ(-5) \approx 0.0067$"))
-        Ppos5((5, "$σ(5) \approx 0.9933$"))
-        
-        Asymptote0["y=0"] -.-> Pneg5
-        Pneg5 --- P0 --- Ppos5 % Curve path
-        Asymptote1["y=1"] -.-> Ppos5
+    subgraph SigmoidGraph["Graph of y = sigmoid x"]
+        XAxis[x -5 to 5] --- YAxis[y 0 to 1]
+        P0[Point 0 0.5]
+        Pneg5[Point -5 sigmoid -5 ~ 0.0067]
+        Ppos5[Point 5 sigmoid 5 ~ 0.9933]
+        Asymptote0[y = 0] -.-> Pneg5
+        Pneg5 --- P0 --- Ppos5
+        Asymptote1[y = 1] -.-> Ppos5
     end
-    P0 -->|Inflection Point (0, 0.5)| P0
-    
+    P0 -->|Inflection Point 0 0.5| P0
+
     style P0 fill:#afa,stroke:#333,stroke-width:2px
     style Pneg5 fill:#aaf,stroke:#333,stroke-width:2px
     style Ppos5 fill:#aaf,stroke:#333,stroke-width:2px
-    linkStyle 3 stroke-width:2px,fill:none,stroke:blue;
-    linkStyle 4 stroke-width:2px,fill:none,stroke:blue,stroke-dasharray: 5 5;
-    linkStyle 6 stroke-width:2px,fill:none,stroke:blue,stroke-dasharray: 5 5;
+    style XAxis fill:none,stroke:#333,stroke-width:1px
+    style YAxis fill:none,stroke:#333,stroke-width:1px
+    style Asymptote0 fill:none,stroke:#f00,stroke-width:1px,stroke-dasharray:5,5
+    style Asymptote1 fill:none,stroke:#f00,stroke-width:1px,stroke-dasharray:5,5
+    linkStyle 0 stroke:#333,stroke-width:1px
+    linkStyle 1 stroke:#00f,stroke-width:2px
+    linkStyle 2 stroke:#00f,stroke-width:2px
+    linkStyle 3 stroke:#f00,stroke-width:1px,stroke-dasharray:5,5
+    linkStyle 4 stroke:#f00,stroke-width:1px,stroke-dasharray:5,5
+    linkStyle 5 stroke:#333,stroke-width:1px
 ```
 
 ## Applications
@@ -110,16 +116,16 @@ $\tanh(x)$ has a range of $(-1, 1)$, while $\sigma(x)$ has a range of $(0, 1)$.
 
     ```python
     # Example of k effect:
-    # import numpy as np
-    # import matplotlib.pyplot as plt
-    # def sigmoid(x, k=1): return 1 / (1 + np.exp(-k*x))
-    # x = np.linspace(-5, 5, 100)
-    # plt.plot(x, sigmoid(x, k=0.5), label='k=0.5')
-    # plt.plot(x, sigmoid(x, k=1), label='k=1 (standard)')
-    # plt.plot(x, sigmoid(x, k=5), label='k=5')
-    # plt.plot(x, sigmoid(x, k=20), label='k=20 (steeper)')
-    # plt.title("Sigmoid with varying k (steepness)")
-    # plt.legend(); plt.grid(); plt.show()
+    import numpy as np
+    import matplotlib.pyplot as plt
+    def sigmoid(x, k=1): return 1 / (1 + np.exp(-k*x))
+    x = np.linspace(-5, 5, 100)
+    plt.plot(x, sigmoid(x, k=0.5), label='k=0.5')
+    plt.plot(x, sigmoid(x, k=1), label='k=1 (standard)')
+    plt.plot(x, sigmoid(x, k=5), label='k=5')
+    plt.plot(x, sigmoid(x, k=20), label='k=20 (steeper)')
+    plt.title("Sigmoid with varying k (steepness)")
+    plt.legend(); plt.grid(); plt.show()
     ```
 
 3.  **What if we want the step to happen around $x_0 \neq 0$ rather than $x=0$?**

@@ -1,3 +1,5 @@
+- [ ] 🔁 every week on Sunday 🛫 2025-06-02 📅
+
 
 [list2tab]
 - Univariate Analysis
