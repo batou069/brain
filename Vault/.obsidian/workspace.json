@@ -1,0 +1,295 @@
+{
+  "main": {
+    "id": "1de3a44078184d60",
+    "type": "split",
+    "children": [
+      {
+        "id": "3e373955f8358aaf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ad12618c5f99f536",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "50_Data_Structures/Priority_Queue_ADT.md",
+                "mode": "preview",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "Priority_Queue_ADT"
+            }
+          },
+          {
+            "id": "a85def9602e15b1a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "50_Data_Structures/Queue_ADT.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Queue_ADT"
+            }
+          },
+          {
+            "id": "9635a7f39ebc0c37",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "WIP/QA.md",
+                "mode": "preview",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "QA"
+            }
+          },
+          {
+            "id": "225e4f14493a31c5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "150_Mathematics/Calculus/Calculus_Derivatives.md",
+                "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "Calculus_Derivatives"
+            }
+          },
+          {
+            "id": "5a1547980bfd76b1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "150_Mathematics/Geometry/Asymptotes_Hyperbola.md",
+                "mode": "preview",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "Asymptotes_Hyperbola"
+            }
+          },
+          {
+            "id": "99643f083db2face",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "150_Mathematics/Geometry/README.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "README"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d8e3dfca2978cea9",
+    "type": "split",
+    "children": [
+      {
+        "id": "fd7ace101662130d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c1ead75e05d893d3",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "36d1664ac91282b2",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": true,
+                "collapseAll": true,
+                "extraContext": true,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "ac3cb177f42b2928",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 241.0063018798828
+  },
+  "right": {
+    "id": "0331ea5ae170883a",
+    "type": "split",
+    "children": [
+      {
+        "id": "84b9c0fe44173363",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5987436291ede041",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "_Index.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for _Index"
+            }
+          },
+          {
+            "id": "217cc6a1a1859a85",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "170_Data_Visualization/Visualizing_Multidimensional_Data.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": false
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Visualizing_Multidimensional_Data"
+            }
+          },
+          {
+            "id": "9a2b8adddc12f3c0",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "e42ea98f33cf7029",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "170_Data_Visualization/Visualizing_Multidimensional_Data.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Visualizing_Multidimensional_Data"
+            }
+          },
+          {
+            "id": "cde36af9a7050089",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 469.5,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "quickadd:QuickAdd": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "templater-obsidian:Templater": false,
+      "omnisearch:Omnisearch": false
+    }
+  },
+  "active": "99643f083db2face",
+  "lastOpenFiles": [
+    "50_Data_Structures/Priority_Queue_ADT.md",
+    "150_Mathematics/Geometry/README.md",
+    "150_Mathematics/Geometry/Asymptotes_Hyperbola.md",
+    "150_Mathematics/Calculus/Calculus_Derivatives.md",
+    "WIP/QA.md",
+    "50_Data_Structures/Queue_ADT.md",
+    "150_Mathematics/Functions/Sigmoid_Function.md",
+    "170_Data_Visualization/Visualizing_Multidimensional_Data.md",
+    "170_Data_Visualization/Plot_Elements_Anatomy.md",
+    "170_Data_Visualization/Data_Visualization_Principles.md",
+    "170_Data_Visualization/Data_Visualization_Importance.md",
+    "140_Data_Science_AI/Workflows_Concepts/Exploratory_Data_Analysis_Workflow.md",
+    "170_Data_Visualization/Choosing_the_Right_Plot.md",
+    "170_Data_Visualization/Categorical_vs_Numerical_Data_Visualization.md",
+    "170_Data_Visualization/_Data_Visualization_MOC.md",
+    "170_Data_Visualization/Seaborn/_Seaborn_MOC.md",
+    "170_Data_Visualization/Plot_Types/Line_Plot.md",
+    "170_Data_Visualization/Matplotlib/Matplotlib_Pyplot_API_vs_OO_API.md",
+    "170_Data_Visualization/Matplotlib/Matplotlib_Overview.md",
+    "170_Data_Visualization/Matplotlib/Matplotlib_Image_Display_imshow.md",
+    "170_Data_Visualization/Matplotlib/Matplotlib_Figure_Subplot_Axes.md",
+    "170_Data_Visualization/Matplotlib/Histogram.md",
+    "170_Data_Visualization/Matplotlib/_Matplotlib_MOC.md",
+    "170_Data_Visualization/Matplotlib/Matplotlib_Basic_Plotting_Functions.md",
+    "WIP/QA2.md",
+    "WIP/init data visualization.md",
+    "170_Data_Visualization/Plot_Types",
+    "170_Data_Visualization/Seaborn",
+    "170_Data_Visualization/Matplotlib",
+    "170_Data_Visualization",
+    "WIP",
+    "160_Python_Libraries",
+    "150_Mathematics/Geometry",
+    "Linear_Algebra",
+    "150_Mathematics/Functions",
+    "150_Mathematics/Linear_Algebra",
+    "50_Data_Structures/00_Meta/Pasted image 20250421003701.png"
+  ]
+}
