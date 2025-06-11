@@ -32,7 +32,7 @@ Statsmodels integrates well with [[_Pandas_MOC|Pandas]] for data handling and [[
 
 ## Key Features and Modules
 [list2tab|#Statsmodels Features]
-- **Regression Models**
+- Regression Models
     - **Linear Regression (OLS - Ordinary Least Squares):** `statsmodels.api.OLS` or `statsmodels.formula.api.ols` (using R-style formulas).
         - Provides detailed summary statistics including R-squared, F-statistic, coefficients, standard errors, t-statistics, p-values, confidence intervals.
     - **[[Generalized_Linear_Models_GLM|Generalized Linear Models (GLM)]]:** `statsmodels.api.GLM` or `statsmodels.formula.api.glm`.
@@ -40,20 +40,21 @@ Statsmodels integrates well with [[_Pandas_MOC|Pandas]] for data handling and [[
     - **Robust Linear Models (RLM):** Less sensitive to outliers. `statsmodels.api.RLM`.
     - **Linear Mixed Effects Models:** For hierarchical/multilevel data. `statsmodels.formula.api.mixedlm`.
     - Other regression models like Quantile Regression, Discrete Choice Models (Logit, Probit).
-- **[[Time_Series_Analysis|Time Series Analysis]] (`statsmodels.tsa`)**
+-  Time Series Analysis (`.tsa`)
+	[[Time_Series_Analysis|Time Series Analysis]]
     - **Autoregressive (AR), Moving Average (MA), ARMA, ARIMA, SARIMA models:** For modeling and forecasting time series data. `statsmodels.tsa.arima.model.ARIMA`.
     - **Vector Autoregression (VAR) models:** For multivariate time series. `statsmodels.tsa.api.VAR`.
     - **State Space Models (Kalman Filtering):** `statsmodels.tsa.statespace`. Includes models like SARIMAX, Unobserved Components.
     - **Tools for time series diagnostics:** Autocorrelation (ACF), Partial Autocorrelation (PACF) plots, stationarity tests (e.g., ADF test), seasonality decomposition.
-- **Analysis of Variance (ANOVA)**
+- Analysis of Variance (ANOVA)
     - `statsmodels.formula.api.ols` combined with `statsmodels.api.anova_lm` for ANOVA tables.
-- **Nonparametric Methods**
+- Nonparametric Methods
     - Kernel Density Estimation (KDE): `statsmodels.api.nonparametric.KDEUnivariate`.
     - Kernel Regression.
-- **Statistical Tests**
+- Statistical Tests
     - Numerous tests for means, variances, proportions, goodness of fit, normality, multicollinearity, heteroscedasticity, autocorrelation, etc. Often found within model results or `statsmodels.stats` module.
     - Examples: t-tests, F-tests, Chi-squared tests, Durbin-Watson test, Jarque-Bera test.
-- **Other Areas**
+- Other Areas
     - Survival analysis (limited).
     - Multivariate statistics (e.g., MANOVA, Factor Analysis - some experimental).
     - Imputation techniques.

@@ -1,24 +1,18 @@
 ---
-tags:
-  - data_visualization
-  - plotting
-  - charts
-  - graphs
-  - moc
-  - concept
-aliases:
-  - Visualization MOC
-  - Data Viz MOC
+tags: [data_visualization, plotting, charts, graphs, moc, concept]
+aliases: [Visualization MOC, Data Viz MOC]
 related:
   - "[[_Data_Science_AI_MOC]]"
   - "[[170_Data_Visualization/Matplotlib/_Matplotlib_MOC|Matplotlib MOC]]"
   - "[[170_Data_Visualization/Seaborn/_Seaborn_MOC|Seaborn MOC]]"
+  - "[[170_Data_Visualization/Plotly_and_Plotly_Express|Plotly and Plotly Express]]"
+  - "[[170_Data_Visualization/Bokeh_Library|Bokeh Library]]"
+  - "[[170_Data_Visualization/Altair_Library|Altair Library]]"
   - "[[Data_Visualization_Importance]]"
   - "[[Data_Visualization_Principles]]"
   - "[[Choosing_the_Right_Plot]]"
-worksheet:
-  - WS_DataViz_1
-date_created: 2025-06-03
+worksheet: [WS_DataViz_1]
+date_created: <% tp.file.creation_date("YYYY-MM-DD") %>
 ---
 # Data Visualization MOC 📊
 
@@ -32,31 +26,40 @@ Data visualization is the graphical representation of information and data. By u
 -   [[Visualizing_Multidimensional_Data|Visualizing Multidimensional Data]]
 -   [[Plot_Elements_Anatomy|Anatomy of a Plot]] (Axes, Ticks, Gridlines, Legend, Title)
 
-## Plot Types
-A comprehensive list of plot types will be detailed under specific library MOCs or dedicated notes. Common categories include:
--   **Comparison/Relationship:** [[Line_Plot|Line Plot]], [[Scatter_Plot|Scatter Plot]], [[Bar_Chart|Bar Chart]] (for comparing categories)
--   **Distribution:** [[Histogram|Histogram]], [[Box_Plot|Box Plot]], [[Violin_Plot|Violin Plot]], Density Plot
--   **Composition:** [[Pie_Chart|Pie Chart]], Stacked Bar Chart, Treemap
--   **Geospatial:** Choropleth Maps, Scatter Maps
--   **Matrix/Grid:** [[Heatmap|Heatmap]]
+## Plot Types (General Categories - Specifics in Library MOCs)
+-   **Comparison/Relationship:** [[170_Data_Visualization/Plot_Types/Line_Plot|Line Plot]], [[170_Data_Visualization/Plot_Types/Scatter_Plot|Scatter Plot]], [[170_Data_Visualization/Plot_Types/Bar_Chart|Bar Chart]]
+-   **Distribution:** [[170_Data_Visualization/Plot_Types/Histogram|Histogram]], [[170_Data_Visualization/Plot_Types/Box_Plot|Box Plot]], [[170_Data_Visualization/Plot_Types/Violin_Plot|Violin Plot]], Density Plot
+-   **Composition:** [[170_Data_Visualization/Plot_Types/Pie_Chart|Pie Chart]], Stacked Bar Chart
+-   **Matrix/Grid:** [[170_Data_Visualization/Plot_Types/Heatmap|Heatmap]]
 
 ## Key Libraries
--   **[[170_Data_Visualization/Matplotlib/_Matplotlib_MOC|Matplotlib]]**: Foundational plotting library in Python.
--   **[[170_Data_Visualization/Seaborn/_Seaborn_MOC|Seaborn]]**: High-level interface for statistical graphics, built on Matplotlib.
--   **Plotly / Dash**: Interactive visualizations and web applications.
--   **Bokeh**: Interactive visualizations for modern web browsers.
--   **ggplot2 (R)**: Powerful grammar of graphics implementation in R.
+-   [[170_Data_Visualization/Matplotlib/_Matplotlib_MOC|Matplotlib]]
+-   [[170_Data_Visualization/Seaborn/_Seaborn_MOC|Seaborn]]
+-   [[170_Data_Visualization/Plotly_and_Plotly_Express|Plotly & Plotly Express]]
+-   [[170_Data_Visualization/Bokeh_Library|Bokeh]]
+-   [[170_Data_Visualization/Altair_Library|Altair]]
+-   *ggplot2 (R) - (Mentioned for completeness, not detailed here)*
 
 ## Notes in this Section (General Visualization)
 ```dataview
 LIST
 FROM "170_Data_Visualization"
-WHERE file.folder = this.file.folder AND file.name != this.file.name AND !contains(file.name, "MOC") AND !contains(file.folder, "Matplotlib") AND !contains(file.folder, "Seaborn")
+WHERE file.folder = this.file.folder AND file.name != this.file.name AND !contains(file.name, "MOC") AND !contains(file.folder, "Matplotlib") AND !contains(file.folder, "Seaborn") AND !contains(file.folder, "Plot_Types")
 SORT file.name ASC
 ```
 
 ## Library-Specific Sections
 -   [[170_Data_Visualization/Matplotlib/_Matplotlib_MOC|Matplotlib]]
--   [[170_Data_Visualization/Seaborn/_Seaborn_MOC|Seaborn]] (Placeholder)
+-   [[170_Data_Visualization/Seaborn/_Seaborn_MOC|Seaborn]]
+-   [[170_Data_Visualization/Plotly_and_Plotly_Express|Plotly & Plotly Express]]
+-   [[170_Data_Visualization/Bokeh_Library|Bokeh]]
+-   [[170_Data_Visualization/Altair_Library|Altair]]
 
+## Plot Type Specific Notes
+```dataview
+LIST
+FROM "170_Data_Visualization/Plot_Types"
+WHERE file.folder = this.file.folder AND file.name != this.file.name AND !contains(file.name, "MOC")
+SORT file.name ASC
+```
 ---

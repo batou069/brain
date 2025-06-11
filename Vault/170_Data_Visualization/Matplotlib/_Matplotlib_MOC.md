@@ -60,6 +60,36 @@ date_created: 2025-06-03
 -   [[Matplotlib_3D_Plotting|3D Plotting with `mpl_toolkits.mplot3d`]]
 -   [[Matplotlib_Interactive_Plots|Interactive Plotting (e.g., with Jupyter, `ipympl`)]]
 
+```mermaid
+graph LR
+    MOC["Matplotlib MOC"]
+    MOC --> Overview["[[Matplotlib_Overview]]"]
+    MOC --> APIs["[[Matplotlib_Pyplot_API_vs_OO_API]]"]
+    APIs --> Pyplot["[[Matplotlib_Pyplot_API]]"]
+    APIs --> OO_API["[[Matplotlib_Object_Oriented_API]]"]
+    MOC --> Structure["[[Matplotlib_Figure_Subplot_Axes]]"]
+    MOC --> BasicPlots["[[Matplotlib_Basic_Plotting_Functions]]"]
+    BasicPlots --> Line["[[170_Data_Visualization/Plot_Types/Line_Plot|Line Plot]]"]
+    BasicPlots --> Scatter["[[170_Data_Visualization/Plot_Types/Scatter_Plot|Scatter Plot]]"]
+    BasicPlots --> Bar["[[170_Data_Visualization/Plot_Types/Bar_Chart|Bar Chart]]"]
+    BasicPlots --> Hist["[[170_Data_Visualization/Plot_Types/Histogram|Histogram]]"]
+    BasicPlots --> Box["[[170_Data_Visualization/Plot_Types/Box_Plot|Box Plot]]"]
+    BasicPlots --> Pie["[[170_Data_Visualization/Plot_Types/Pie_Chart|Pie Chart]]"]
+    MOC --> Imshow["[[Matplotlib_Image_Display_imshow]]"]
+    MOC --> Customization["[[Matplotlib_Customization]]"]
+    Customization --> Colormaps["[[Matplotlib_Colormaps]]"]
+    Customization --> TitlesEtc["Titles, Labels, Legends (Covered in Plot_Elements_Anatomy)"]
+    Customization --> TicksEtc["Ticks, Grids (Covered in Plot_Elements_Anatomy)"]
+    MOC --> Saving["[[Matplotlib_Saving_Plots]]"]
+    MOC --> Styles["[[Matplotlib_Styles]]"]
+    MOC --> ThreeD["[[Matplotlib_3D_Plotting]]"]
+    MOC --> Interactive["[[Matplotlib_Interactive_Plots]]"]
+
+    %% Link to General Plot Anatomy
+    Structure --> PlotAnatomyGeneral["[[Plot_Elements_Anatomy]]"]
+    Customization --> PlotAnatomyGeneral
+```
+
 ## Notes in this Section
 ```dataview
 LIST

@@ -68,4 +68,20 @@ Line plots are primarily used to visualize the trend of a numerical variable ove
 >-   If comparing multiple years, multiple lines (one per year) could be used, or a [[Heatmap|heatmap]] (month vs. year, color for temperature) could be an alternative.
 >-   [[Box_Plot|Box plots]] per month could show the distribution of daily temperatures within each month if that level of detail is available and desired.
 
+```chart
+type: line
+labels: [T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]
+series:
+  - title: Bill vs. Tip
+    data: [1.01, 1.66, 3.50, 3.31, 3.61, 4.71, 2.00, 3.12, 1.96, 3.23]
+    backgroundColor: rgba(0, 123, 255, 0.6)
+    pointRadius: 5
+    fill: false
+options:
+  xTitle: Total Bill ($)
+  yTitle: Tip Amount ($)
+  xMin: 0
+  yMin: 0
+  title: Scatter Plot Total Bill vs. Tip Amount
+```
 ---

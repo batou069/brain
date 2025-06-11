@@ -69,6 +69,11 @@ plt.grid(True) # Add a grid
 plt.show()
 ```
 
+
+
+
+
+
 Matplotlib's flexibility and extensive feature set make it a powerful tool for nearly any kind of 2D (and basic 3D) plotting task in Python.
 
 ---

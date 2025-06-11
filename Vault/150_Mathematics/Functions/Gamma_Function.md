@@ -60,24 +60,25 @@ If $z=n$ (a positive integer), then $\Gamma(n+1) = n \Gamma(n) = n (n-1)! = n!$.
 
 ```mermaid
 graph TD
-    subgraph GammaGraph["Graph of Γ(x) for x > 0"]
-        XAxis["x-axis (0 to 5)"] --- YAxis["y-axis (0 to 25)"]
-        P0_plus((0, "+∞ (pole)"))
-        P1((1,1))
-        P2((2,1))
-        P3((3,2))
-        P4((4,6))
-        P5((5,24))
-        Minima((approx 1.46, approx 0.8856))
+    subgraph GammaGraph[Graph_of_Gamma_x_for_x_positive]
+        XAxis[x_axis_0_to_5] --- YAxis[y_axis_0_to_25]
+        P0_plus[x=0_y=infinity_pole]
+        P1[x=1_y=1]
+        P2[x=2_y=1]
+        P3[x=3_y=2]
+        P4[x=4_y=6]
+        P5[x=5_y=24]
+        Minima[x=approx_1.46_y=approx_0.8856]
 
-        P0_plus -.-> Minima --- P1 --- P2 --- P3 --- P4 --- P5 % Curve path
+        P0_plus -.-> Minima --- P1 --- P2 --- P3 --- P4 --- P5
+        
+        Note0[Pole_at_x=0] --- P0_plus
+        Note1[Gamma_1=0_factorial=1] --- P1
+        Note2[Gamma_2=1_factorial=1] --- P2
+        Note3[Gamma_3=2_factorial=2] --- P3
+        Note4[Gamma_4=3_factorial=6] --- P4
+        Note5[Gamma_5=4_factorial=24] --- P5
     end
-    note right of P0_plus : Pole at x=0
-    note right of P1 : Γ(1)=0!=1
-    note right of P2 : Γ(2)=1!=1
-    note right of P3 : Γ(3)=2!=2
-    note right of P4 : Γ(4)=3!=6
-    note right of P5 : Γ(5)=4!=24
     
     style P1 fill:#afa,stroke:#333,stroke-width:2px
     style P2 fill:#afa,stroke:#333,stroke-width:2px
@@ -85,7 +86,7 @@ graph TD
     style P4 fill:#afa,stroke:#333,stroke-width:2px
     style P5 fill:#afa,stroke:#333,stroke-width:2px
     style Minima fill:#aaf,stroke:#333,stroke-width:2px
-    linkStyle 6 stroke-width:2px,fill:none,stroke:blue;
+    linkStyle 0 stroke-width:2px,stroke:blue
 ```
 The function decreases from $+\infty$ at $x=0^+$ to a minimum around $x \approx 1.4616$ (where $\Gamma(x) \approx 0.8856$) and then increases.
 

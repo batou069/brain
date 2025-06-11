@@ -46,14 +46,16 @@ Other hyperbolic functions are defined analogously to trigonometric functions:
 ## Properties
 
 [list2tab|#Hyperbolic Function Properties]
-- **Hyperbolic Sine ($\sinh x$)**
+- Hyperbolic Sine
+	($\sinh x$)
     - **Domain:** $(-\infty, \infty)$
     - **Range:** $(-\infty, \infty)$
     - **Odd function:** $\sinh(-x) = -\sinh x$
     - **Derivative:** $\frac{d}{dx} \sinh x = \cosh x$
     - **Integral:** $\int \sinh x \,dx = \cosh x + C$
 
-- **Hyperbolic Cosine ($\cosh x$)**
+- Hyperbolic Cosine
+	($\cosh x$)
     - **Domain:** $(-\infty, \infty)$
     - **Range:** $[1, \infty)$ (Note: $\cosh x \ge 1$ for all $x$, with $\cosh 0 = 1$)
     - **Even function:** $\cosh(-x) = \cosh x$
@@ -61,7 +63,8 @@ Other hyperbolic functions are defined analogously to trigonometric functions:
     - **Integral:** $\int \cosh x \,dx = \sinh x + C$
     - The graph $y=\cosh x$ is the shape of a **catenary**, the curve formed by a flexible chain hanging under its own weight.
 
-- **Hyperbolic Tangent ($\tanh x$)**
+- Hyperbolic Tangent
+	($\tanh x$)
     - **Domain:** $(-\infty, \infty)$
     - **Range:** $(-1, 1)$
     - **Odd function:** $\tanh(-x) = -\tanh x$
@@ -86,39 +89,39 @@ Analogous to trigonometric identities:
 
 ```mermaid
 graph TD
-    subgraph HyperbolicGraphs["Graphs of sinh(x), cosh(x), tanh(x)"]
-        XAxis["x (-3 to 3)"] --- YAxis["y (-3 to 3 for sinh/tanh, 0 to 5 for cosh)"]
+    subgraph HyperbolicGraphs[Graphs_of_sinh_x_cosh_x_tanh_x]
+        XAxis[x_axis_-3_to_3] --- YAxis[y_axis_-3_to_3_for_sinh_tanh_0_to_5_for_cosh]
 
         %% sinh(x) - blue
-        Psinh_neg2((-2, -3.62)) --- Psinh_neg1((-1, -1.17)) --- Psinh0((0,0)) --- Psinh1((1, 1.17)) --- Psinh2((2, 3.62))
+        Psinh_neg2[x=-2_y=-3.62] --- Psinh_neg1[x=-1_y=-1.17] --- Psinh0[x=0_y=0] --- Psinh1[x=1_y=1.17] --- Psinh2[x=2_y=3.62]
         
         %% cosh(x) - red
-        Pcosh_neg2((-2, 3.76)) --- Pcosh_neg1((-1, 1.54)) --- Pcosh0((0,1)) --- Pcosh1((1, 1.54)) --- Pcosh2((2, 3.76))
+        Pcosh_neg2[x=-2_y=3.76] --- Pcosh_neg1[x=-1_y=1.54] --- Pcosh0[x=0_y=1] --- Pcosh1[x=1_y=1.54] --- Pcosh2[x=2_y=3.76]
 
         %% tanh(x) - green
-        Ptanh_negInf(["x → -∞, y → -1"]) -.-> Ptanh_neg2((-2, -0.96)) --- Ptanh_neg1((-1, -0.76)) --- Ptanh0((0,0)) --- Ptanh1((1, 0.76)) --- Ptanh2((2, 0.96)) -.-> Ptanh_posInf(["x → +∞, y → 1"])
+        Ptanh_negInf[x=-infinity_y=-1] -.-> Ptanh_neg2[x=-2_y=-0.96] --- Ptanh_neg1[x=-1_y=-0.76] --- Ptanh0[x=0_y=0] --- Ptanh1[x=1_y=0.76] --- Ptanh2[x=2_y=0.96] -.-> Ptanh_posInf[x=+infinity_y=1]
 
-        note right of Psinh2 : sinh(x)
-        note right of Pcosh2 : cosh(x)
-        note right of Ptanh2 : tanh(x)
+        Note_sinh[sinh_x] --- Psinh2
+        Note_cosh[cosh_x] --- Pcosh2
+        Note_tanh[tanh_x] --- Ptanh2
     end
     
-    linkStyle 1 stroke:blue,stroke-width:2px,interpolate:basis; % sinh
-    linkStyle 2 stroke:blue,stroke-width:2px,interpolate:basis;
-    linkStyle 3 stroke:blue,stroke-width:2px,interpolate:basis;
-    linkStyle 4 stroke:blue,stroke-width:2px,interpolate:basis;
+    linkStyle 0 stroke:blue,stroke-width:2px
+    linkStyle 1 stroke:blue,stroke-width:2px
+    linkStyle 2 stroke:blue,stroke-width:2px
+    linkStyle 3 stroke:blue,stroke-width:2px
     
-    linkStyle 5 stroke:red,stroke-width:2px,interpolate:basis; % cosh
-    linkStyle 6 stroke:red,stroke-width:2px,interpolate:basis;
-    linkStyle 7 stroke:red,stroke-width:2px,interpolate:basis;
-    linkStyle 8 stroke:red,stroke-width:2px,interpolate:basis;
+    linkStyle 4 stroke:red,stroke-width:2px
+    linkStyle 5 stroke:red,stroke-width:2px
+    linkStyle 6 stroke:red,stroke-width:2px
+    linkStyle 7 stroke:red,stroke-width:2px
 
-    linkStyle 9 stroke:green,stroke-width:2px,interpolate:basis; % tanh
-    linkStyle 10 stroke:green,stroke-width:2px,interpolate:basis;
-    linkStyle 11 stroke:green,stroke-width:2px,interpolate:basis;
-    linkStyle 12 stroke:green,stroke-width:2px,interpolate:basis;
-    linkStyle 13 stroke:green,stroke-width:2px,interpolate:basis,stroke-dasharray: 5 5;
-    linkStyle 14 stroke:green,stroke-width:2px,interpolate:basis,stroke-dasharray: 5 5;
+    linkStyle 8 stroke:green,stroke-width:2px
+    linkStyle 9 stroke:green,stroke-width:2px
+    linkStyle 10 stroke:green,stroke-width:2px
+    linkStyle 11 stroke:green,stroke-width:2px
+    linkStyle 12 stroke:green,stroke-width:2px,stroke-dasharray:5,5
+    linkStyle 13 stroke:green,stroke-width:2px,stroke-dasharray:5,5
 
     style Psinh0 fill:#fff,stroke:blue
     style Pcosh0 fill:#fff,stroke:red
@@ -133,7 +136,8 @@ graph TD
     - Describing motion where acceleration is proportional to distance (e.g., an object falling through a resisting medium).
 - **Machine Learning:**
     - **Activation Functions:** $\tanh x$ is widely used as an activation function in neural networks. It squashes input values to the range $(-1, 1)$, which can be beneficial for centering data for subsequent layers.
-      >[!question] If tanh can be expressed as a sigmoid - why do we need both of them?
+
+>[!question]- If tanh can be expressed as a sigmoid - why do we need both of them?
       >The standard [[Sigmoid_Function|logistic sigmoid function]] is $\sigma(x) = \frac{1}{1 + e^{-x}}$, which has a range $(0, 1)$.
       >The hyperbolic tangent function is $\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$.
       >

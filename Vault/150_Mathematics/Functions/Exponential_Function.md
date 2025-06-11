@@ -60,25 +60,25 @@ Let $f(x) = e^x$.
 
 ```mermaid
 graph TD
-    subgraph ExponentialGraph["Graph of y = e^x"]
-        XAxis["x-axis (-3 to 3)"] --- YAxis["y-axis (0 to 20)"]
-        P0((0,1))
-        Pneg1((-1, "$e^{-1} \approx 0.368$"))
-        Pneg2((-2, "$e^{-2} \approx 0.135$"))
-        P1((1, "$e \approx 2.718$"))
-        P2((2, "$e^2 \approx 7.389$"))
+    subgraph ExponentialGraph[Graph_of_y=e^x]
+        XAxis[x_axis_-3_to_3] --- YAxis[y_axis_0_to_20]
+        P0[x=0_y=1]
+        Pneg1[x=-1_y=e^-1_approx_0.368]
+        Pneg2[x=-2_y=e^-2_approx_0.135]
+        P1[x=1_y=e_approx_2.718]
+        P2[x=2_y=e^2_approx_7.389]
         
-        Pneg2 --- Pneg1 --- P0 --- P1 --- P2 % Curve path
-        Asymptote["y=0 (Horizontal Asymptote)"] -.-> Pneg2
+        Pneg2 --- Pneg1 --- P0 --- P1 --- P2
+        Asymptote[y=0_Horizontal_Asymptote] -.-> Pneg2
     end
-    P0 -->|Passes through (0,1)| P0
+    P0 -->|Passes_through_0_1| P0
     
     style P0 fill:#afa,stroke:#333,stroke-width:2px
     style Pneg1 fill:#aaf,stroke:#333,stroke-width:2px
     style Pneg2 fill:#aaf,stroke:#333,stroke-width:2px
     style P1 fill:#aaf,stroke:#333,stroke-width:2px
     style P2 fill:#aaf,stroke:#333,stroke-width:2px
-    linkStyle 4 stroke-width:2px,fill:none,stroke:blue;
+    linkStyle 0 stroke-width:2px,stroke:blue
 ```
 
 ## Why does the exponential function (with base $e$) show up in so many places?

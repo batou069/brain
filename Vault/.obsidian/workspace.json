@@ -4,95 +4,52 @@
     "type": "split",
     "children": [
       {
-        "id": "3e373955f8358aaf",
+        "id": "e85fa48957719311",
         "type": "tabs",
         "children": [
           {
-            "id": "ad12618c5f99f536",
+            "id": "731f451549807ee8",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "50_Data_Structures/Priority_Queue_ADT.md",
+                "file": "170_Data_Visualization/Altair/_Altair_MOC.md",
                 "mode": "preview",
-                "source": true
+                "source": false
               },
               "icon": "lucide-file",
-              "title": "Priority_Queue_ADT"
+              "title": "_Altair_MOC"
             }
           },
           {
-            "id": "a85def9602e15b1a",
+            "id": "63392947748a0a48",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "50_Data_Structures/Queue_ADT.md",
+                "file": "WIP/altair.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Queue_ADT"
+              "title": "altair"
             }
           },
           {
-            "id": "9635a7f39ebc0c37",
+            "id": "b2a23f2ad93eee40",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "WIP/QA.md",
-                "mode": "preview",
-                "source": true
-              },
-              "icon": "lucide-file",
-              "title": "QA"
-            }
-          },
-          {
-            "id": "225e4f14493a31c5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "150_Mathematics/Calculus/Calculus_Derivatives.md",
-                "mode": "source",
-                "source": true
-              },
-              "icon": "lucide-file",
-              "title": "Calculus_Derivatives"
-            }
-          },
-          {
-            "id": "5a1547980bfd76b1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "150_Mathematics/Geometry/Asymptotes_Hyperbola.md",
-                "mode": "preview",
-                "source": true
-              },
-              "icon": "lucide-file",
-              "title": "Asymptotes_Hyperbola"
-            }
-          },
-          {
-            "id": "99643f083db2face",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "150_Mathematics/Geometry/README.md",
+                "file": "spark_WS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "spark_WS"
             }
           }
-        ],
-        "currentTab": 5
+        ]
       }
     ],
     "direction": "vertical"
@@ -149,7 +106,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 241.0063018798828
+    "width": 439
   },
   "right": {
     "id": "0331ea5ae170883a",
@@ -223,7 +180,7 @@
             }
           },
           {
-            "id": "cde36af9a7050089",
+            "id": "63ab9ea29e2ed31e",
             "type": "leaf",
             "state": {
               "type": "calendar",
@@ -242,54 +199,56 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "quickadd:QuickAdd": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
       "templater-obsidian:Templater": false,
+      "quickadd:QuickAdd": false,
       "omnisearch:Omnisearch": false
     }
   },
-  "active": "99643f083db2face",
+  "active": "731f451549807ee8",
   "lastOpenFiles": [
-    "50_Data_Structures/Priority_Queue_ADT.md",
-    "150_Mathematics/Geometry/README.md",
-    "150_Mathematics/Geometry/Asymptotes_Hyperbola.md",
-    "150_Mathematics/Calculus/Calculus_Derivatives.md",
-    "WIP/QA.md",
-    "50_Data_Structures/Queue_ADT.md",
-    "150_Mathematics/Functions/Sigmoid_Function.md",
-    "170_Data_Visualization/Visualizing_Multidimensional_Data.md",
-    "170_Data_Visualization/Plot_Elements_Anatomy.md",
-    "170_Data_Visualization/Data_Visualization_Principles.md",
-    "170_Data_Visualization/Data_Visualization_Importance.md",
-    "140_Data_Science_AI/Workflows_Concepts/Exploratory_Data_Analysis_Workflow.md",
-    "170_Data_Visualization/Choosing_the_Right_Plot.md",
-    "170_Data_Visualization/Categorical_vs_Numerical_Data_Visualization.md",
-    "170_Data_Visualization/_Data_Visualization_MOC.md",
+    "170_Data_Visualization/Bokeh/_Bokeh_MOC.md",
+    "170_Data_Visualization/Plotly/_Plotly_MOC.md",
     "170_Data_Visualization/Seaborn/_Seaborn_MOC.md",
-    "170_Data_Visualization/Plot_Types/Line_Plot.md",
-    "170_Data_Visualization/Matplotlib/Matplotlib_Pyplot_API_vs_OO_API.md",
-    "170_Data_Visualization/Matplotlib/Matplotlib_Overview.md",
-    "170_Data_Visualization/Matplotlib/Matplotlib_Image_Display_imshow.md",
-    "170_Data_Visualization/Matplotlib/Matplotlib_Figure_Subplot_Axes.md",
-    "170_Data_Visualization/Matplotlib/Histogram.md",
-    "170_Data_Visualization/Matplotlib/_Matplotlib_MOC.md",
-    "170_Data_Visualization/Matplotlib/Matplotlib_Basic_Plotting_Functions.md",
-    "WIP/QA2.md",
-    "WIP/init data visualization.md",
-    "170_Data_Visualization/Plot_Types",
-    "170_Data_Visualization/Seaborn",
-    "170_Data_Visualization/Matplotlib",
-    "170_Data_Visualization",
-    "WIP",
-    "160_Python_Libraries",
-    "150_Mathematics/Geometry",
-    "Linear_Algebra",
-    "150_Mathematics/Functions",
-    "150_Mathematics/Linear_Algebra",
+    "180_Big_Data/Spark/Spark_Cluster_Manager.md",
+    "WIP/altair.md",
+    "spark_WS.md",
+    "180_Big_Data/Spark/_Spark_MOC.md",
+    "180_Big_Data/Spark/PySpark_SparkSession_SparkContext.md",
+    "180_Big_Data/Spark/PySpark_Overview.md",
+    "180_Big_Data/Spark/Spark_Persistence_Caching.md",
+    "180_Big_Data/Spark/Spark_DAG_Scheduler.md",
+    "180_Big_Data/Spark/Spark_Transformations_Actions.md",
+    "180_Big_Data/Spark/Spark_Lazy_vs_Eager_Execution.md",
+    "180_Big_Data/Spark/RDD_Resilient_Distributed_Dataset.md",
+    "180_Big_Data/Spark/Spark_Cluster_Architecture.md",
+    "180_Big_Data/Spark/Why_Spark_Needed.md",
+    "180_Big_Data/Spark/PySpark_Data_Sources.md",
+    "180_Big_Data/Spark/Spark_vs_Hadoop_MapReduce.md",
+    "180_Big_Data/Big_Data_Definition_Characteristics.md",
+    "180_Big_Data/Hadoop/HDFS.md",
+    "160_Python_Libraries/TensorFlow/Keras_Callbacks.md",
+    "160_Python_Libraries/TensorFlow/Keras_Metrics.md",
+    "160_Python_Libraries/TensorFlow/Keras_Loss_Functions.md",
+    "160_Python_Libraries/TensorFlow/Keras_Optimizers.md",
+    "180_Big_Data/_Big_Data_MOC.md",
+    "160_Python_Libraries/TensorFlow/Keras_Layers.md",
+    "170_Data_Visualization/Altair",
+    "170_Data_Visualization/Bokeh",
+    "170_Data_Visualization/Plotly",
+    "180_Big_Data/Spark",
+    "00_Meta/Attachments/lineplot.png",
+    "170_Data_Visualization/Matplotlib/00_Meta/Pasted image 20250610144340.png",
+    "170_Data_Visualization/Matplotlib/00_Meta",
+    "00_Meta/Attachments/delivery_times.csv",
+    "160_Python_Libraries/Scrapy",
+    "160_Python_Libraries/Beautiful_Soup",
+    "160_Python_Libraries/TensorFlow",
+    "160_Python_Libraries/Scikit_learn",
     "50_Data_Structures/00_Meta/Pasted image 20250421003701.png"
   ]
 }

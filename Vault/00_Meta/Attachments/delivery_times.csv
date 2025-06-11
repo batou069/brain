@@ -1,0 +1,4 @@
+carrier,min,q1,median,q3,max
+Carrier A,1,2,3,4,6
+Carrier B,2,3,4,5.5,8
+Carrier C,1,2.5,3.5,5,7

@@ -62,10 +62,8 @@ Understanding the hierarchy of Matplotlib objects is key to creating and customi
 
 ## Visualization with AnyBlock
 
-[list2tab|#Figure/Axes Structure]
-- Conceptual Diagram
-    -
-        ```mermaid
+### Conceptual Diagram
+```mermaid
         graph TD
             FIGURE["Figure (Top-Level Container)"] --> AXES1["Axes 1 (Subplot 1 / ax1)"];
             FIGURE --> AXES2["Axes 2 (Subplot 2 / ax2)"];
@@ -86,11 +84,11 @@ Understanding the hierarchy of Matplotlib objects is key to creating and customi
             style FIGURE fill:#lightgrey,stroke:#333,stroke-width:2px
             style AXES1 fill:#lightblue,stroke:#333,stroke-width:2px
             style AXES2 fill:#lightgreen,stroke:#333,stroke-width:2px
-        ```
-    -   The diagram shows a Figure containing two Axes objects (subplots). Each Axes has its own components like x/y axes, title, and plotted data.
-- Code Example (Object-Oriented API)
-    -
-        ```python
+```
+-   The diagram shows a Figure containing two Axes objects (subplots). Each Axes has its own components like x/y axes, title, and plotted data.
+
+### Code Example (Object-Oriented API)
+```python
         import matplotlib.pyplot as plt
         import numpy as np
 
@@ -132,8 +130,8 @@ Understanding the hierarchy of Matplotlib objects is key to creating and customi
 
         plt.tight_layout(rect=[0, 0, 1, 0.96]) # Adjust layout to prevent suptitle overlap
         # plt.show() # Display the plot
-        ```
-    -   This code demonstrates creating a figure with one Axes, and another figure with two stacked Axes (subplots), using the object-oriented approach.
+```
+-  This code demonstrates creating a figure with one Axes, and another figure with two stacked Axes (subplots), using the object-oriented approach.
 
 ## Working with Figure and Axes
 -   **[[Matplotlib_Pyplot_API_vs_OO_API|Pyplot API]]:** `plt.figure()`, `plt.subplot()`, `plt.title()`, `plt.plot()` often act on the "current" implicitly managed Figure and Axes.

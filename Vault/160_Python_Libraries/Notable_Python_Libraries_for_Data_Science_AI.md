@@ -1,0 +1,159 @@
+# Notable Python Libraries for Data Science, AI & Scientific Computing
+
+Python has a rich ecosystem of libraries that are essential for various tasks in Data Science, Machine Learning, Artificial Intelligence, and general Scientific Computing. This note provides a table summarizing some of the most notable and widely used ones.
+
+> [!note] Scope
+> This list is not exhaustive but aims to cover key libraries. Some libraries might fit into multiple categories. The "Examples of Added Functionality" are illustrative, not comprehensive. Core libraries like [[_NumPy_MOC|NumPy]], [[_Pandas_MOC|Pandas]], [[_Matplotlib_MOC|Matplotlib]], and [[SciPy_Library|SciPy]] form the foundation for many others.
+
+[list2mdtable|#Notable Python Libraries]
+- Library Name & Link
+    - Main Area(s)
+        - Examples of Added Functionality / Key Features
+- **Core & Data Manipulation**
+    -
+        -
+- [[_NumPy_MOC|NumPy]] (`numpy`)
+    - Numerical Computing, Array Manipulation
+        - N-dimensional array object (`ndarray`), linear algebra, Fourier transforms, random number capabilities, vectorization.
+- [[_Pandas_MOC|Pandas]] (`pandas`)
+    - Data Analysis, Data Manipulation, Data Structures
+        - DataFrame and Series objects, reading/writing various data formats (CSV, Excel, SQL, etc.), data cleaning, merging, reshaping, grouping, time series functionality.
+- **Scientific Computing**
+    -
+        -
+- [[SciPy_Library|SciPy]] (`scipy`)
+    - Scientific & Technical Computing
+        - Modules for optimization, linear algebra (advanced), integration, interpolation, special functions, FFT, signal processing, image processing (basic), statistics.
+- **Machine Learning (General Purpose)**
+    -
+        -
+- [[Scikit_learn_Library|Scikit-learn]] (`sklearn`)
+    - Machine Learning, Data Mining
+        - Algorithms for classification, regression, clustering, dimensionality reduction (PCA, NMF), model selection (cross-validation, grid search), preprocessing (scaling, encoding).
+- **Deep Learning**
+    -
+        -
+- [[TensorFlow_Library|TensorFlow]] (`tensorflow`)
+    - Deep Learning, Machine Learning, Numerical Computation
+        - Building and training neural networks (flexible for various architectures), automatic differentiation, distributed training, deployment tools (TensorFlow Serving, Lite, JS), Keras API integration.
+- [[PyTorch_Library|PyTorch]] (`torch`)
+    - Deep Learning, Machine Learning, Tensor Computation
+        - Dynamic computation graphs (define-by-run), building and training neural networks, strong GPU acceleration, extensive ecosystem (TorchVision, TorchText, TorchAudio).
+- [[Keras_Library|Keras]] (often `tensorflow.keras`)
+    - Deep Learning (High-Level API)
+        - User-friendly API for building and training neural networks, runs on top of TensorFlow (primarily), JAX, or PyTorch (experimental). Focuses on rapid prototyping.
+- **Statistical Modeling & Econometrics**
+    -
+        -
+- [[Statsmodels_Library|Statsmodels]] (`statsmodels`)
+    - Statistical Modeling, Econometrics, Hypothesis Testing
+        - Classical statistical models (OLS, GLM, ARIMA, VAR, etc.), detailed statistical tests and diagnostics, time series analysis.
+- **Natural Language Processing (NLP)**
+    -
+        -
+- [[NLTK_Library|NLTK]] (Natural Language Toolkit) (`nltk`)
+    - Natural Language Processing, Computational Linguistics
+        - Text processing (tokenization, stemming, tagging), classification, parsing, semantic reasoning, access to corpora and lexical resources. Good for learning and research.
+- [[spaCy_Library|spaCy]] (`spacy`)
+    - Natural Language Processing (Production-Oriented)
+        - Fast and efficient NLP for production use, pre-trained models for various languages, named entity recognition (NER), part-of-speech (POS) tagging, dependency parsing, word vectors.
+- [[Transformers_Library|Hugging Face Transformers]] (`transformers`)
+    - Natural Language Processing (State-of-the-art Models)
+        - Provides access to thousands of pre-trained transformer models (BERT, GPT, T5, etc.) for various NLP tasks (text classification, question answering, summarization, translation). Fine-tuning capabilities.
+- [[Gensim_Library|Gensim]] (`gensim`)
+    - Topic Modeling, Document Similarity, Word Embeddings
+        - Algorithms like Latent Dirichlet Allocation (LDA), Latent Semantic Analysis (LSA), word2vec, doc2vec, fastText. Efficient for large text collections.
+- **Data Visualization**
+    -
+        -
+- [[_Matplotlib_MOC|Matplotlib]] (`matplotlib`)
+    - Plotting, Data Visualization
+        - Creating a wide variety of static, animated, and interactive plots (line, scatter, bar, hist, etc.). Highly customizable.
+- [[170_Data_Visualization/Seaborn/_Seaborn_MOC|Seaborn]] (`seaborn`)
+    - Statistical Data Visualization
+        - High-level interface for creating attractive and informative statistical graphics, built on Matplotlib, integrates well with Pandas.
+- [[Plotly_Express_Library|Plotly & Plotly Express]] (`plotly`, `plotly.express`)
+    - Interactive Data Visualization, Dashboards
+        - Creates interactive, web-based visualizations (HTML/JavaScript). Plotly Express offers a high-level interface. Dash is for building web applications.
+- [[Bokeh_Library|Bokeh]] (`bokeh`)
+    - Interactive Data Visualization for Web Browsers
+        - Creates interactive plots, dashboards, and data applications for modern web browsers. Good for streaming data and large datasets.
+- [[Altair_Library|Altair]] (`altair`)
+    - Declarative Statistical Visualization
+        - A declarative statistical visualization library, based on Vega and Vega-Lite. Focuses on specifying *what* you want to visualize rather than *how* to draw it.
+- **Image Processing & Computer Vision**
+    -
+        -
+- [[140_Data_Science_AI/Pillow_PIL/_Pillow_PIL_MOC|Pillow (PIL Fork)]] (`PIL`)
+    - Image Manipulation
+        - Opening, manipulating (resizing, cropping, filtering), and saving many different image file formats.
+- [[Scikit_image_Library|Scikit-image]] (`skimage`)
+    - Image Processing
+        - Collection of algorithms for filtering, segmentation, feature detection, geometric transformations, morphology. Works with NumPy arrays.
+- [[OpenCV_Python_Library|OpenCV-Python]] (`cv2`)
+    - Computer Vision, Image Processing, Machine Learning
+        - Comprehensive library for real-time computer vision, image/video analysis, object detection, feature detection, machine learning algorithms.
+- **Web Scraping & Data Acquisition**
+    -
+        -
+- [[Requests_Library|Requests]] (`requests`)
+    - HTTP Requests
+        - Simple and elegant HTTP library for making web requests (GET, POST, etc.).
+- [[BeautifulSoup_Library|Beautiful Soup]] (`bs4`)
+    - HTML/XML Parsing, Web Scraping
+        - Pulling data out of HTML and XML files. Works well with `requests`.
+- [[Scrapy_Framework|Scrapy]] (`scrapy`)
+    - Web Crawling, Web Scraping Framework
+        - A fast, high-level web crawling and web scraping framework for crawling websites and extracting structured data from their pages.
+- **Distributed Computing & Big Data**
+    -
+        -
+- [[PySpark_Library|PySpark]] (`pyspark`)
+    - Big Data Processing (Apache Spark Python API)
+        - Interface for Apache Spark, enabling distributed data processing, SQL, streaming, ML, and graph processing on large datasets.
+- [[Dask_Library|Dask]] (`dask`)
+    - Parallel Computing, Out-of-Core Computation
+        - Flexible library for parallel computing in Python. Scales NumPy, Pandas, and Scikit-learn style workloads from single machines to clusters. Handles larger-than-memory datasets.
+- **Specialized Scientific Domains**
+    -
+        -
+- [[PyWavelets_Library|PyWavelets]] (`pywt`)
+    - Wavelet Transforms
+        - Discrete and continuous wavelet transforms, denoising, compression.
+- [[Hyperspy_Library|HyperSpy]] (`hyperspy.api`)
+    - Multi-dimensional Data Analysis (Microscopy, Spectroscopy)
+        - Analysis of hyperspectral data, EELS, EDX, decomposition, model fitting.
+- [[Graph_tool_Library|Graph-tool]] (`graph_tool`)
+    - High-performance Network Analysis
+        - Creation, manipulation, analysis, and visualization of graphs. Strong on statistical inference (SBMs).
+- [[NetworkX_Library|NetworkX]] (`networkx`)
+    - Network Analysis & Graph Theory
+        - Creation, manipulation, and study of the structure, dynamics, and functions of complex networks. More focused on ease of use and breadth than raw performance like Graph-tool.
+- [[Astropy_Library|Astropy]] (`astropy`)
+    - Astronomy & Astrophysics
+        - Core package for astronomy, providing tools for coordinates, units, FITS files, WCS, tables, time, cosmology.
+- [[BioPython_Library|BioPython]] (`Bio`)
+    - Computational Biology & Bioinformatics
+        - Tools for biological computation: sequence analysis, PDB parsing, population genetics, phylogenetics.
+- **Experimentation & Psychology**
+    -
+        -
+- [[PsychoPy_Library|PsychoPy]] (`psychopy`)
+    - Neuroscience & Experimental Psychology
+        - Creating and running experiments, stimulus presentation, response collection.
+- **Web Development & APIs (for serving models/data)**
+    -
+        -
+- [[Flask_Framework|Flask]] (`flask`)
+    - Micro Web Framework
+        - Lightweight framework for building web applications and APIs. Often used to deploy ML models.
+- [[FastAPI_Framework|FastAPI]] (`fastapi`)
+    - Modern Web Framework for APIs
+        - High-performance framework for building APIs with Python 3.7+ based on standard Python type hints. Automatic data validation and documentation.
+- [[Django_Framework|Django]] (`django`)
+    - High-level Web Framework
+        - "Batteries-included" framework for building complex web applications. Steeper learning curve than Flask/FastAPI but offers more built-in features.
+
+This table provides a good starting point for exploring the vast Python ecosystem for data-related tasks. The choice of library often depends on the specific problem, performance requirements, and existing infrastructure.
+
+---

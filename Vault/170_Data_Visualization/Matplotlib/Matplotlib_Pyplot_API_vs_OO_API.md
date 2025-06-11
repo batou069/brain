@@ -163,7 +163,7 @@ plt.grid(True) # Add grid
 # plt.savefig('pyplot_example.png')
 plt.show() # Display the plot
 ```
-
+![[lineplot.png]]
 ## Relationship to Object-Oriented API
 While `pyplot` is convenient, Matplotlib also offers a more explicit and powerful **[[Matplotlib_Pyplot_API_vs_OO_API|Object-Oriented (OO) API]]**. The OO API involves directly creating and manipulating `Figure` and `Axes` objects.
 

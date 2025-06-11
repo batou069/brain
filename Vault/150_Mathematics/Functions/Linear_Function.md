@@ -65,23 +65,22 @@ $$ m = \frac{\text{change in } y}{\text{change in } x} = \frac{y_2 - y_1}{x_2 - 
 
 ```mermaid
 graph TD
-    subgraph LinearGraph["Graph of y = 2x + 1"]
-        XAxis["x-axis (-2 to 2)"] --- YAxis["y-axis (-3 to 5)"]
+    subgraph LinearGraph[Graph_of_y=2x+1]
+        XAxis[x-axis_-2_to_2] --- YAxis[y-axis_-3_to_5]
+        P0[x=0_y=1]
+        P1[x=1_y=3]
+        Pneg1[x=-1_y=-1]
         
-        P0((0,1)) % y-intercept
-        P1((1,3))
-        Pneg1((-1,-1))
+        Pneg1 --- P0 --- P1
         
-        Pneg1 --- P0 --- P1 % Line path
-        
-        note right of P0 : y-intercept b=1
-        note right of P1 : Slope m = (3-1)/(1-0) = 2
+        Note0[y-intercept_b=1] --- P0
+        Note1[Slope_m=2] --- P1
     end
 
     style P0 fill:#afa,stroke:#000,stroke-width:2px
     style P1 fill:#aaf,stroke:#000,stroke-width:1px
     style Pneg1 fill:#aaf,stroke:#000,stroke-width:1px
-    linkStyle 2 stroke:blue,stroke-width:2px;
+    linkStyle 0 stroke:blue,stroke-width:2px
 ```
 
 ## Applications

@@ -26,26 +26,6 @@
       "key": "ArrowUp"
     }
   ],
-  "editor:add-cursor-above": [
-    {
-      "modifiers": [
-        "Alt",
-        "Mod",
-        "Shift"
-      ],
-      "key": "ArrowUp"
-    }
-  ],
-  "editor:add-cursor-below": [
-    {
-      "modifiers": [
-        "Alt",
-        "Mod",
-        "Shift"
-      ],
-      "key": "ArrowDown"
-    }
-  ],
   "app:delete-file": [
     {
       "modifiers": [
@@ -53,6 +33,24 @@
         "Shift"
       ],
       "key": "Backspace"
+    }
+  ],
+  "editor:add-cursor-below": [
+    {
+      "modifiers": [
+        "Alt",
+        "Mod"
+      ],
+      "key": "ArrowDown"
+    }
+  ],
+  "editor:add-cursor-above": [
+    {
+      "modifiers": [
+        "Alt",
+        "Mod"
+      ],
+      "key": "ArrowUp"
     }
   ]
 }

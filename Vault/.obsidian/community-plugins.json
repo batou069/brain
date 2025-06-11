@@ -13,5 +13,9 @@
   "latex-render",
   "any-block",
   "symbols-prettifier",
-  "obsidian-style-settings"
+  "obsidian-style-settings",
+  "diagram-zoom-drag",
+  "tinychart",
+  "obsidian-echarts",
+  "obsidian-charts"
 ]

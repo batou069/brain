@@ -61,24 +61,25 @@ Let $f(x) = \ln x$.
 
 ```mermaid
 graph TD
-    subgraph LogGraph["Graph of y = ln(x)"]
-        XAxis["x-axis (0 to 5)"] --- YAxis["y-axis (-2 to 2)"]
-        P1((1,0))
-        Pe(( "$e \approx 2.718$", 1))
-        P0_1((0.1, "$\ln(0.1) \approx -2.3$"))
-        P5((5, "$\ln(5) \approx 1.609$"))
+    subgraph LogGraph[Graph_of_y=ln_x]
+        XAxis[x-axis_0_to_5] --- YAxis[y-axis_-2_to_2]
+        P1[x=1_y=0]
+        Pe[x=e_approx_2.718_y=1]
+        P0_1[x=0.1_y=ln_0.1_approx_-2.3]
+        P5[x=5_y=ln_5_approx_1.609]
         
-        Asymptote["x=0 (Vertical Asymptote)"] -.-> P0_1
-        P0_1 --- P1 --- Pe --- P5 % Curve path
+        Asymptote[x=0_Vertical_Asymptote] -.-> P0_1
+        P0_1 --- P1 --- Pe --- P5
     end
-    P1 -->|Passes through (1,0)| P1
-    Pe -->|Passes through (e,1)| Pe
+    P1 -->|Passes_through_1_0| P1
+    Pe -->|Passes_through_e_1| Pe
     
     style P1 fill:#afa,stroke:#333,stroke-width:2px
     style Pe fill:#aaf,stroke:#333,stroke-width:2px
     style P0_1 fill:#faa,stroke:#333,stroke-width:2px
     style P5 fill:#aaf,stroke:#333,stroke-width:2px
-    linkStyle 5 stroke-width:2px,fill:none,stroke:blue;```
+    linkStyle 0 stroke-width:2px,stroke:blue
+```
 The graph of $y = \ln x$ is the reflection of the graph of $y = e^x$ across the line $y=x$.
 
 ## Applications
