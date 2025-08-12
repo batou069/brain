@@ -1,40 +1,41 @@
 {
-  "theme": "Dracula",
-  "mcpServers": {
-    "playwright": {
-      "command": "/etc/profiles/per-user/lf/bin/npx",
-      "args": ["@playwright/mcp@latest"]
-    },
-    "fetch": {
-      "command": "docker",
-      "args": ["run", "-i", "--rm", "mcp/fetch"]
-    },
-    "filesystem": {
-      "command": "/etc/profiles/per-user/lf/bin/npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-filesystem",
-        "/home/lf/nix",
-        "/home/lf/git",
-        "/nix"
-      ]
-    },
-    "memory": {
-      "command": "/etc/profiles/per-user/lf/bin/npx",
-      "args": ["-y", "@modelcontextprotocol/server-memory"]
-    },
-    "sequential-thinking": {
-      "command": "/etc/profiles/per-user/lf/bin/npx",
-      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
-    },
-    "obsidian": {
-      "command": "npx",
-      "args": ["-y", "obsidian-semantic-mcp"],
-      "env": {
-        "OBSIDIAN_API_KEY": "56aa23ed6ac344a8832b73dec93113ecb47649795992a1ab4d4d81cff15cc632",
-        "OBSIDIAN_API_URL": "http://127.0.0.1:27123",
-        "OBSIDIAN_VAULT_NAME": "Vault"
-      }
+    "theme": "Dracula",
+    "mcpServers": {
+        "filesystem": {
+            "command": "/etc/profiles/per-user/lf/bin/npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-filesystem",
+                "/home/lf/nix",
+                "/home/lf/git",
+                "/nix"
+            ]
+        },
+        "memory": {
+            "command": "/etc/profiles/per-user/lf/bin/npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-memory"
+            ]
+        },
+        "sequential-thinking": {
+            "command": "/etc/profiles/per-user/lf/bin/npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-sequential-thinking"
+            ]
+        },
+        "obsidian": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "obsidian-semantic-mcp"
+            ],
+            "env": {
+                "OBSIDIAN_API_KEY": "56aa23ed6ac344a8832b73dec93113ecb47649795992a1ab4d4d81cff15cc632",
+                "OBSIDIAN_API_URL": "http://127.0.0.1:27123",
+                "OBSIDIAN_VAULT_NAME": "Vault"
+            }
+        }
     }
-  }
 }

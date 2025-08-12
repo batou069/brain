@@ -1,0 +1,57 @@
+Great, you are doing well so far. Here some corrections to implement from now on (comma instead of |, use " to exit usage of parenthsis:
+
+# Corrections
+## 1. mermaid syntax:
+The following syntax is wrong:
+```mermaid
+graph LR
+    Head --> NodeA(Data: A | Next);
+    NodeA --o NodeB(Data:Function(n) | Next);
+    NodeB --o NodeC(Data: C | Next);
+    NodeC --o Null(NULL);
+
+    style Head fill:#fff,stroke:#f00,stroke-width:2px
+```
+
+here the corrected syntax:
+```mermaid
+graph LR
+    Head --> NodeA[Data: A, Next]
+    NodeA --o NodeB['Data:Function(n)", Next]
+    NodeB --o NodeC[Data: C, Next]
+    NodeC --o Null[NULL]
+
+    style Head fill:#fff,stroke:#f00,stroke-width:2px
+```
+
+
+
+## 2. Codeblock syntax
+Since you print a markdown codeblock that might containt a codeblock, we need to use nested codeblocks here.
+From now on do all markdown codeblock with 4 `-signs instead of 3. That way the inner ending codeblock does not exit the markdown codeblock and we have consistent styling in your response.
+
+Example template:
+
+````markdown
+---
+tag: [tag1, tag2]
+related:
+  - "[[related1]]"
+  - "[[related2]]"
+worksheet:
+  - WS7
+date_created: 2025-04-21
+---
+
+# Title
+
+<TEXT EXAMPLE...>
+
+```python
+<CODE EXAMPLE>?
+```
+
+<TEXT EXAMPLE...>
+
+````
+

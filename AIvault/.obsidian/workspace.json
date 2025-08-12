@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Dimensionality Reduction Techniques.md",
+                "file": "1000_worksheets/Logistic Regression & GLM.md",
                 "mode": "preview",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "Dimensionality Reduction Techniques"
+              "title": "Logistic Regression & GLM"
             }
           }
         ],
@@ -107,8 +107,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 371.5069465637207,
-    "collapsed": true
+    "width": 371.5069465637207
   },
   "right": {
     "id": "0331ea5ae170883a",
@@ -197,8 +196,8 @@
             "state": {
               "type": "git-view",
               "state": {},
-              "icon": "git-pull-request",
-              "title": "Source Control"
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           }
         ],
@@ -214,8 +213,8 @@
             "state": {
               "type": "calendar",
               "state": {},
-              "icon": "calendar-with-checkmark",
-              "title": "Calendar"
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           }
         ]
@@ -240,8 +239,13 @@
   },
   "active": "b9a43cdac1fcc697",
   "lastOpenFiles": [
-    "1000_worksheets/68_k_nearest_neighbors.md",
+    "1000_worksheets/Supervised Learning Intro.md",
+    "1000_worksheets/Preprocessing.md",
+    "1000_worksheets/Project Movie Recommendation.md",
+    "1000_worksheets/Project Movie Recommendations.md",
+    "1000_worksheets/Regressions and Linear Regression.md",
     "Dimensionality Reduction Techniques.md",
+    "1000_worksheets/68_k_nearest_neighbors.md",
     "160_Python_Libraries/NumPy/NumPy_linalg_norm.md",
     "160_Python_Libraries/NumPy/NumPy_linalg_Module.md",
     "50_Data_Structures/Matrix_Trace.md",
@@ -268,11 +272,6 @@
     "140_Data_Science_AI/Regularization",
     "140_Data_Science_AI/Dimensionality_Reduction/Principal_Component_Analysis_PCA.md",
     "140_Data_Science_AI/Dimensionality_Reduction",
-    "150_Mathematics/Linear_Algebra/Numerical_Stability.md",
-    "150_Mathematics/Linear_Algebra/Change_of_Basis.md",
-    "1000_worksheets/moviesREADME.md",
-    "1000_worksheets/Project Movie Recommendation.md",
-    "1000_worksheets/Project Movie Recommendations.md",
     "1000_worksheets/00_Meta/Pasted image 20250723103652.png",
     "1000_worksheets/00_Meta/Pasted image 20250723095808.png",
     "1000_worksheets/00_Meta",
