@@ -1,0 +1,13 @@
+{
+  "spellcheck": false,
+  "newFileLocation": "current",
+  "attachmentFolderPath": "./00_Meta",
+  "alwaysUpdateLinks": true,
+  "promptDelete": false,
+  "readableLineLength": false,
+  "trashOption": "local",
+  "propertiesInDocument": "visible",
+  "vimMode": true,
+  "tabSize": 2,
+  "useTab": false
+}
