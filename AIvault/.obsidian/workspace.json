@@ -8,45 +8,241 @@
         "type": "tabs",
         "children": [
           {
-            "id": "b5559f3a95e06422",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1000_worksheets/Clustering.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Clustering"
-            }
-          },
-          {
-            "id": "2da846dfd9749f66",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "160_Python_Libraries/NumPy/NumPy_linalg_norm.md",
-                "mode": "preview",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "NumPy_linalg_norm"
-            }
-          },
-          {
             "id": "b9a43cdac1fcc697",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1000_worksheets/Logistic Regression & GLM.md",
+                "file": "1000_worksheets/WS78 - Anomaly Detection.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "WS78 - Anomaly Detection"
+            }
+          },
+          {
+            "id": "d363351c6006ac49",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1000_worksheets/WS 79 - Recommender System Project pt II - Collaborative Filtering.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "WS 79 - Recommender System Project pt II - Collaborative Filtering"
+            }
+          },
+          {
+            "id": "1fe688ea8f5bfe08",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1000_worksheets/Crawler seperate tasks.md",
                 "mode": "preview",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "Logistic Regression & GLM"
+              "title": "Crawler seperate tasks"
+            }
+          },
+          {
+            "id": "0e72ad0995787113",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "140_Data_Science_AI/Collaborative_Filtering/User-Item_Interaction_Matrix.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "User-Item_Interaction_Matrix"
+            }
+          },
+          {
+            "id": "f311c61115d9c94d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "140_Data_Science_AI/Collaborative_Filtering/Implicit_vs_Explicit_Feedback.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Implicit_vs_Explicit_Feedback"
+            }
+          },
+          {
+            "id": "4be7d48eef8702ca",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "140_Data_Science_AI/Collaborative_Filtering/Matrix_Factorization_for_CF.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Matrix_Factorization_for_CF"
+            }
+          },
+          {
+            "id": "4541afc0c65271e7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "140_Data_Science_AI/Collaborative_Filtering/Latent_Factors.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Latent_Factors"
+            }
+          },
+          {
+            "id": "407d5c5834be01a4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "140_Data_Science_AI/Collaborative_Filtering/Matrix_Factorization_vs_SVD_for_CF.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Matrix_Factorization_vs_SVD_for_CF"
+            }
+          },
+          {
+            "id": "aa4e6c1c6a11b0ba",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "140_Data_Science_AI/Collaborative_Filtering/Alternating_Least_Squares_ALS.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Alternating_Least_Squares_ALS"
+            }
+          },
+          {
+            "id": "f544f9152957bd93",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "140_Data_Science_AI/Collaborative_Filtering/Stochastic_Gradient_Descent_SGD_for_CF.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Stochastic_Gradient_Descent_SGD_for_CF"
+            }
+          },
+          {
+            "id": "23fdc1fcdc870ba6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "140_Data_Science_AI/Collaborative_Filtering/Cold_Start_Problem.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Cold_Start_Problem"
+            }
+          },
+          {
+            "id": "b9f74852717e6794",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "140_Data_Science_AI/Recommender_Systems/Content-Based_Filtering.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Content-Based_Filtering"
+            }
+          },
+          {
+            "id": "4d3564ffe0c06324",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "140_Data_Science_AI/Recommender_Systems/Hybrid_Recommender_Systems.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Hybrid_Recommender_Systems"
+            }
+          },
+          {
+            "id": "b19d59fe1dbf30ad",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "140_Data_Science_AI/Collaborative_Filtering/Concept_Drift_in_Recommenders.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Concept_Drift_in_Recommenders"
+            }
+          },
+          {
+            "id": "dc8115ddd7a70877",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "140_Data_Science_AI/Evaluation/Evaluation_Metrics_for_Ranking.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Evaluation_Metrics_for_Ranking"
+            }
+          },
+          {
+            "id": "18cc5235b68384b8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "140_Data_Science_AI/Evaluation/Normalized_Discounted_Cumulative_Gain_NDCG.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Normalized_Discounted_Cumulative_Gain_NDCG"
+            }
+          },
+          {
+            "id": "ae869efce00e7415",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "140_Data_Science_AI/Evaluation/Mean_Reciprocal_Rank_MRR.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Mean_Reciprocal_Rank_MRR"
             }
           }
         ],
@@ -82,7 +278,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "argsort",
+                "query": "optimization",
                 "matchingCase": false,
                 "explainSearch": true,
                 "collapseAll": true,
@@ -237,46 +433,46 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "b9a43cdac1fcc697",
+  "active": "c1ead75e05d893d3",
   "lastOpenFiles": [
-    "1000_worksheets/Supervised Learning Intro.md",
-    "1000_worksheets/Preprocessing.md",
-    "1000_worksheets/Project Movie Recommendation.md",
-    "1000_worksheets/Project Movie Recommendations.md",
-    "1000_worksheets/Regressions and Linear Regression.md",
-    "Dimensionality Reduction Techniques.md",
-    "1000_worksheets/68_k_nearest_neighbors.md",
-    "160_Python_Libraries/NumPy/NumPy_linalg_norm.md",
-    "160_Python_Libraries/NumPy/NumPy_linalg_Module.md",
-    "50_Data_Structures/Matrix_Trace.md",
-    "150_Mathematics/Linear_Algebra/Frobenius_Norm.md",
+    "Recommender System part2.md",
+    "1000_worksheets/Crawler seperate tasks.md",
+    "Gemini Protocol.md",
+    "exercises.md",
+    "_Index.md",
+    "changes.md",
+    "1000_worksheets/Dimensionality Reduction Techniques.md",
+    "nvim.md",
+    "140_Data_Science_AI/Collaborative_Filtering/_Collaborative_Filtering_MOC.md",
+    "1000_worksheets/WS 79 - Recommender System Project pt II - Collaborative Filtering.md",
+    "1000_worksheets/WS78 - Anomaly Detection.md",
+    "140_Data_Science_AI/Recommender_Systems/Content-Based_Filtering.md",
+    "140_Data_Science_AI/Collaborative_Filtering/Cold_Start_Problem.md",
+    "140_Data_Science_AI/Collaborative_Filtering/Stochastic_Gradient_Descent_SGD_for_CF.md",
+    "140_Data_Science_AI/Collaborative_Filtering/Alternating_Least_Squares_ALS.md",
+    "140_Data_Science_AI/Collaborative_Filtering/Matrix_Factorization_vs_SVD_for_CF.md",
+    "140_Data_Science_AI/Collaborative_Filtering/Latent_Factors.md",
+    "140_Data_Science_AI/Collaborative_Filtering/Matrix_Factorization_for_CF.md",
+    "140_Data_Science_AI/Collaborative_Filtering/Implicit_vs_Explicit_Feedback.md",
+    "140_Data_Science_AI/Collaborative_Filtering/User-Item_Interaction_Matrix.md",
+    "140_Data_Science_AI/Evaluation/Mean_Reciprocal_Rank_MRR.md",
+    "140_Data_Science_AI/Evaluation/Normalized_Discounted_Cumulative_Gain_NDCG.md",
+    "140_Data_Science_AI/Evaluation/Evaluation_Metrics_for_Ranking.md",
+    "140_Data_Science_AI/Collaborative_Filtering/Concept_Drift_in_Recommenders.md",
+    "140_Data_Science_AI/Recommender_Systems/Hybrid_Recommender_Systems.md",
+    "140_Data_Science_AI/Recommender_Systems",
+    "140_Data_Science_AI/Collaborative_Filtering",
     "1000_worksheets/Clustering.md",
-    "WIP/aug25.md",
-    "140_Data_Science_AI/Concepts/Bias_Variance_Tradeoff.md",
-    "140_Data_Science_AI/Concepts/Overfitting_Underfitting.md",
     "140_Data_Science_AI/Concepts",
-    "140_Data_Science_AI/Evaluation/Model_Evaluation.md",
     "140_Data_Science_AI/Evaluation",
-    "140_Data_Science_AI/Dimensionality_Reduction/Dimensionality_Reduction.md",
-    "150_Mathematics/Linear_Algebra/QR_Decomposition.md",
-    "140_Data_Science_AI/Unsupervised_Learning/Clustering_Methods.md",
     "140_Data_Science_AI/Unsupervised_Learning",
-    "140_Data_Science_AI/Models/Classification_Models.md",
-    "140_Data_Science_AI/Models/Regression_Models.md",
     "140_Data_Science_AI/Models",
-    "140_Data_Science_AI/Learning_Paradigms/Reinforcement_Learning.md",
-    "140_Data_Science_AI/Learning_Paradigms/Unsupervised_Learning.md",
-    "140_Data_Science_AI/Learning_Paradigms/Supervised_Learning.md",
     "140_Data_Science_AI/Learning_Paradigms",
-    "140_Data_Science_AI/Regularization/L1_L2_Regularization.md",
     "140_Data_Science_AI/Regularization",
-    "140_Data_Science_AI/Dimensionality_Reduction/Principal_Component_Analysis_PCA.md",
     "140_Data_Science_AI/Dimensionality_Reduction",
     "1000_worksheets/00_Meta/Pasted image 20250723103652.png",
     "1000_worksheets/00_Meta/Pasted image 20250723095808.png",
     "1000_worksheets/00_Meta",
-    "1000_worksheets",
-    "999_Leetcode",
     "00_Meta/Attachments/lineplot.png",
     "160_Python_Libraries/170_Data_Visualization/Matplotlib/00_Meta/Pasted image 20250610144340.png",
     "50_Data_Structures/00_Meta/Pasted image 20250421003701.png"
