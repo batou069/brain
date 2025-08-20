@@ -204,3 +204,137 @@ Matplotlib offers extensive control over virtually every aspect of a plot, allow
 Mastering these customization options allows you to tailor Matplotlib plots precisely to your needs, enhancing clarity and impact. Referencing the [[Plot_Elements_Anatomy]] note provides a good overview of what can be styled.
 
 ---
+
+
+# 2nd versions or samme??
+
+# Matplotlib: Customizing Plots
+
+Matplotlib offers extensive control over nearly every aspect of a plot, allowing for highly customized and publication-quality visualizations. Customizations are typically applied by calling methods on the [[Matplotlib_Figure_Subplot_Axes|`Figure`]] and [[Matplotlib_Figure_Subplot_Axes|`Axes`]] objects (using the [[Matplotlib_Object_Oriented_API|Object-Oriented API]]) or via `pyplot` functions.
+
+## Common Customization Areas
+
+[list2tab|#Plot Customizations]
+- Titles and Labels
+    -   **Axes Title:** `ax.set_title("My Plot Title", fontsize=16, color='darkblue')`
+    -   **X-Axis Label:** `ax.set_xlabel("Time (seconds)", fontsize=12)`
+    -   **Y-Axis Label:** `ax.set_ylabel("Amplitude (Volts)", fontsize=12)`
+    -   **Figure Suptitle:** `fig.suptitle("Overall Experiment Results", fontsize=18, fontweight='bold')` (applied to the `Figure` object)
+- Lines and Markers (for `ax.plot()`)
+    -   **Color:** `color='red'`, `color='#FF5733'`, `color=(0.1, 0.2, 0.5)`
+    -   **Linestyle:** `linestyle='--'` (dashed), `'-.'` (dash-dot), `':'` (dotted), `'-'` (solid, default).
+    -   **Linewidth:** `linewidth=2.5` (float).
+    -   **Marker:** `marker='o'` (circle), `'s'` (square), `'^'` (triangle_up), `'.'` (point), `'*'` (star).
+    -   **Markersize:** `markersize=8`.
+    -   **Marker Edge Color/Width:** `markeredgecolor='black'`, `markeredgewidth=0.5`.
+    -   **Marker Face Color:** `markerfacecolor='lightblue'`.
+    - **Example:**
+        ```python
+        # ax.plot(x, y, color='magenta', linestyle=':', linewidth=1.5,
+        #         marker='D', markersize=6, markerfacecolor='yellow',
+        #         markeredgecolor='black', label='Data Series')
+        ```
+- Axis Limits
+    -   `ax.set_xlim([xmin, xmax])` or `ax.set_xlim(left=xmin, right=xmax)`
+    -   `ax.set_ylim([ymin, ymax])` or `ax.set_ylim(bottom=ymin, top=ymax)`
+    -   `ax.axis('equal')`: Sets equal scaling for x and y axes (pixels per data unit).
+    -   `ax.axis('tight')`: Sets limits to just encompass the data.
+    -   `ax.axis('off')`: Turns off the axis lines and labels.
+- Ticks, Tick Labels, and Grid
+    -   **Setting Tick Locations:**
+        -   `ax.set_xticks()`
+        -   `ax.set_yticks()`
+    -   **Setting Tick Labels:**
+        -   `ax.set_xticklabels(['A', 'B', 'C'])`
+        -   `ax.set_yticklabels(['Low', 'Med', 'High'], rotation=45)`
+    -   **Tick Parameters (Major/Minor):** `ax.tick_params(axis='x', which='major', labelsize=10, direction='inout', length=6)`
+        -   Controls appearance like size, direction, color of ticks and labels.
+    -   **Gridlines:**
+        -   `ax.grid(True, linestyle='--', linewidth=0.5, color='gray', alpha=0.7, which='major', axis='both')`
+        -   `which`: `{'major', 'minor', 'both'}`
+        -   `axis`: `{'x', 'y', 'both'}`
+- Legends
+    -   `ax.legend(loc='best', fontsize='small', title='Legend Title', frameon=True, shadow=True, ncol=2)`
+    -   **`loc`:** Location string (e.g., 'upper right', 'lower left', 'center') or code. `'best'` tries to find an optimal location.
+    -   **`ncol`:** Number of columns in the legend.
+    -   Requires `label` argument in plotting calls (e.g., `ax.plot(..., label="Series A")`).
+- Colors and Colormaps
+    -   Individual colors for lines, markers, bars, etc. (see "Lines and Markers").
+    -   [[Matplotlib_Colormaps|Colormaps (`cmap`)]] for plots like `imshow`, `scatter` (when `c` is an array), `pcolormesh`, `contourf`.
+        -   `im = ax.imshow(data, cmap='viridis')`
+        -   `fig.colorbar(im, ax=ax, label="Intensity")` to add a colorbar.
+- Text and Annotations
+    -   **Adding Text:** `ax.text(x_coord, y_coord, "My Text Note", fontsize=10, color='red')`
+        -   Coordinates are data coordinates by default. Can use `transform=ax.transAxes` for figure-relative coordinates (0,0 is bottom-left, 1,1 is top-right of axes).
+    -   **Annotations with Arrows:** `ax.annotate("Important Point", xy=(data_x, data_y), xytext=(text_x, text_y), arrowprops=dict(facecolor='black', shrink=0.05, width=1, headwidth=5))`
+        -   `xy`: The point to annotate.
+        -   `xytext`: The position of the text.
+        -   `arrowprops`: Dictionary to style the arrow.
+- Figure Size and DPI
+    -   When creating the figure: `fig, ax = plt.subplots(figsize=(width_inches, height_inches), dpi=100)`
+    -   `fig.set_size_inches(width, height)`
+    -   `fig.set_dpi(value)`
+- Spines (Plot Borders)
+    -   Access via `ax.spines['top']`, `ax.spines['right']`, etc.
+    -   `ax.spines['top'].set_visible(False)`
+    -   `ax.spines['right'].set_color('blue')`
+- Background Colors
+    -   Axes background: `ax.set_facecolor('lightyellow')`
+    -   Figure background: `fig.patch.set_facecolor('lightgrey')` (or `fig.set_facecolor(...)`)
+
+## Example of Extensive Customization
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0, 2 * np.pi, 200)
+y1 = np.sin(x)
+y2 = np.cos(x)
+y3 = np.sin(x) * np.cos(x)
+
+# Create figure and axes object
+fig, ax = plt.subplots(figsize=(10, 6))
+fig.patch.set_facecolor('#f0f0f0') # Light grey figure background
+
+# Plotting data with specific styles
+ax.plot(x, y1, color='dodgerblue', linestyle='-', linewidth=2, marker='o', markersize=5, markevery=20, label='sin(x)')
+ax.plot(x, y2, color='orangered', linestyle='--', linewidth=2, label='cos(x)')
+ax.plot(x, y3, color='green', linestyle=':', linewidth=1.5, marker='s', markevery=25, markersize=4, label='sin(x)cos(x)')
+
+# Titles and Labels
+ax.set_title('Highly Customized Matplotlib Plot', fontsize=16, fontweight='bold', pad=20)
+ax.set_xlabel('X-axis (Radians)', fontsize=14, labelpad=10)
+ax.set_ylabel('Y-axis (Value)', fontsize=14, labelpad=10)
+
+# Axis Limits and Ticks
+ax.set_xlim(0, 2 * np.pi)
+ax.set_ylim(-1.2, 1.2)
+ax.set_xticks(np.linspace(0, 2 * np.pi, 5)) # Define major tick locations
+ax.set_xticklabels(['0', 'π/2', 'π', '3π/2', '2π'], fontsize=10) # Custom labels
+ax.tick_params(axis='both', which='major', labelsize=10, direction='out', length=6, width=1, colors='dimgray')
+
+# Grid
+ax.grid(True, which='major', linestyle=':', linewidth=0.5, color='darkgray')
+
+# Legend
+ax.legend(loc='upper right', fontsize='medium', frameon=True, shadow=True, edgecolor='black', facecolor='whitesmoke')
+
+# Spines
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['left'].set_linewidth(1.5)
+ax.spines['bottom'].set_linewidth(1.5)
+ax.spines['left'].set_color('dimgray')
+ax.spines['bottom'].set_color('dimgray')
+
+# Axes background
+ax.set_facecolor('#e9e9e9')
+
+# Add an annotation
+ax.annotate('Peak of sin(x)', xy=(np.pi/2, 1), xytext=(np.pi/2 + 0.5, 1.1),
+            arrowprops=dict(facecolor='black', shrink=0.05, width=0.5, headwidth=4),
+            fontsize=9, color='navy')
+
+plt.tight_layout() # Adjust plot to ensure everything fits without overlapping
+# plt.show()

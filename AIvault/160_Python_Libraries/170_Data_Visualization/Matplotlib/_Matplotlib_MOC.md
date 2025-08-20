@@ -99,3 +99,120 @@ SORT file.name ASC
 ```
 
 ---
+
+
+# 2nd or same?
+
+# Matplotlib MOC 🎨
+
+**[[Matplotlib_Overview|Matplotlib]]** is a comprehensive library for creating static, animated, and interactive visualizations in Python. It is the foundational plotting library in the Python scientific computing stack.
+
+## Core Concepts & Usage
+-   [[Matplotlib_Overview|Overview of Matplotlib]]
+-   [[Matplotlib_Pyplot_API_vs_OO_API|Pyplot API vs. Object-Oriented API]]
+    -   [[Matplotlib_Pyplot_API|Pyplot API (State-Based)]]
+    -   [[Matplotlib_Object_Oriented_API|Object-Oriented API]]
+-   [[Matplotlib_Figure_Subplot_Axes|Figure, Axes, and Subplots]]
+    -   The fundamental building blocks of a Matplotlib plot.
+-   [[Plot_Elements_Anatomy|Anatomy of a Plot]] (General, but heavily applicable here)
+
+## Basic Plotting
+-   [[Matplotlib_Basic_Plotting_Functions|Basic Plotting Functions Overview]]
+    -   [[170_Data_Visualization/Plot_Types/Line_Plot|Line Plot]] (`plt.plot()` / `ax.plot()`)
+    -   [[170_Data_Visualization/Plot_Types/Scatter_Plot|Scatter Plot]] (`plt.scatter()` / `ax.scatter()`)
+    -   [[170_Data_Visualization/Plot_Types/Bar_Chart|Bar Chart]] (`plt.bar()` / `ax.bar()`, `plt.barh()` / `ax.barh()`)
+    -   [[170_Data_Visualization/Plot_Types/Histogram|Histogram]] (`plt.hist()` / `ax.hist()`)
+    -   [[170_Data_Visualization/Plot_Types/Box_Plot|Box Plot]] (`plt.boxplot()` / `ax.boxplot()`)
+    -   [[170_Data_Visualization/Plot_Types/Pie_Chart|Pie Chart]] (`plt.pie()` / `ax.pie()`)
+-   [[Matplotlib_Image_Display_imshow|Image Display with `imshow`]]
+
+## Customization & Advanced Features
+-   [[Matplotlib_Customization|Customizing Plots]]
+    -   Titles, Labels, Legends
+    -   Colors, Linestyles, Markers
+    -   Ticks, Tick Labels, and Gridlines
+    -   Text and Annotations
+-   [[Matplotlib_Colormaps|Working with Colormaps (`cmap`)]]
+-   [[Matplotlib_Saving_Plots|Saving Plots (`savefig`)]]
+-   [[Matplotlib_Styles|Using Stylesheets (`plt.style`)]]
+-   [[Matplotlib_3D_Plotting|3D Plotting with `mpl_toolkits.mplot3d`]]
+-   [[Matplotlib_Interactive_Plots|Interactive Plotting]]
+
+## Notes in this Section
+```dataview
+LIST
+FROM "170_Data_Visualization/Matplotlib"
+WHERE file.folder = this.file.folder AND file.name != this.file.name AND !contains(file.name, "MOC")
+SORT file.name ASC
+```
+
+---
+
+
+# same?
+
+---
+tags: [matplotlib, python, plotting, data_visualization, library, moc, concept]
+aliases: [Matplotlib Library MOC]
+related:
+  - "[[_Data_Visualization_MOC]]"
+  - "[[_NumPy_MOC]]"
+  - "[[_Pandas_MOC]]"
+  - "[[Matplotlib_Overview]]"
+  - "[[Matplotlib_Pyplot_API_vs_OO_API]]"
+  - "[[Matplotlib_Figure_Subplot_Axes]]"
+  - "[[Matplotlib_Basic_Plotting_Functions]]"
+  - "[[Matplotlib_Customization]]"
+  - "[[Matplotlib_Image_Display_imshow]]"
+  - "[[Matplotlib_Colormaps]]"
+  - "[[Matplotlib_3D_Plotting]]"
+  - "[[Matplotlib_Interactive_Plots]]"
+  - "[[Matplotlib_Saving_Plots]]"
+  - "[[Matplotlib_Styles]]"
+worksheet: [WS_DataViz_1]
+date_created: <% tp.file.creation_date("YYYY-MM-DD") %>
+---
+# Matplotlib MOC 🎨
+
+**[[Matplotlib_Overview|Matplotlib]]** is a comprehensive library for creating static, animated, and interactive visualizations in Python. It is the foundational plotting library in the Python scientific computing stack.
+
+## Core Concepts & Usage
+-   [[Matplotlib_Overview|Overview of Matplotlib]]
+-   [[Matplotlib_Pyplot_API_vs_OO_API|Pyplot API vs. Object-Oriented API]]
+    -   [[Matplotlib_Pyplot_API|Pyplot API (State-Based)]]
+    -   [[Matplotlib_Object_Oriented_API|Object-Oriented API]]
+-   [[Matplotlib_Figure_Subplot_Axes|Figure, Axes, and Subplots]]
+    -   The fundamental building blocks of a Matplotlib plot.
+-   [[Plot_Elements_Anatomy|Anatomy of a Plot]] (General, but heavily applicable here)
+
+## Basic Plotting
+-   [[Matplotlib_Basic_Plotting_Functions|Basic Plotting Functions Overview]]
+    -   [[170_Data_Visualization/Plot_Types/Line_Plot|Line Plot]] (`plt.plot()` / `ax.plot()`)
+    -   [[170_Data_Visualization/Plot_Types/Scatter_Plot|Scatter Plot]] (`plt.scatter()` / `ax.scatter()`)
+    -   [[170_Data_Visualization/Plot_Types/Bar_Chart|Bar Chart]] (`plt.bar()` / `ax.bar()`, `plt.barh()` / `ax.barh()`)
+    -   [[170_Data_Visualization/Plot_Types/Histogram|Histogram]] (`plt.hist()` / `ax.hist()`)
+    -   [[170_Data_Visualization/Plot_Types/Box_Plot|Box Plot]] (`plt.boxplot()` / `ax.boxplot()`)
+    -   [[170_Data_Visualization/Plot_Types/Pie_Chart|Pie Chart]] (`plt.pie()` / `ax.pie()`)
+-   [[Matplotlib_Image_Display_imshow|Image Display with `imshow`]]
+
+## Customization & Advanced Features
+-   [[Matplotlib_Customization|Customizing Plots]]
+    -   Titles, Labels, Legends
+    -   Colors, Linestyles, Markers
+    -   Ticks, Tick Labels, and Gridlines
+    -   Text and Annotations
+-   [[Matplotlib_Colormaps|Working with Colormaps (`cmap`)]]
+-   [[Matplotlib_Saving_Plots|Saving Plots (`savefig`)]]
+-   [[Matplotlib_Styles|Using Stylesheets (`plt.style`)]]
+-   [[Matplotlib_3D_Plotting|3D Plotting with `mpl_toolkits.mplot3d`]]
+-   [[Matplotlib_Interactive_Plots|Interactive Plotting]]
+
+## Notes in this Section
+```dataview
+LIST
+FROM "160_Python_Libraries/170_Data_Visualization/Matplotlib"
+WHERE file.folder = this.file.folder AND file.name != this.file.name AND !contains(file.name, "MOC")
+SORT file.name ASC
+```
+
+---

@@ -454,7 +454,7 @@ print(f"Prediction for novel point: {pred_novel[0]}")    # Expected: -1
     * $\nu$ (nu) is a hyperparameter between 0 and 1 that controls this penalty.
     * **How it works:** The term $\frac{1}{2}\|\mathbf{w}\|^2$ tries to maximize the margin (distance) between the origin and the hyperplane, while the term $-\rho$ tries to push the hyperplane as far from the origin as possible. The constraints ensure that most data points $\mathbf{x}_i$ end up on one side of the hyperplane. The decision function for a new point $\mathbf{x}$ is then $f(\mathbf{x}) = \text{sgn}(\mathbf{w} \cdot \phi(\mathbf{x}) - \rho)$. A negative value indicates an outlier.
 
-## Questions
+# Questions
 
 ---
 

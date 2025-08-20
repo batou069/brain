@@ -23,6 +23,7 @@ aliases:
   - Seaborn Histograms
   - Seaborn KDE
   - Seaborn ECDF
+  - Seaborn Distribution Plots
 related:
   - "[[_Seaborn_MOC|_Seaborn_MOC]]"
   - "[[Histogram]]"
@@ -32,6 +33,9 @@ related:
   - "[[Matplotlib_Overview]]"
   - "[[_Pandas_MOC|Pandas DataFrame]]"
   - "[[Kernel_Density_Estimation_KDE|Kernel Density Estimation (KDE)]]"
+  - "[[170_Data_Visualization/Seaborn/_Seaborn_MOC|_Seaborn_MOC]]"
+  - "[[Kernel_Density_Estimation_KDE]]"
+  - "[[Cumulative_Distribution_Function_CDF|ECDF]]"
 worksheet:
   - WS_DataViz_1
 date_created: <% tp.file.creation_date("YYYY-MM-DD") %>
@@ -383,5 +387,123 @@ import numpy as np
 ```
 
 Seaborn's distribution plots provide comprehensive tools for understanding and comparing the distributions of variables in your dataset, often with convenient options for semantic mapping (`hue`) and faceting.
+
+---
+
+# Seaborn: Distribution Plots
+
+Visualizing the distribution of a dataset is a fundamental task in data analysis. Seaborn provides several powerful functions for this purpose, primarily `histplot`, `kdeplot`, and `ecdfplot`. These can be used as axes-level functions or via the figure-level interface `displot()`.
+
+## `histplot()`
+-   **Purpose:** To plot a [[Histogram|histogram]], which represents the distribution of a single numerical variable by counting the number of observations that fall within discrete bins.
+-   **Key Parameters:**
+    -   `data`: Pandas DataFrame.
+    -   `x` or `y`: Column name for the variable to be plotted.
+    -   `bins`: Number of bins or a sequence of bin edges.
+    -   `hue`: Grouping variable to plot distributions for different categories with different colors.
+    -   `kde`: Boolean. If `True`, overlay a Kernel Density Estimate curve.
+    -   `stat`: `'count'` (default), `'frequency'`, `'density'`, `'probability'`. Aggregate statistic to compute in each bin.
+    -   `multiple`: `{'layer', 'stack', 'dodge', 'fill'}`. How to display multiple distributions from `hue`.
+-   **Example (Distribution of product prices):**
+    ```python
+    import seaborn as sns
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    import numpy as np
+
+    # Conceptual product data
+    # np.random.seed(42)
+    # product_data = pd.DataFrame({
+    #     'price': np.random.gamma(2, scale=50, size=500), # Skewed distribution
+    #     'category': np.random.choice(['Electronics', 'Apparel'], 500)
+    # })
+
+    # plt.figure(figsize=(10, 6))
+    # sns.histplot(data=product_data, x="price", hue="category", kde=True, multiple="stack")
+    # plt.title("Distribution of Product Prices by Category")
+    # plt.xlabel("Price ($)")
+    # plt.show()
+    ```
+    > This plot shows stacked histograms for each category, with an overlaid KDE curve for each, giving a comprehensive view of the price distributions.
+
+## `kdeplot()`
+-   **Purpose:** To plot a **Kernel Density Estimate**. A KDE plot visualizes the distribution of observations using a continuous curve. It can be thought of as a smoothed histogram.
+-   **Key Parameters:**
+    -   `data`, `x`, `y`, `hue`: Similar to `histplot`.
+    -   `fill`: Boolean. If `True`, fill the area under the curve.
+    -   `bw_adjust`: Factor that adjusts the bandwidth of the kernel, controlling smoothness.
+    -   `cumulative`: Boolean. If `True`, plot the cumulative distribution.
+-   **Example (Comparing price distributions with KDE):**
+    ```python
+    # import seaborn as sns
+    # import matplotlib.pyplot as plt
+    # (using product_data from previous example)
+
+    # plt.figure(figsize=(10, 6))
+    # sns.kdeplot(data=product_data, x="price", hue="category", fill=True, alpha=0.5)
+    # plt.title("Density of Product Prices by Category")
+    # plt.xlabel("Price ($)")
+    # plt.show()
+    ```
+    > This is often better for comparing the shapes of multiple distributions than overlaid histograms.
+
+## `ecdfplot()`
+-   **Purpose:** To plot an **Empirical Cumulative Distribution Function (ECDF)**. An ECDF plot shows the proportion of data points that are less than or equal to a given value on the x-axis.
+-   **Key Parameters:**
+    -   `data`, `x`, `y`, `hue`: Similar to other distribution plots.
+    -   `stat`: `'proportion'` (default) or `'count'`.
+-   **Example (ECDF of product prices):**
+    ```python
+    # import seaborn as sns
+    # import matplotlib.pyplot as plt
+    # (using product_data from previous example)
+
+    # plt.figure(figsize=(10, 6))
+    # sns.ecdfplot(data=product_data, x="price", hue="category")
+    # plt.title("ECDF of Product Prices by Category")
+    # plt.xlabel("Price ($)")
+    # plt.ylabel("Proportion of Products")
+    # plt.grid(True, linestyle='--')
+    # plt.show()
+    ```
+    > This plot is useful for directly reading off percentiles. For example, you can see what proportion of "Apparel" products cost less than $50.
+
+## `displot()` (Figure-level Interface)
+-   **Purpose:** A figure-level function for drawing distribution plots. It combines `histplot` (default), `kdeplot`, `ecdfplot`, and `rugplot` with `FacetGrid`.
+-   **How it Works:** Use the `kind` parameter to select the plot type and `col`/`row` to create facets.
+-   **Example (Faceted histograms):**
+    ```python
+    import seaborn as sns
+    import matplotlib.pyplot as plt
+
+    # Use Seaborn's built-in 'penguins' dataset
+    # penguins = sns.load_dataset("penguins")
+
+    # Create histograms of flipper length, faceted by species and sex
+    # g = sns.displot(
+    #     data=penguins,
+    #     x="flipper_length_mm",
+    #     col="species",
+    #     row="sex",
+    #     kind="hist", # Can be "kde" or "ecdf"
+    #     height=3,
+    #     aspect=1.2
+    # )
+    # g.fig.suptitle("Flipper Length Distribution", y=1.03)
+    # plt.show()
+    ```
+
+## Other Distribution-related Plots
+-   **`rugplot()`:** Plots small vertical ticks along an axis to show the distribution of individual data points. Often used to complement another plot.
+-   **`jointplot()`:** A figure-level function to plot a bivariate distribution with marginal univariate distributions on the sides.
+    ```python
+    # import seaborn as sns
+    # import matplotlib.pyplot as plt
+    # penguins = sns.load_dataset("penguins")
+    # sns.jointplot(data=penguins, x="bill_length_mm", y="bill_depth_mm", hue="species", kind="scatter") # kind can be 'kde', 'hist', 'hex', 'reg'
+    # plt.show()
+    ```
+
+Seaborn's distribution plots provide a powerful and flexible toolkit for understanding and comparing the distributions of variables in a dataset.
 
 ---

@@ -11,12 +11,15 @@ tags:
   - example
   - chart
   - relplot
+  - scatter_plot
+  - line_plot
 aliases:
   - Seaborn Scatter Plot
   - Seaborn Line Plot
   - sns.scatterplot
   - sns.lineplot
   - sns.relplot
+  - Seaborn Relational Plots
 related:
   - "[[_Seaborn_MOC|_Seaborn_MOC]]"
   - "[[Scatter_Plot]]"
@@ -24,6 +27,8 @@ related:
   - "[[_Pandas_MOC]]"
   - "[[Matplotlib_Overview]]"
   - "[[_Pandas_MOC|Pandas DataFrame]]"
+  - "[[170_Data_Visualization/Seaborn/_Seaborn_MOC|_Seaborn_MOC]]"
+  - "[[Visualizing_Multidimensional_Data]]"
 worksheet:
   - WS_DataViz_1
 date_created: <% tp.file.creation_date("YYYY-MM-DD") %>
@@ -358,5 +363,125 @@ import numpy as np
 ```
 
 Relational plots in Seaborn offer a powerful and convenient way to explore and visualize relationships between variables, with easy options for encoding multiple dimensions and creating faceted views.
+
+---
+
+# Seaborn: Relational Plots
+
+Relational plots in Seaborn are used to visualize the statistical relationship between two or more variables. The main functions are `scatterplot()` and `lineplot()`, which can be accessed directly (as axes-level functions) or through the figure-level interface `relplot()`.
+
+`relplot()` is particularly powerful as it allows for visualizing relationships across different subsets of a dataset using faceting.
+
+## `scatterplot()`
+-   **Purpose:** To show the relationship between two numerical variables. It can also encode up to two additional variables using `hue` (color) and `size` semantics.
+-   **Key Parameters:**
+    -   `data`: Pandas DataFrame.
+    -   `x`, `y`: Column names for x and y axes.
+    -   `hue`: Column name for grouping variable that will produce points with different colors.
+    -   `size`: Column name for grouping variable that will produce points with different sizes.
+    -   `style`: Column name for grouping variable that will produce points with different markers.
+    -   `alpha`: Transparency of points.
+-   **Example (E-commerce product data):**
+    ```python
+    import seaborn as sns
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    import numpy as np
+
+    # Conceptual product data
+    # np.random.seed(42)
+    # product_data = pd.DataFrame({
+    #     'price': np.random.uniform(10, 500, 100),
+    #     'avg_rating': np.random.uniform(1, 5, 100).round(1),
+    #     'category': np.random.choice(['Electronics', 'Books', 'Apparel'], 100),
+    #     'units_sold': np.random.randint(5, 200, 100)
+    # })
+
+    # plt.figure(figsize=(10, 6))
+    # sns.scatterplot(
+    #     data=product_data,
+    #     x="price",
+    #     y="avg_rating",
+    #     hue="category", # Color by category
+    #     size="units_sold", # Size by units sold
+    #     sizes=(20, 200), # Range of marker sizes
+    #     alpha=0.7
+    # )
+    # plt.title("Product Price vs. Rating, by Category and Sales Volume")
+    # plt.xlabel("Price ($)")
+    # plt.ylabel("Average Customer Rating")
+    # plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+    # plt.tight_layout()
+    # plt.show()
+    ```
+    > This plot visualizes four dimensions: price (x-axis), rating (y-axis), category (color), and units sold (size).
+
+## `lineplot()`
+-   **Purpose:** To show the relationship between two numerical variables, typically where one has a natural ordering (like time). By default, `lineplot` aggregates multiple measurements for the same `x` value by plotting the mean and a confidence interval (often 95%) around it.
+-   **Key Parameters:**
+    -   `data`, `x`, `y`, `hue`, `size`, `style`: Similar to `scatterplot`.
+    -   `estimator`: Aggregate function to use (e.g., `'mean'`, `'median'`, `np.sum`). Default is mean.
+    -   `errorbar` or `ci`: Method for calculating and displaying the confidence interval around the estimate (e.g., `'sd'` for standard deviation, `('ci', 95)` for 95% CI).
+-   **Example (Sales trend over time):**
+    ```python
+    import seaborn as sns
+    import matplotlib.pyplot as plt
+    import pandas as pd
+
+    # Conceptual sales data with multiple readings per month
+    # dates = pd.to_datetime(pd.to_datetime("2023-01-01") + pd.to_timedelta(np.random.randint(0, 180, 200), 'd'))
+    # sales = 100 + np.arange(200) * 0.5 + np.random.randn(200) * 20
+    # categories = np.random.choice(['Electronics', 'Apparel'], 200)
+    # sales_data = pd.DataFrame({'sale_date': dates, 'sales_amount': sales, 'category': categories})
+
+    # plt.figure(figsize=(12, 6))
+    # sns.lineplot(
+    #     data=sales_data,
+    #     x="sale_date",
+    #     y="sales_amount",
+    #     hue="category" # Show separate lines for each category
+    # )
+    # plt.title("Sales Trend Over Time by Category (with 95% CI)")
+    # plt.xlabel("Date")
+    # plt.ylabel("Sales Amount ($)")
+    # plt.xticks(rotation=45)
+    # plt.tight_layout()
+    # plt.show()
+    ```
+    > The shaded area around each line represents the confidence interval, giving a sense of the uncertainty or variability in the data at each point in time.
+
+## `relplot()` (Figure-level Interface)
+-   **Purpose:** A figure-level function for creating relational plots. It combines `scatterplot()` (default) and `lineplot()` with the power of faceting using `FacetGrid`.
+-   **How it Works:** You use the same arguments as `scatterplot` or `lineplot`, but add `col` and/or `row` arguments to create subplots for different subsets of your data.
+-   **Key Parameters:**
+    -   `kind`: `'scatter'` (default) or `'line'`.
+    -   `col`, `row`: Column names to create faceted subplots along columns and rows of the grid.
+    -   `col_wrap`: If you only use `col`, this wraps the columns into multiple rows.
+-   **Example (Faceted scatter plot):**
+    ```python
+    import seaborn as sns
+    import matplotlib.pyplot as plt
+
+    # Use Seaborn's built-in 'tips' dataset
+    # tips = sns.load_dataset("tips")
+
+    # Create a scatter plot of total_bill vs. tip,
+    # with separate columns for each day and separate colors for smoker status.
+    # g = sns.relplot(
+    #     data=tips,
+    #     x="total_bill",
+    #     y="tip",
+    #     hue="smoker",
+    #     col="day",
+    #     col_wrap=2, # Wrap into 2 columns
+    #     kind="scatter"
+    # )
+    # g.fig.suptitle("Tip vs. Total Bill by Day and Smoker Status", y=1.03) # Add overall title
+    # g.set_axis_labels("Total Bill ($)", "Tip ($)")
+    # plt.show()
+    ```
+    > This single function call creates a figure with four subplots, allowing for a rich comparison across different data subsets. Customization is done via the returned `FacetGrid` object `g`.
+
+Relational plots are essential for the initial exploration of relationships between numerical variables and can reveal complex patterns when combined with semantic mapping (`hue`, `size`) and faceting.
 
 ---

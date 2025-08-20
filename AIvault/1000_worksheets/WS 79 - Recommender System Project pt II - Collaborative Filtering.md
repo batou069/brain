@@ -1,3 +1,5 @@
+[[Factorization Machines Guide]]
+
 # Input
 
 New Worksheet, new chapter: "Collaborative Filtering" in context of our project of "Movie recommendation system" which we built the infrastructure for, based on the movielens100k data set
@@ -651,3 +653,292 @@ $$ \text{DCG}_k = \sum_{i=1}^{k} \frac{rel_i}{\log_2(i+1)} $$
     4.  **Typical Schedules:**
         * **Batch Retraining:** A full retraining from scratch. Common schedules are **daily** or **weekly**.
         * **Online/Incremental Learning:** For systems that need to be highly responsive, you can have a daily batch retrain combined with an **online learning** component that updates the model with new interactions every few minutes or hours. This provides a good balance of stability and responsiveness.
+
+
+---
+# The Paper
+
+## Key Parts to understand to implement the papers model
+
+To implement a Factorization Machine (FM) model effectively, you'll need to thoroughly understand these core aspects:
+
+* **FM Model Equation and Parameters**
+    * Grasp the fundamental equation: $\hat{y}(\mathbf{x}) := w_0 + \sum_{i=1}^{n} w_i x_i + \sum_{i=1}^{n} \sum_{j=i+1}^{n} \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j$.
+    * Understand the role of each parameter: $w_0$ (global bias), $\mathbf{w}$ (weights for single variables), and $\mathbf{V}$ (matrix of factor vectors $\mathbf{v}_i$ for each variable).
+    * The crucial aspect is the factorized interaction $\langle \mathbf{v}_i, \mathbf{v}_j \rangle := \sum_{f=1}^{k} v_{i,f} \cdot v_{j,f}$, which allows for parameter sharing and estimation in sparse settings.
+
+* **Computational Efficiency**
+    * It's essential to understand Lemma 3.1, which demonstrates how the model equation can be computed in linear time $O(kn)$.
+    * For sparse data, this complexity reduces to $O(k m_D)$, where $m_D$ is the average number of non-zero features, making it highly efficient for real-world datasets.
+
+* **Parameter Learning (Optimization)**
+    * FMs are optimized using gradient descent methods, such as Stochastic Gradient Descent (SGD).
+    * Familiarize yourself with the gradient equations (Equation 4) for each parameter ($w_0$, $w_i$, $v_{i,f}$), as each gradient can be computed in constant time $O(1)$.
+
+* **Handling Sparsity**
+    * The key advantage of FMs is their ability to estimate interactions even when direct observations are missing (huge sparsity), unlike Support Vector Machines (SVMs) with polynomial kernels.
+    * This is achieved because the factorized parameters allow information from observed interactions to generalize to unobserved ones (e.g., estimating an Alice-Star Trek interaction by leveraging other interactions involving Alice, Star Wars, Bob, and Charlie).
+
+* **General Predictor and Feature Engineering**
+    * FMs are versatile; they can work with any real-valued feature vector, similar to SVMs.
+    * A critical aspect is understanding how to define the input feature vector $\mathbf{x}$ to mimic various specialized factorization models (e.g., Matrix Factorization, SVD++, PITF, FPMC). This involves constructing indicator variables based on the problem domain.
+
+* **Hyperparameter $k$**
+    * The hyperparameter $k$ determines the dimensionality of the factorization. In sparse settings, choosing a small $k$ is generally recommended for better generalization, as there isn't enough data to estimate complex interactions with a large $k$.
+
+* **Loss Functions and Regularization**
+    * FMs can be applied to different prediction tasks (regression, binary classification, ranking) by choosing an appropriate loss function (e.g., least square error, hinge loss, logit loss, pairwise classification loss).
+    * Regularization terms, like L2, are typically added to the optimization objective to prevent overfitting.
+
+
+---
+
+
+• Learning Method: Factorization Machines can be learned efficiently using gradient descent methods, specifically mentioning Stochastic Gradient Descent (SGD)
+. This means you will need an iterative optimization process where parameters are updated in the direction opposite to their gradient.
+• Model Parameters: The parameters to be estimated are $w_0 \in \mathbb{R}$, $\mathbf{w} \in \mathbb{R}^n$, and $\mathbf{V} \in \mathbb{R}^{n \times k}$
+. These are the variables you will be updating during the learning process.
+• The Gradients: The paper explicitly provides the partial derivatives (gradients) of the FM model's prediction $\hat{y}(\mathbf{x})$ with respect to each parameter:
+◦ For the global bias, $w_0$: $$ \frac{\partial}{\partial w_0} \hat{y}(\mathbf{x}) = 1 $$
+◦ For the individual feature weights, $w_i$: $$ \frac{\partial}{\partial w_i} \hat{y}(\mathbf{x}) = x_i $$
+◦ For the factor components, $v_{i,f}$: $$ \frac{\partial}{\partial v_{i,f}} \hat{y}(\mathbf{x}) = x_i \sum_{j=1}^{n} v_{j,f} x_j - v_{i,f} x_i^2 $$ The sum $\sum_{j=1}^{n} v_{j,f} x_j$ can be precomputed, making each gradient calculation $O(1)$
+
+• Computational Complexity of Updates: All parameter updates for a single data point $(\mathbf{x}, y)$ can be performed in $O(k n)$ time, or even more efficiently in $O(k m(\mathbf{x}))$ under sparsity where $m(\mathbf{x})$ is the number of non-zero elements in $\mathbf{x}$
+This efficiency is critical for scaling to large datasets
+
+• Loss Functions: FMs can be optimized for various prediction tasks by using different loss functions
+
+◦ Regression: Minimizing the least square error
+◦ Binary classification: Using hinge loss or logit loss
+◦ Ranking: Using a pairwise classification loss, optimizing over pairs of instance vectors
+
+• Regularization: The paper states that regularization terms like L2 are usually added to the optimization objective to prevent overfitting
+
+To summarize, for implementing the learning process from scratch using only what's mentioned in the paper, you have:
+• The specific gradient equations for each parameter (Equation 4).
+• The explicit mention of SGD as the learning algorithm.
+
+• The types of loss functions (least square, hinge, logit, pairwise classification) and regularization (L2).
+
+## Read end to end and answer:
+
+### What is the modeling (features, target) and how is it different from other techniques discussed in the paper or those that you already know?
+
+Features: real-valued vectors, often sparse with categorical indicators for users, items, times, etc. Target: regression (e.g., ratings), classification, or ranking tasks. Differs from SVMs by factorizing interactions for better sparsity handling instead of dense parameters; from matrix/tensor factorization like MF/PARAFAC by being general-purpose rather than input-restricted; from specialized models like SVD++/PITF/FPMC by mimicking them via flexible feature engineering versus task-specific designs.
+
+### Does the paper offer intuition/explanation about why its techniques would work?
+
+Yes, it explains that factorizing interactions shares parameters across related variables, allowing reliable estimates under high sparsity where direct interactions lack data; also, linear-time computation enables efficient primal optimization without support vectors.
+
+### Which parts could you have skipped and still feel you understand enough to implement?
+
+Sections V-B to V-D detailing SVD++, PITF, and FPMC comparisons, as they show applications but core model/optimization is in Sections III-IV; also, Section VI references and some example data illustrations in figures.
+
+### What is the optimization problem you'll have to solve?
+
+Minimize a loss function (e.g., square for regression, logit/hinge for classification/ranking) plus L2 regularization over parameters w0 (bias), w (linear terms), and V (factorization matrix), using stochastic gradient descent in the primal form.
+
+### Are there any model parameters to be tweaked that might affect its accuracy?
+
+Yes, key ones include factorization dimensionality k (controls expressiveness vs overfitting), regularization strength lambda (prevents overfitting), and SGD hyperparameters like learning rate and number of iterations.
+
+### Is there a discussion about regularization? Computational needs of the algorithm? Any other issues that might arise when using this model?
+
+Regularization: yes, L2 terms added to loss to avoid overfitting. Computation: linear O(kn) for evaluation/learning, O(km) in sparse cases; scales to large datasets like Netflix's 100M instances. Other issues: choose small k for sparse data to improve generalization; no need for support vectors, but hyperparameter tuning required for best performance.
+
+### Do you have any reason to believe this would be the best model to use on your data?
+
+Yes, if data is highly sparse with interactions (e.g., recommender systems), as FMs handle sparsity better than SVMs and generalize specialized factorization models efficiently; empirical advantages shown in figures for sparse tasks.
+
+### Does the data you're about to train on fits within the needs of the model? If not, can you rationalize still using this model or should you abandon it altogether?
+
+Yes, fits if sparse real-valued features with potential interactions, like in the paper's examples. If dense or non-sparse, still rational to use as it's a general predictor comparable to polynomial SVMs, but consider SVMs if sparsity isn't an issue; no need to abandon unless data mismatches real-valued format.
+
+### Do you have to use the exact set of features proposed in the paper?
+
+No, FMs are general for any real-valued feature vectors; paper demonstrates engineering indicators to mimic models, but you can design custom features for your task.
+
+
+# paper companion
+
+**II. PREDICTION UNDER SPARSITY**: This section defines the prediction task and highlights sparsity issues. It explains estimating y from feature vector x (real-valued, often sparse) to target T (regression, classification, or ranking). Sparsity means most xi=0, common in recommender systems with categorical variables (e.g., one-hot encoding users/items leads to few non-zeros). 
+Claim: Huge sparsity (average non-zeros mD << n) arises from large categorical domains; why: each transaction activates only a few indicators. 
+How: Uses example of movie ratings to create sparse x with user/item indicators, implicit feedback (other rated movies normalized), time, and last rated movie; this shows flexible feature design for context.
+
+Example 1 and Figure 1: Illustrates transaction data S turned into x; e.g., blue/red for active user/item (exactly one each non-zero), yellow for normalized past ratings (sums to 1 for scale), green for time (continuous), brown for last movie (indicators). Why normalize: Prevents bias from users rating more items; how: Divides by sqrt(|Nu|) or |Nu| to average effects.
+
+**III. FACTORIZATION MACHINES (FM):** Introduces FM model, its equation, and applications.
+
+**III-A. Factorization Machine Model:** Defines 2-way FM equation: global bias w0, linear terms sum wi xi, pairwise interactions sum <vi,vj> xi xj (dot product of k-dimensional factors).
+
+Model Equation: Parameters: w0 scalar, w vector n-dim, V matrix n x k. <vi,vj> factorizes interaction instead of direct wi,j. Why: Reduces parameters from O(n^2) to O(kn), enables estimation under sparsity.
+Expressiveness: FM can approximate any interaction matrix W if k large (from V V^T); but small k better for sparsity to avoid overfitting, as data insufficient for complex W.
+
+Parameter Estimation Under Sparsity: Factorization shares parameters; e.g., in example, Alice-Star Trek interaction estimated via similarities (Bob/Charlie with Star Wars, Star Trek similar to Star Wars). Why works: Data from related interactions informs unseen ones; how: Overlapping vi vectors propagate info.
+
+Computation: Naive O(kn^2), but reformulated to O(kn) by summing per factor f independently (precompute sums). Under sparsity, O(k mD); e.g., mD=2 in basic CF.
+
+**III-B. Factorization Machines as Predictors:** Applies to regression (direct y-hat, least squares), binary classification (sign(y-hat), hinge/logit loss), ranking (score and sort, pairwise loss). Add L2 regularization to prevent overfitting.
+
+**III-C. Learning Factorization Machines**: Use SGD in primal; gradient simple (1 for w0, xi for wi, xi*(sum vj,f xj - vi,f xi) for vi,f). Constant time per gradient, overall O(kn) per case. LIBFM implements with SGD for various losses.
+
+**III-D. d-way Factorization Machine**: Generalizes to higher d with PARAFAC-like factorization per interaction order; computation still linear via similar reformulation.
+
+**III-E. Summary**: FMs factorize all interactions for sparsity handling; linear params/time; generalize unseen interactions.
+
+**IV. FMS VS. SVMs**: Compares FM to SVM, showing advantages in sparsity.
+
+**IV-A. SVM model**: SVM as <phi(x), w> with kernel K(x,z)=<phi(x),phi(z)>; analyzes primal.
+
+Linear kernel: Equivalent to degree-1 FM (bias + linear terms).
+Polynomial kernel: Models interactions densely (independent wi,j); for d=2, includes squares and cross terms with scalings.
+
+**IV-B. Parameter Estimation Under Sparsity**: In sparse CF (only user u, item i non-zero), linear SVM reduces to biases (estimable but low quality). Polynomial adds ui interaction, but sparse data means no/noisy observations for most pairs; SVM sets unseen to 0 (max margin), failing to use interactions. Why SVM fails: Needs direct co-occurrences for each wi,j; FM shares via factors.
+
+Linear SVM: Just w0 + wu + wi; simple, works but misses interactions.
+Polynomial SVM: Adds interactions but ineffective in sparsity.
+
+**IV-C. Summary:** SVM dense params need direct data (absent in sparsity); FM estimable; FM primal-optimizable, no support vectors.
+
+**V. FMS VS. OTHER FACTORIZATION MODELS**: Shows FM mimics specialized models via features.
+
+**V-A. Matrix and Tensor Factorization**: For two categoricals (U,I), use indicators (one-hot per domain); FM reduces to MF: w0 + wu + wi + <vu,vi>. For more, mimics PARAFAC. Why: x non-zero only at u,i drops others; how: Generalizes restricted input of MF (must partition x).
+
+**V-B. SVD++:** For ratings, add normalized indicators for user's past items Nu; FM includes SVD++ terms plus extras (user-past, past-past interactions). Why mimics: Core is bias + user-item + average item-past.
+
+**V-C. PITF for Tag Recommendation**: For U,I,T ranking tags; indicators for u,i,t; FM with pairwise ranking loss reduces to wt + <vu,vt> + <vi,vt> (biases/user-independent drop in differences). Similar to PITF but with tag bias and shared factors. Empirically comparable (Fig 3).
+
+**V-D. Factorized Personalized Markov Chains (FPMC**): For next-item ranking; indicators for u,i plus normalized last basket; with ranking loss, reduces to wi + <vu,vi> + avg <vi,vl> over last. Similar to FPMC but added bias/shared factors.
+
+**V-E. Summary**: Standard models restricted (e.g., exactly one per partition); specialized task-specific; FM general, mimics via features.
+
+---
+
+
+In the last part of the main Factorization Machine (FM) formula, $\sum_{i=1}^{n} \sum_{j=i+1}^{n} \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j$
+:
+• $x_i$ and $x_j$ represent individual elements or features of the real-valued input feature vector $\mathbf{x}$
+.
+    ◦ $\mathbf{x} \in \text{R}^n$ is the general feature vector that the Factorization Machine works with
+. The total number of variables or features in this vector is denoted by 'n'
+.
+    ◦ These $x_i$ and $x_j$ values can be binary indicator variables for categorical features (e.g., indicating the presence of a specific user, item, or genre) or real-valued features (e.g., representing time)
+.
+    ◦ For example, in a movie review system:
+        ▪ An $x_i$ could be $x_{Alice}=1$ if the transaction involves user Alice, and $x_{Alice}=0$ otherwise
+.
+        ▪ An $x_j$ could be $x_{Titanic}=1$ if the transaction involves the movie Titanic, and $x_{Titanic}=0$ otherwise
+.
+        ▪ An $x_k$ could represent the time in months from a certain date (a real value)
+.
+• The term $x_i x_j$ in the formula is crucial for modeling interactions between the $i$-th and $j$-th variables
+.
+    ◦ When both $x_i$ and $x_j$ are non-zero (i.e., both the $i$-th and $j$-th features are "active" or present in a given input vector $\mathbf{x}$), their interaction is considered in the model's prediction
+.
+    ◦ For instance, if $x_{Alice}=1$ and $x_{StarWars}=1$ in a particular feature vector $\mathbf{x}$, then their product $x_{Alice}x_{StarWars}$ is 1, and the Factorization Machine will use the learned interaction parameter $\langle \mathbf{v}{Alice}, \mathbf{v}{StarWars} \rangle$ to contribute to the prediction
+.
+    ◦ This is particularly important in sparse settings where most elements of $\mathbf{x}$ are zero
+. In such cases, the sums in the formula only need to be computed over the non-zero elements, significantly reducing computational complexity.
+
+
+---
+
+Outcome for a Single Input Feature Vector:
+In the context of the example provided (a movie review system transaction data where an input feature vector $\mathbf{x}$ is created from a single transaction like (user, item, time, rating)), the outcome of $\langle \mathbf{v}{\text{Bob}}, \mathbf{v}{\text{Alice}} \rangle x_{\text{Bob}} x_{\text{Alice}}$ for any given prediction instance (represented by a single feature vector $\mathbf{x}$) would be 0.
+Why the Outcome is 0:
+• The Nature of $x_i$ and $x_j$: The variables $x_i$ and $x_j$ represent individual elements or features of the input vector $\mathbf{x}$
+. In your example, $x_{\text{Bob}}$ is an indicator variable for user "Bob," and $x_{\text{Alice}}$ is an indicator variable for user "Alice."
+• Single Active User per Transaction: The sources illustrate how feature vectors are typically constructed for such tasks. For a transaction like (u, i, t, r), there is "always exactly one active user in each transaction"
+. This means that in any single input feature vector $\mathbf{x}$:
+    ◦ If the transaction is about Alice, then $x_{\text{Alice}} = 1$ and $x_{\text{Bob}} = 0$.
+    ◦ If the transaction is about Bob, then $x_{\text{Bob}} = 1$ and $x_{\text{Alice}} = 0$.
+    ◦ If the transaction is about neither Alice nor Bob, then $x_{\text{Alice}} = 0$ and $x_{\text{Bob}} = 0$.
+• Product $x_{\text{Bob}} x_{\text{Alice}}$: Consequently, for any single feature vector $\mathbf{x}$ representing a transaction, the product $x_{\text{Bob}} x_{\text{Alice}}$ will always be 0 because $x_{\text{Bob}}$ and $x_{\text{Alice}}$ cannot simultaneously be non-zero for the same input instance
+.
+Implication for Factorization Machines:
+While this specific cross-term $x_{\text{Bob}} x_{\text{Alice}}$ evaluates to zero for any individual transaction, the factorized parameter $\langle \mathbf{v}{\text{Bob}}, \mathbf{v}{\text{Alice}} \rangle$ is still part of the model and is estimated during training.
+• Latent Factor Representation: The vectors $\mathbf{v}{\text{Bob}}$ and $\mathbf{v}{\text{Alice}}$ (each of size $k$) represent the latent factors for Bob and Alice, respectively
+. The dot product $\langle \mathbf{v}{\text{Bob}}, \mathbf{v}{\text{Alice}} \rangle$ models the latent interaction strength or relationship between Bob and Alice
+.
+• Handling Sparsity and Indirect Estimation: Factorization Machines are designed to estimate interactions even in problems with huge sparsity where direct observations of interactions (like Bob and Alice being simultaneously "active" in a way that contributes to their interaction term) might not exist or be rare
+.
+    ◦ Even if Bob and Alice never directly interact in a way that their $x_{\text{Bob}} x_{\text{Alice}}$ term is non-zero in any single feature vector, the parameters for their interaction $\langle \mathbf{v}{\text{Bob}}, \mathbf{v}{\text{Alice}} \rangle$ can still be learned indirectly. This is because their individual factor vectors ($\mathbf{v}{\text{Bob}}$ and $\mathbf{v}{\text{Alice}}$) are estimated from all their respective interactions with other variables (e.g., movies, genres, time)
+.
+    ◦ For example, if Bob interacts with "Star Wars" and "Star Trek," and Alice interacts with "Titanic" and "Star Wars," the shared factor "Star Wars" can contribute to shaping the factor vectors $\mathbf{v}{\text{Bob}}$ and $\mathbf{v}{\text{Alice}}$. This allows the model to generalize and infer a relationship between Bob and Alice through their shared and distinct preferences and characteristics, even if they never co-occur in the same way that would activate their direct interaction term. This "breaks the independence of the interaction parameters by factorizing them," meaning "the data for one interaction helps also to estimate the parameters for related interactions"
+
+# Technical Planning
+FM Implementation Plan for MovieLens 1M
+1. Implementation Approach and Libraries
+
+Model: Implement FM from scratch in Python (no external FM library like LIBFM to ensure full control).
+Equation: y(x) = w0 + Σwi xi + ΣΣ<vi,vj> xi xj, where <vi,vj> is dot product of k-dimensional factor vectors.
+Features: One-hot encode user_id, movie_id; normalize implicit feedback (e.g., other movies rated by user, sqrt(|Nu|)); add time (months since earliest rating).
+Parameters: w0 (scalar), w (n-dim vector), V (n x k matrix, k=10 initially).
+
+
+Libraries:
+NumPy: Matrix operations, gradient computation.
+Pandas: Data loading, preprocessing.
+SciPy.sparse: Sparse matrix for feature vectors.
+Sklearn.metrics: MSE, RMSE, precision@k, recall@k.
+Docker: Containerize training/serving.
+Airflow: Reuse existing scheduling/DAG for retraining.
+FastAPI: API endpoint for serving predictions.
+
+
+Dataset Check:
+MovieLens 1M vs 100k: 1M has ~1M ratings, 6k users, 4k movies; 100k has ~100k ratings, 943 users, 1682 movies. Different user/movie IDs, same structure (user_id, movie_id, rating, timestamp). Merging risky due to ID conflicts; use 1M alone.
+Preprocessing: Load ratings.csv, create sparse feature matrix x (user/item indicators, normalized implicit, time). Target y is rating.
+
+
+
+2. Metrics for Model Quality
+
+Regression: MSE, RMSE (primary, as used in existing setup).
+Ranking: Precision@k, Recall@k (k=5,10) for top-N recommendations.
+Baseline Comparison: Compare with existing SVD (scikit-surprise) and new MF/SVD from scratch.
+Evaluation: Split 1M dataset 80/20 train/test; cross-validate (5-fold) for robustness.
+
+3. Optimization
+
+Algorithm: Stochastic Gradient Descent (SGD) in primal.
+Gradients: ∂/∂w0 = 1, ∂/∂wi = xi, ∂/∂vi,f = xi(Σvj,f xj - vi,f xi^2).
+Hyperparameters: k=10, learning rate=0.01, L2 lambda=0.01, epochs=50.
+Tuning: Grid search k={10,20,50}, lambda={0.001,0.01,0.1}, learning rate={0.001,0.01}.
+Early Stopping: Stop if validation MSE stops improving (patience=5 epochs).
+
+
+Computation: O(k mD) per case (mD ~ few non-zeros in sparse x). Use sparse matrices for efficiency.
+
+4. Serving in Production
+
+API: FastAPI endpoint (extend existing), input: user_id, movie_id(s); output: predicted rating(s) or top-N list.
+Model Storage: Save w0, w, V as NumPy arrays (pickle/NumPy save).
+Machine: Reuse existing Dockerized setup (Airflow + API server). Deploy on AWS EC2 (e.g., t3.medium, 4GB RAM, 2vCPU for 1M dataset).
+Retraining: Airflow DAG checks new ratings daily, retrains if >100 new ratings, deploys if RMSE improves (threshold: < current RMSE - 0.01).
+
+5. Usage in Production
+
+Existing Users: Predict ratings using trained w0, w, V with user_id/movie_id indicators; supports all 1M dataset users.
+New Users: Cold-start via demographic features (if available) as additional x; else, use global/item biases (w0 + wi). Store new user ratings, retrain periodically.
+Application: Serve predictions for any user-movie pair; rank movies for recommendation.
+
+6. Clarification on Exercise 3 (MF/SVD Implementation)
+
+Interpretation: Likely requires implementing MF/SVD from scratch (not reusing scikit-surprise SVD) for comparison with FM. MF is FM with only user-item interactions (no extra features). Hybrid not implied; focus on distinct FM vs MF/SVD.
+MF/SVD Implementation: Similar to FM but simpler: y(x) = w0 + wu + wi + <vu,vi>. Use same libraries, optimize via SGD.
+
+7. Vector Exploration
+
+User/Item Vectors: Extract vu, vi from V matrix.
+Similarity: Compute cosine similarity between vu (users) and vi (items). Hypothesis: similar users (e.g., rating same movies) or items (e.g., same genre) have higher similarity.
+Distance Meaning: Smaller <vu,vi> distance implies higher predicted rating; analyze if aligns with actual ratings or genres.
+Method: Sample 100 users/items, compute pairwise similarities, correlate with rating patterns.
+
+8. Quality Comparison and Deployment Criteria
+
+Metrics: RMSE (primary), Precision@10, Recall@10.
+Comparison: Test FM, MF/SVD (from scratch), scikit-surprise SVD on 1M test set.
+Deployment Criteria: Deploy new FM if RMSE < current - 0.01 and Precision@10 > current + 0.02. Validate on holdout set before deployment.
+
+[[Implementation Prompt]]
