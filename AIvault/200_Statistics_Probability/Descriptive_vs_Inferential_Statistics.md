@@ -75,26 +75,26 @@ from scipy import stats
 product_prices = np.array([19.99, 25.00, 25.00, 29.99, 35.50, 42.00, 50.00, 55.00, 89.99, 250.00]) # Last one is an outlier
 
 # Using NumPy
-# mean_np = np.mean(product_prices)
-# median_np = np.median(product_prices)
-# std_np = np.std(product_prices)
-# print("--- NumPy ---")
-# print(f"Mean: {mean_np:.2f}, Median: {median_np:.2f}, Std Dev: {std_np:.2f}")
+mean_np = np.mean(product_prices)
+median_np = np.median(product_prices)
+std_np = np.std(product_prices)
+print("--- NumPy ---")
+print(f"Mean: {mean_np:.2f}, Median: {median_np:.2f}, Std Dev: {std_np:.2f}")
 
 # Using SciPy.stats
-# mode_scipy = stats.mode(product_prices, keepdims=False) # keepdims=False for newer scipy
-# skewness_scipy = stats.skew(product_prices)
-# kurtosis_scipy = stats.kurtosis(product_prices) # This is excess kurtosis (Kurtosis - 3)
-# print("\n--- SciPy.stats ---")
-# print(f"Mode: {mode_scipy.mode} (Count: {mode_scipy.count})")
-# print(f"Skewness: {skewness_scipy:.2f} (Positive/Right-skewed due to outlier)")
-# print(f"Excess Kurtosis: {kurtosis_scipy:.2f}")
+mode_scipy = stats.mode(product_prices, keepdims=False) # keepdims=False for newer scipy
+skewness_scipy = stats.skew(product_prices)
+kurtosis_scipy = stats.kurtosis(product_prices) # This is excess kurtosis (Kurtosis - 3)
+print("\n--- SciPy.stats ---")
+print(f"Mode: {mode_scipy.mode} (Count: {mode_scipy.count})")
+print(f"Skewness: {skewness_scipy:.2f} (Positive/Right-skewed due to outlier)")
+print(f"Excess Kurtosis: {kurtosis_scipy:.2f}")
 
 # Using Pandas (often the most convenient for a quick summary)
-# prices_series = pd.Series(product_prices)
-# summary_pd = prices_series.describe()
-# print("\n--- Pandas describe() ---")
-# print(summary_pd)
+prices_series = pd.Series(product_prices)
+summary_pd = prices_series.describe()
+print("\n--- Pandas describe() ---")
+print(summary_pd)
 
 # The .describe() method provides count, mean, std, min, 25% (Q1), 50% (Q2/Median), 75% (Q3), and max.
 ```

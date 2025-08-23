@@ -165,3 +165,134 @@ Data preprocessing is a crucial step in the machine learning pipeline. Scikit-le
 Effective preprocessing is often one of the most critical factors in building successful machine learning models.
 
 ---
+
+# same?
+
+# Scikit-learn: Data Preprocessing (`sklearn.preprocessing`)
+
+Data preprocessing is a crucial step in the machine learning pipeline. Scikit-learn's `sklearn.preprocessing` module provides a rich set of tools for transforming raw feature data into a format that is more suitable for machine learning algorithms.
+
+## Common Preprocessing Tasks & Tools
+
+[list2tab|#Preprocessing Tools]
+- Feature Scaling
+    - **Purpose:** To bring all features onto a similar scale. This is important for algorithms sensitive to feature magnitudes (e.g., SVMs, k-NN, gradient descent-based algorithms like linear regression, neural networks).
+    - **Tools:** `StandardScaler`, `MinMaxScaler`, `RobustScaler`, `MaxAbsScaler`.
+    - **Example (`StandardScaler`):**
+        ```python
+        from sklearn.preprocessing import StandardScaler
+        import numpy as np
+        import pandas as pd
+
+        # Conceptual e-commerce data: product price and customer rating
+        data = pd.DataFrame({
+            'price': [10.0, 150.0, 55.0, 250.0, 20.0],
+            'avg_rating': [4.5, 3.0, 4.8, 2.5, 4.0]
+        })
+
+        scaler = StandardScaler()
+        # Fit on training data, then transform training and test data separately
+        # For simplicity, fitting and transforming the same data here:
+        scaled_data = scaler.fit_transform(data)
+        
+        print("Original Data:\n", data)
+        print("\nScaled Data (StandardScaler):\n", pd.DataFrame(scaled_data, columns=data.columns))
+        # Mean of scaled data will be ~0, std dev ~1
+        ```
+- Encoding Categorical Features
+    - **Purpose:** Convert categorical (non-numerical) features into a numerical format that machine learning algorithms can understand.
+    - **Tools:** `OrdinalEncoder`, `OneHotEncoder`, `LabelEncoder`.
+    - **Example (`OneHotEncoder`):**
+        ```python
+        from sklearn.preprocessing import OneHotEncoder
+        import pandas as pd
+
+        # Conceptual data: product category
+        data_cat = pd.DataFrame({'category': ['Electronics', 'Books', 'Clothing', 'Electronics', 'Books']})
+
+        # sparse_output=False returns a dense array
+        onehot_encoder = OneHotEncoder(sparse_output=False, handle_unknown='ignore')
+        encoded_categories = onehot_encoder.fit_transform(data_cat[['category']])
+        feature_names = onehot_encoder.get_feature_names_out(['category'])
+        encoded_df = pd.DataFrame(encoded_categories, columns=feature_names)
+        
+        print("Original Categories:\n", data_cat)
+        print("\nOne-Hot Encoded Categories:\n", encoded_df)
+        ```
+- Imputation of Missing Values
+    - **Purpose:** Handle missing values (NaNs) in the dataset.
+    - **Tools:** `SimpleImputer`, `KNNImputer`, `IterativeImputer`.
+    - **Example (`SimpleImputer`):**
+        ```python
+        from sklearn.impute import SimpleImputer
+        import numpy as np
+        import pandas as pd
+
+        # Conceptual data: product stock levels, some missing
+        data_missing = pd.DataFrame({'stock_level': [100, 50, np.nan, 200, np.nan, 75]})
+
+        # Impute with mean
+        mean_imputer = SimpleImputer(strategy='mean')
+        data_missing['stock_level_mean_imputed'] = mean_imputer.fit_transform(data_missing[['stock_level']])
+
+        # Impute with a constant
+        constant_imputer = SimpleImputer(strategy='constant', fill_value=0)
+        data_missing['stock_level_zero_imputed'] = constant_imputer.fit_transform(data_missing[['stock_level']])
+        
+        print(data_missing)
+        ```
+    - Discretization (Binning)
+    - **Purpose:** Convert continuous numerical features into discrete bins (categorical features).
+    - **Tool:** `KBinsDiscretizer`.
+    - **Example (`KBinsDiscretizer`):**
+        ```python
+        from sklearn.preprocessing import KBinsDiscretizer
+        import numpy as np
+        import pandas as pd
+
+        # Conceptual data: customer age
+        ages = pd.DataFrame({'age':})
+        
+        # Bin into 3 bins with uniform width
+        binner_uniform = KBinsDiscretizer(n_bins=3, encode='ordinal', strategy='uniform', subsample=None)
+        ages['age_bin_uniform'] = binner_uniform.fit_transform(ages[['age']])
+
+        # Bin into 3 bins based on quantiles
+        binner_quantile = KBinsDiscretizer(n_bins=3, encode='ordinal', strategy='quantile', subsample=None)
+        ages['age_bin_quantile'] = binner_quantile.fit_transform(ages[['age']])
+        
+        print(ages)
+        print("\nBin edges (uniform):", binner_uniform.bin_edges_)
+        ```
+- Polynomial Features
+    - **Purpose:** Generate polynomial and interaction features.
+    - **Tool:** `PolynomialFeatures`.
+    - **Example:**
+        ```python
+        from sklearn.preprocessing import PolynomialFeatures
+        import numpy as np
+        X = np.arange(6).reshape(3, 2) # Sample data: [,,]
+        poly = PolynomialFeatures(degree=2, include_bias=False)
+        poly_features = poly.fit_transform(X)
+        
+        print("Original X:\n", X)
+        print("Polynomial Features (degree 2):\n", poly_features)
+        print("Feature names:", poly.get_feature_names_out(['x1', 'x2']))
+        ```
+- Custom Transformers
+    - **Purpose:** Apply user-defined functions as transformers in a Scikit-learn pipeline.
+    - **Tool:** `FunctionTransformer`.
+    - **Example (applying log transform):**
+        ```python
+        from sklearn.preprocessing import FunctionTransformer
+        import numpy as np
+        
+        log_transformer = FunctionTransformer(lambda x: np.log1p(x), validate=True)
+        data_to_log = np.array([,])
+        log_transformed_data = log_transformer.transform(data_to_log)
+        
+        print("Original data:\n", data_to_log)
+        print("Log-transformed data (log1p):\n", log_transformed_data)
+        ```
+
+---

@@ -68,48 +68,48 @@ import spacy
 
 # Load the English model
 # For more features like word vectors, use 'en_core_web_md' or 'en_core_web_lg'
-# nlp = spacy.load('en_core_web_sm') # This line would be active in a script
+nlp = spacy.load('en_core_web_sm') # This line would be active in a script
 
 # Sample product review text
 review_text = "This ACME Anvil is an amazing e-commerce product! The build quality is excellent, and it arrived in New York very quickly from their California warehouse. John Doe signed for it."
 
 # Process the text with the spaCy pipeline
-# doc = nlp(review_text) # This line would be active
+doc = nlp(review_text) # This line would be active
 
-# print(f"--- Review Text ---\n{review_text}\n")
+print(f"--- Review Text ---\n{review_text}\n")
 
 # 1. Tokenization (Accessing tokens)
-# print("--- Tokens ---")
-# for token in doc:
-#     print(f"{token.text:<15} | Lemma: {token.lemma_:<15} | POS: {token.pos_:<10} | Tag: {token.tag_:<8} | Is Stopword: {token.is_stop}")
+print("--- Tokens ---")
+for token in doc:
+    print(f"{token.text:<15} | Lemma: {token.lemma_:<15} | POS: {token.pos_:<10} | Tag: {token.tag_:<8} | Is Stopword: {token.is_stop}")
 
 # 2. Sentence Segmentation (spaCy does this automatically)
-# print("\n--- Sentences ---")
-# for sent in doc.sents:
-#     print(sent.text)
+print("\n--- Sentences ---")
+for sent in doc.sents:
+    print(sent.text)
 
 # 3. Named Entity Recognition (NER)
-# print("\n--- Named Entities ---")
-# if doc.ents:
-#     for ent in doc.ents:
-#         print(f"Entity: {ent.text:<25} | Label: {ent.label_:<15} ({spacy.explain(ent.label_)})")
-# else:
-#     print("No named entities found by this model.")
+print("\n--- Named Entities ---")
+if doc.ents:
+    for ent in doc.ents:
+        print(f"Entity: {ent.text:<25} | Label: {ent.label_:<15} ({spacy.explain(ent.label_)})")
+else:
+    print("No named entities found by this model.")
 
 # 4. Noun Chunks (Base noun phrases)
-# print("\n--- Noun Chunks ---")
-# for chunk in doc.noun_chunks:
-#     print(f"Chunk: {chunk.text:<25} | Root Text: {chunk.root.text:<15} | Root Dep: {chunk.root.dep_}")
+print("\n--- Noun Chunks ---")
+for chunk in doc.noun_chunks:
+    print(f"Chunk: {chunk.text:<25} | Root Text: {chunk.root.text:<15} | Root Dep: {chunk.root.dep_}")
 
 # 5. Word Vectors & Similarity (Requires medium/large model like 'en_core_web_md')
 # Example (conceptual, assuming 'en_core_web_md' or 'lg' is loaded):
-# nlp_md = spacy.load('en_core_web_md') # Or _lg
-# doc1 = nlp_md("apple")
-# doc2 = nlp_md("orange")
-# doc3 = nlp_md("car")
-# print(f"\n--- Similarity (requires md/lg model) ---")
-# print(f"Similarity(apple, orange): {doc1.similarity(doc2):.3f}")
-# print(f"Similarity(apple, car): {doc1.similarity(doc3):.3f}")
+nlp_md = spacy.load('en_core_web_md') # Or _lg
+doc1 = nlp_md("apple")
+doc2 = nlp_md("orange")
+doc3 = nlp_md("car")
+print(f"\n--- Similarity (requires md/lg model) ---")
+print(f"Similarity(apple, orange): {doc1.similarity(doc2):.3f}")
+print(f"Similarity(apple, car): {doc1.similarity(doc3):.3f}")
 
 # Placeholder if spaCy or model isn't fully set up for execution in this environment
 if 'nlp' not in locals(): # Check if nlp object was created (it's commented out above)
@@ -136,15 +136,15 @@ if 'nlp' not in locals(): # Check if nlp object was created (it's commented out 
 -   **Text Summarization (Extractive):** Identifying key sentences based on dependency parsing or entity density.
 -   **Rule-Based Matching (`Matcher`, `PhraseMatcher`):** Efficiently find sequences of tokens based on patterns (e.g., specific product mentions, sequences of POS tags).
     ```python
-    # from spacy.matcher import Matcher
-    # nlp = spacy.load('en_core_web_sm') # Assuming nlp is loaded
-    # matcher = Matcher(nlp.vocab)
-    # pattern = [{"LOWER": "iphone"}, {"IS_DIGIT": True, "OP": "?"}, {"LOWER": "pro", "OP": "?"}] # Matches "iphone", "iphone 15", "iphone pro", "iphone 15 pro"
-    # matcher.add("IPHONE_PATTERN", [pattern])
-    # doc = nlp("I want to buy an iphone 15 pro max.")
-    # matches = matcher(doc)
-    # for match_id, start, end in matches:
-    #     print("Matched span:", doc[start:end].text)
+    from spacy.matcher import Matcher
+    nlp = spacy.load('en_core_web_sm') # Assuming nlp is loaded
+    matcher = Matcher(nlp.vocab)
+    pattern = [{"LOWER": "iphone"}, {"IS_DIGIT": True, "OP": "?"}, {"LOWER": "pro", "OP": "?"}] # Matches "iphone", "iphone 15", "iphone pro", "iphone 15 pro"
+    matcher.add("IPHONE_PATTERN", [pattern])
+    doc = nlp("I want to buy an iphone 15 pro max.")
+    matches = matcher(doc)
+    for match_id, start, end in matches:
+        print("Matched span:", doc[start:end].text)
     ```
 -   **Customizable Components:** Easily create and add custom pipeline components for specialized tasks (e.g., custom entity linkers, sentiment analyzers).
 

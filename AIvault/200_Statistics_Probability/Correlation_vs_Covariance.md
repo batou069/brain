@@ -71,14 +71,14 @@ rating = np.array([4.8, 4.5, 4.2, 3.5, 3.2, 2.5]) # As price goes up, rating ten
 # ddof=1 for sample covariance (dividing by N-1)
 covariance_matrix = np.cov(price, rating, ddof=1)
 covariance_xy = covariance_matrix # Get the off-diagonal element
-# print(f"Covariance Matrix:\n{covariance_matrix}")
-# print(f"Covariance between Price and Rating: {covariance_xy:.2f}") # Will be negative
+print(f"Covariance Matrix:\n{covariance_matrix}")
+print(f"Covariance between Price and Rating: {covariance_xy:.2f}") # Will be negative
 
 # 2. Calculate Correlation using SciPy
 # pearsonr returns the correlation coefficient and the p-value
 correlation_coefficient, p_value = pearsonr(price, rating)
-# print(f"\nPearson Correlation Coefficient: {correlation_coefficient:.4f}")
-# print(f"P-value: {p_value:.4f}")
+print(f"\nPearson Correlation Coefficient: {correlation_coefficient:.4f}")
+print(f"P-value: {p_value:.4f}")
 # A strong negative correlation close to -1 is expected.
 ```
 

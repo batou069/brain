@@ -45,10 +45,10 @@ These are typically created and managed via the `SparkContext` (accessible as `s
 
 **Example (Broadcasting a product category mapping for enrichment):**
 ```python
-# from pyspark.sql import SparkSession
+from pyspark.sql import SparkSession
 
-# spark = SparkSession.builder.appName("BroadcastDemo").getOrCreate()
-# sc = spark.sparkContext
+spark = SparkSession.builder.appName("BroadcastDemo").getOrCreate()
+sc = spark.sparkContext
 
 # Conceptual small lookup table: product_id -> category_name
 # In a real scenario, this might come from a file or another DataFrame collected to the driver
@@ -74,17 +74,17 @@ def add_category_to_order(order_tuple):
     category_name = categories.get(product_id, "Unknown Category") # Default if not found
     return (order_id, product_id, quantity, category_name)
 
-# enriched_orders_rdd = orders_rdd.map(add_category_to_order)
-# print("Enriched Orders with Categories:")
-# for record in enriched_orders_rdd.collect():
-#     print(record)
+enriched_orders_rdd = orders_rdd.map(add_category_to_order)
+print("Enriched Orders with Categories:")
+for record in enriched_orders_rdd.collect():
+    print(record)
 # Output might be:
 # ('O1', 'P101', 2, 'Electronics')
 # ('O2', 'P305', 1, 'Apparel')
 # ('O3', 'P101', 5, 'Electronics')
 # ('O4', 'P999', 3, 'Unknown Category')
 
-# spark.stop()
+spark.stop()
 ```
 
 ## Accumulators (`sc.accumulator(initial_value)` or `sc.collectionAccumulator()`)
@@ -105,23 +105,23 @@ def add_category_to_order(order_tuple):
 
 **Example (Counting malformed product review lines):**
 ```python
-# from pyspark.sql import SparkSession
+from pyspark.sql import SparkSession
 
-# spark = SparkSession.builder.appName("AccumulatorDemo").getOrCreate()
-# sc = spark.sparkContext
+spark = SparkSession.builder.appName("AccumulatorDemo").getOrCreate()
+sc = spark.sparkContext
 
 # Initialize an accumulator for counting malformed lines
-# malformed_lines_counter = sc.accumulator(0)
+malformed_lines_counter = sc.accumulator(0)
 
 # Conceptual RDD of product review lines
-# review_lines_data = [
-#     "product_id|rating|comment", # Header (potentially malformed if treated as data)
-#     "P101|5|Great product!",
-#     "P203|4|Good value.",
-#     "P305-missing-pipe-3-Bad", # Malformed line
-#     "P407|5|Excellent quality."
-# ]
-# review_lines_rdd = sc.parallelize(review_lines_data)
+review_lines_data = [
+    "product_id|rating|comment", # Header (potentially malformed if treated as data)
+    "P101|5|Great product!",
+    "P203|4|Good value.",
+    "P305-missing-pipe-3-Bad", # Malformed line
+    "P407|5|Excellent quality."
+]
+review_lines_rdd = sc.parallelize(review_lines_data)
 
 # Function to process lines and update accumulator
 def validate_and_process_review(line):
@@ -141,13 +141,13 @@ def validate_and_process_review(line):
         return None
 
 # Process RDD (filter out None which indicates malformed or header)
-# processed_reviews_rdd = review_lines_rdd.map(validate_and_process_review).filter(lambda x: x is not None)
+processed_reviews_rdd = review_lines_rdd.map(validate_and_process_review).filter(lambda x: x is not None)
 
 # An action is needed to trigger computations and accumulator updates
-# print(f"Number of valid processed reviews: {processed_reviews_rdd.count()}")
-# print(f"Total malformed lines detected: {malformed_lines_counter.value}") # Read value in driver
+print(f"Number of valid processed reviews: {processed_reviews_rdd.count()}")
+print(f"Total malformed lines detected: {malformed_lines_counter.value}") # Read value in driver
 
-# spark.stop()
+spark.stop()
 ```
 
 **Important Notes for Accumulators:**

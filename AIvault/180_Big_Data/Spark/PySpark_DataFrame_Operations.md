@@ -38,31 +38,31 @@ DataFrames are typically created using a `SparkSession` (usually named `spark`):
 -   From external data sources: `spark.read.format(...).load(path)` (e.g., `spark.read.csv()`, `spark.read.parquet()`, `spark.read.json()`, `spark.read.jdbc()`). See [[PySpark_Data_Sources]].
 
 ```python
-# from pyspark.sql import SparkSession
-# from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType
+from pyspark.sql import SparkSession
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType
 
-# spark = SparkSession.builder.appName("DataFrameOpsDemo").getOrCreate()
+spark = SparkSession.builder.appName("DataFrameOpsDemo").getOrCreate()
 
 # Conceptual e-commerce product data
-# product_data = [
-#     (1, "Laptop X200", "Electronics", 1200.00, 4.5),
-#     (2, "Coffee Maker Pro", "Appliances", 79.99, 4.2),
-#     (3, "Python for All", "Books", 29.95, 4.8),
-#     (4, "Running Shoes Z", "Apparel", 89.50, 4.0),
-#     (5, "Laptop X200", "Electronics", 1150.00, 4.3) # Another instance for aggregation
-# ]
-# schema = StructType([
-#     StructField("product_id", IntegerType(), True),
-#     StructField("name", StringType(), True),
-#     StructField("category", StringType(), True),
-#     StructField("price", DoubleType(), True),
-#     StructField("rating", DoubleType(), True)
-# ])
-# products_df = spark.createDataFrame(product_data, schema=schema)
-# products_df.printSchema()
-# products_df.show(3, truncate=False)
+product_data = [
+    (1, "Laptop X200", "Electronics", 1200.00, 4.5),
+    (2, "Coffee Maker Pro", "Appliances", 79.99, 4.2),
+    (3, "Python for All", "Books", 29.95, 4.8),
+    (4, "Running Shoes Z", "Apparel", 89.50, 4.0),
+    (5, "Laptop X200", "Electronics", 1150.00, 4.3) # Another instance for aggregation
+]
+schema = StructType([
+    StructField("product_id", IntegerType(), True),
+    StructField("name", StringType(), True),
+    StructField("category", StringType(), True),
+    StructField("price", DoubleType(), True),
+    StructField("rating", DoubleType(), True)
+])
+products_df = spark.createDataFrame(product_data, schema=schema)
+products_df.printSchema()
+products_df.show(3, truncate=False)
 
-# spark.stop()
+spark.stop()
 ```
 
 ## Common DataFrame Transformations (Lazy)
@@ -72,19 +72,19 @@ DataFrames are typically created using a `SparkSession` (usually named `spark`):
     -   Selects a set of columns. Can use string names, `col()` objects, or expressions.
     -   **Example (Select product name and price):**
         ```python
-        # from pyspark.sql.functions import col
-        # selected_df = products_df.select("name", "price")
-        # selected_df_alt = products_df.select(col("name"), (col("price") * 0.9).alias("discounted_price"))
-        # selected_df_alt.show(2)
+        from pyspark.sql.functions import col
+        selected_df = products_df.select("name", "price")
+        selected_df_alt = products_df.select(col("name"), (col("price") * 0.9).alias("discounted_price"))
+        selected_df_alt.show(2)
         ```
 - `filter(condition)` or `where(condition)`
     -   Filters rows based on a given condition (SQL-like string or column expression).
     -   **Example (Filter for electronics products with price > 1000):**
         ```python
-        # from pyspark.sql.functions import col
-        # filtered_df = products_df.filter((col("category") == "Electronics") & (col("price") > 1000))
-        # filtered_df_sql_style = products_df.where("category = 'Electronics' AND price > 1000")
-        # filtered_df.show(2)
+        from pyspark.sql.functions import col
+        filtered_df = products_df.filter((col("category") == "Electronics") & (col("price") > 1000))
+        filtered_df_sql_style = products_df.where("category = 'Electronics' AND price > 1000")
+        filtered_df.show(2)
         ```
 - `withColumn(colName, col)`
     -   Adds a new column or replaces an existing column with the same name.
@@ -92,17 +92,17 @@ DataFrames are typically created using a `SparkSession` (usually named `spark`):
     -   `col`: A `Column` expression for the new column's values.
     -   **Example (Add a 'price_eur' column assuming an exchange rate):**
         ```python
-        # from pyspark.sql.functions import col, lit
-        # exchange_rate = 0.92
-        # products_with_eur_df = products_df.withColumn("price_eur", col("price") * lit(exchange_rate))
-        # products_with_eur_df.show(2)
+        from pyspark.sql.functions import col, lit
+        exchange_rate = 0.92
+        products_with_eur_df = products_df.withColumn("price_eur", col("price") * lit(exchange_rate))
+        products_with_eur_df.show(2)
         ```
 - `drop(*cols)`
     -   Returns a new DataFrame with specified column(s) dropped.
     -   **Example (Drop the 'rating' column):**
         ```python
-        # products_no_rating_df = products_df.drop("rating")
-        # products_no_rating_df.show(2)
+        products_no_rating_df = products_df.drop("rating")
+        products_no_rating_df.show(2)
         ```
 - `groupBy(*cols)`
     -   Groups the DataFrame using the specified columns, so we can run aggregation on them. Returns a `GroupedData` object.
@@ -132,16 +132,16 @@ DataFrames are typically created using a `SparkSession` (usually named `spark`):
     -   `how`: Join type string: `'inner'`, `'cross'`, `'outer'`, `'full'`, `'full_outer'`, `'left'`, `'left_outer'`, `'right'`, `'right_outer'`, `'left_semi'`, `'left_anti'`. Default is `'inner'`.
     -   **Example (Join products with a conceptual `inventory_df`):**
         ```python
-        # inventory_data = [(1, 100), (2, 50), (3, 0), (6, 200)] # product_id, stock_quantity
-        # inventory_schema = StructType([StructField("p_id", IntegerType()), StructField("stock", IntegerType())])
-        # inventory_df = spark.createDataFrame(inventory_data, schema=inventory_schema)
+        inventory_data = [(1, 100), (2, 50), (3, 0), (6, 200)] # product_id, stock_quantity
+        inventory_schema = StructType([StructField("p_id", IntegerType()), StructField("stock", IntegerType())])
+        inventory_df = spark.createDataFrame(inventory_data, schema=inventory_schema)
 
-        # product_inventory_df = products_df.join(
-        #     inventory_df,
-        #     products_df["product_id"] == inventory_df["p_id"], # Join condition
-        #     "left_outer"
-        # ).select(products_df["name"], products_df["price"], inventory_df["stock"])
-        # product_inventory_df.show()
+        product_inventory_df = products_df.join(
+            inventory_df,
+            products_df["product_id"] == inventory_df["p_id"], # Join condition
+            "left_outer"
+        ).select(products_df["name"], products_df["price"], inventory_df["stock"])
+        product_inventory_df.show()
         ```- `distinct()`
     -   Returns a new DataFrame with duplicate rows removed.
 - `union(otherDF)` / `unionByName(otherDF, allowMissingColumns=False)`
@@ -177,18 +177,19 @@ DataFrames are typically created using a `SparkSession` (usually named `spark`):
 
 ## Using SQL with DataFrames
 You can register a DataFrame as a temporary view or table and then query it using Spark SQL.
+
 ```python
 # (Assuming 'products_df' and 'spark' session exist)
-# products_df.createOrReplaceTempView("products_view")
+products_df.createOrReplaceTempView("products_view")
 
 # Query using Spark SQL
-# electronics_high_rating_df = spark.sql("""
-#     SELECT name, price, rating
-#     FROM products_view
-#     WHERE category = 'Electronics' AND rating > 4.0
-#     ORDER BY price DESC
-# """)
-# electronics_high_rating_df.show()
+electronics_high_rating_df = spark.sql("""
+    SELECT name, price, rating
+    FROM products_view
+    WHERE category = 'Electronics' AND rating > 4.0
+    ORDER BY price DESC
+""")
+electronics_high_rating_df.show()
 ```
 
 The DataFrame API provides a rich, expressive, and optimized way to perform distributed data processing in PySpark, often being more performant and easier to use for structured data than raw RDD operations.

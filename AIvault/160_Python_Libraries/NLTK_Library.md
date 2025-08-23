@@ -87,13 +87,13 @@ NLTK is widely used for teaching and research in computational linguistics and N
 
 First, ensure necessary NLTK data is downloaded (run once in Python):
 ```python
-# import nltk
-# nltk.download('punkt')       # For tokenization
-# nltk.download('stopwords')   # For stopwords
-# nltk.download('averaged_perceptron_tagger') # For POS tagging
-# nltk.download('wordnet')     # For lemmatization and WordNet
-# nltk.download('maxent_ne_chunker') # For Named Entity Recognition
-# nltk.download('words') # For NER
+import nltk
+nltk.download('punkt')       # For tokenization
+nltk.download('stopwords')   # For stopwords
+nltk.download('averaged_perceptron_tagger') # For POS tagging
+nltk.download('wordnet')     # For lemmatization and WordNet
+nltk.download('maxent_ne_chunker') # For Named Entity Recognition
+nltk.download('words') # For NER
 ```
 
 ```python
@@ -109,21 +109,21 @@ review_text = "This is an amazing e-commerce product! The quality is excellent a
 
 # 1. Sentence Tokenization
 sentences = sent_tokenize(review_text)
-# print("Sentences:", sentences)
+print("Sentences:", sentences)
 
 # 2. Word Tokenization (for the first sentence)
 first_sentence_words = word_tokenize(sentences[0])
-# print("\nWords in first sentence:", first_sentence_words)
+print("\nWords in first sentence:", first_sentence_words)
 
 # 3. Stop Word Removal
 stop_words = set(stopwords.words('english'))
 filtered_words = [word.lower() for word in first_sentence_words if word.isalpha() and word.lower() not in stop_words]
-# print("\nFiltered words (no stopwords, lowercase, alpha):", filtered_words)
+print("\nFiltered words (no stopwords, lowercase, alpha):", filtered_words)
 
 # 4. Stemming
 stemmer = PorterStemmer()
 stemmed_words = [stemmer.stem(word) for word in filtered_words]
-# print("\nStemmed words:", stemmed_words)
+print("\nStemmed words:", stemmed_words)
 
 # 5. Lemmatization (requires POS tags for better accuracy, simplified here)
 lemmatizer = WordNetLemmatizer()
@@ -131,46 +131,46 @@ lemmatizer = WordNetLemmatizer()
 # e.g., get_wordnet_pos function would be needed.
 # Simple lemmatization without explicit POS:
 lemmatized_words_simple = [lemmatizer.lemmatize(word) for word in filtered_words]
-# print("\nLemmatized words (simplified):", lemmatized_words_simple)
+print("\nLemmatized words (simplified):", lemmatized_words_simple)
 
 # Example with POS tagging for better lemmatization (conceptual)
-# tagged_words = nltk.pos_tag(filtered_words)
-# def get_wordnet_pos(treebank_tag):
-#     if treebank_tag.startswith('J'): return nltk.corpus.wordnet.ADJ
-#     elif treebank_tag.startswith('V'): return nltk.corpus.wordnet.VERB
-#     elif treebank_tag.startswith('N'): return nltk.corpus.wordnet.NOUN
-#     elif treebank_tag.startswith('R'): return nltk.corpus.wordnet.ADV
-#     else: return nltk.corpus.wordnet.NOUN # Default to noun
-# lemmatized_words_pos = [lemmatizer.lemmatize(word, get_wordnet_pos(tag)) for word, tag in tagged_words]
-# print("\nLemmatized words (with POS consideration):", lemmatized_words_pos)
+tagged_words = nltk.pos_tag(filtered_words)
+def get_wordnet_pos(treebank_tag):
+    if treebank_tag.startswith('J'): return nltk.corpus.wordnet.ADJ
+    elif treebank_tag.startswith('V'): return nltk.corpus.wordnet.VERB
+    elif treebank_tag.startswith('N'): return nltk.corpus.wordnet.NOUN
+    elif treebank_tag.startswith('R'): return nltk.corpus.wordnet.ADV
+    else: return nltk.corpus.wordnet.NOUN # Default to noun
+lemmatized_words_pos = [lemmatizer.lemmatize(word, get_wordnet_pos(tag)) for word, tag in tagged_words]
+print("\nLemmatized words (with POS consideration):", lemmatized_words_pos)
 
 
 # 6. Part-of-Speech (POS) Tagging
-# all_words_tokenized = word_tokenize(review_text)
-# pos_tags = nltk.pos_tag(all_words_tokenized)
-# print("\nPOS Tags (first 5):", pos_tags[:5])
+all_words_tokenized = word_tokenize(review_text)
+pos_tags = nltk.pos_tag(all_words_tokenized)
+print("\nPOS Tags (first 5):", pos_tags[:5])
 
 # 7. Frequency Distribution
-# fdist = FreqDist(filtered_words) # Using filtered words from earlier
-# print("\nMost common words:", fdist.most_common(3))
+fdist = FreqDist(filtered_words) # Using filtered words from earlier
+print("\nMost common words:", fdist.most_common(3))
 
 # 8. Named Entity Recognition (NER) - NLTK's default NER is limited
 # Requires POS tagged and tokenized words
-# review_sentences_tokenized_tagged = [nltk.pos_tag(word_tokenize(sent)) for sent in sentences]
+review_sentences_tokenized_tagged = [nltk.pos_tag(word_tokenize(sent)) for sent in sentences]
 # Example using the first sentence's tagged words:
-# first_sentence_tagged = nltk.pos_tag(word_tokenize(sentences[0]))
-# tree = ne_chunk(first_sentence_tagged)
+first_sentence_tagged = nltk.pos_tag(word_tokenize(sentences[0]))
+tree = ne_chunk(first_sentence_tagged)
 # This would create a tree structure. To extract entities:
-# named_entities = []
-# for subtree in tree:
-#     if hasattr(subtree, 'label'): # It's a Named Entity chunk
-#         entity_name = ' '.join(c[0] for c in subtree.leaves())
-#         entity_type = subtree.label()
-#         named_entities.append((entity_name, entity_type))
-# if named_entities:
-#    print("\nNamed Entities:", named_entities)
-# else:
-#    print("\nNo named entities found by NLTK's default chunker in the first sentence.")
+named_entities = []
+for subtree in tree:
+    if hasattr(subtree, 'label'): # It's a Named Entity chunk
+        entity_name = ' '.join(c[0] for c in subtree.leaves())
+        entity_type = subtree.label()
+        named_entities.append((entity_name, entity_type))
+if named_entities:
+   print("\nNamed Entities:", named_entities)
+else:
+   print("\nNo named entities found by NLTK's default chunker in the first sentence.")
 # NLTK's default NER is based on a simple classifier and might not be as robust as spaCy or Transformers.
 ```
 
@@ -226,13 +226,13 @@ One of Seaborn's most immediate benefits is its ability to control the aesthetic
         import numpy as np
 
         # Set a theme for all subsequent plots in the script/notebook
-        # sns.set_theme(style="whitegrid", palette="pastel", context="talk")
+        sns.set_theme(style="whitegrid", palette="pastel", context="talk")
 
         # Create a sample plot to see the effect
-        # x = np.random.randn(100)
-        # sns.histplot(x)
-        # plt.title("Plot with Seaborn Theme")
-        # plt.show()
+        x = np.random.randn(100)
+        sns.histplot(x)
+        plt.title("Plot with Seaborn Theme")
+        plt.show()
         ```
 - `sns.set_style()` and `sns.set_context()`
     -   These functions allow you to set the style and context independently.
@@ -242,10 +242,10 @@ One of Seaborn's most immediate benefits is its ability to control the aesthetic
     -   **Purpose:** Removes the top and right spines (axes lines) from a plot, which can improve clarity and aesthetics.
     -   **Example:**
         ```python
-        # sns.set_theme(style="ticks") # 'ticks' style is good with despine
-        # sns.lineplot(x=range(10), y=np.random.rand(10))
-        # sns.despine(offset=10, trim=True) # Remove top/right spines, offset from axes
-        # plt.show()
+        sns.set_theme(style="ticks") # 'ticks' style is good with despine
+        sns.lineplot(x=range(10), y=np.random.rand(10))
+        sns.despine(offset=10, trim=True) # Remove top/right spines, offset from axes
+        plt.show()
         ```
 - Color Palettes (`sns.color_palette()`)
     -   Seaborn provides powerful tools for working with colors.
@@ -256,9 +256,9 @@ One of Seaborn's most immediate benefits is its ability to control the aesthetic
         -   **Diverging:** For representing data where both low and high values are interesting, with a clear midpoint (e.g., `'coolwarm'`, `'vlag'`).
     -   **Example:**
         ```python
-        # my_palette = sns.color_palette("viridis", n_colors=8)
-        # sns.palplot(my_palette) # Visualize the palette
-        # plt.show()
+        my_palette = sns.color_palette("viridis", n_colors=8)
+        sns.palplot(my_palette) # Visualize the palette
+        plt.show()
         ```
 
 ## Figure-level vs. Axes-level Functions

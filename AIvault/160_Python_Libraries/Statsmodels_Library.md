@@ -84,7 +84,7 @@ model = sm.OLS(y, X)
 results = model.fit()
 
 # Print the summary
-# print(results.summary())
+print(results.summary())
 # Key outputs from summary: R-squared, Adj. R-squared, F-statistic,
 # Coef (coefficients), Std.Err, t (t-statistic), P>|t| (p-value), Conf. Int.
 ```
@@ -121,29 +121,29 @@ import pandas as pd
 import numpy as np
 
 # Sample time series data (e.g., monthly sales)
-# np.random.seed(42)
-# date_rng = pd.date_range(start='2020-01-01', end='2023-12-31', freq='M')
-# sales_data = np.random.randn(len(date_rng)).cumsum() + 50
-# sales_ts = pd.Series(sales_data, index=date_rng)
+np.random.seed(42)
+date_rng = pd.date_range(start='2020-01-01', end='2023-12-31', freq='M')
+sales_data = np.random.randn(len(date_rng)).cumsum() + 50
+sales_ts = pd.Series(sales_data, index=date_rng)
 
 # Fit an ARIMA(p,d,q) model, e.g., ARIMA(5,1,0)
 # This requires selecting appropriate orders (p,d,q) based on ACF/PACF plots, AIC/BIC, etc.
 # For demonstration, we'll use arbitrary orders.
-# try:
-#     arima_model = sm.tsa.arima.ARIMA(sales_ts, order=(5,1,0))
-#     arima_results = arima_model.fit()
-#     # Print summary
-#     print(arima_results.summary())
-#     # Make predictions
-#     # forecast = arima_results.predict(start=len(sales_ts)-10, end=len(sales_ts)+5) # In-sample and out-of-sample
-#     # sales_ts.plot(label='Observed')
-#     # forecast.plot(label='Forecast')
-#     # import matplotlib.pyplot as plt
-#     # plt.legend(); plt.show()
-# except Exception as e:
-#     print(f"ARIMA example requires time series data; placeholder error: {e}")
-#     # Placeholder if data generation fails or for minimal example
-#     pass
+try:
+    arima_model = sm.tsa.arima.ARIMA(sales_ts, order=(5,1,0))
+    arima_results = arima_model.fit()
+    # Print summary
+    print(arima_results.summary())
+    # Make predictions
+    forecast = arima_results.predict(start=len(sales_ts)-10, end=len(sales_ts)+5) # In-sample and out-of-sample
+    sales_ts.plot(label='Observed')
+    forecast.plot(label='Forecast')
+    import matplotlib.pyplot as plt
+    plt.legend(); plt.show()
+except Exception as e:
+    print(f"ARIMA example requires time series data; placeholder error: {e}")
+    # Placeholder if data generation fails or for minimal example
+    pass
 ```
 > **Note:** Proper time series modeling involves more steps like checking for stationarity, model identification (ACF/PACF), and diagnostics.
 

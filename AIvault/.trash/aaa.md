@@ -1,0 +1,1 @@
+$$ P(\text{Passenger 100 gets seat}) = P(\text{Seat 1 chosen before Seat 100}) = \frac{1}{2} $$

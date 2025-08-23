@@ -63,7 +63,7 @@ SORT file.name ASC
 ### Probability Distributions Sub-Section
 ```dataview
 LIST
-FROM "200_Statistics_Probability/Distributions"
+FROM "200_Statistics_Probability"
 WHERE file.folder = this.file.folder AND file.name != this.file.name AND !contains(file.name, "MOC")
 SORT file.name ASC
 ```

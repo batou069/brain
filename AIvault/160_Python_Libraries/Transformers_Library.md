@@ -71,29 +71,29 @@ import pandas as pd
 
 # Example: Sentiment analysis of product reviews
 # This will download the default sentiment analysis model if not cached.
-# sentiment_analyzer = pipeline("sentiment-analysis")
+sentiment_analyzer = pipeline("sentiment-analysis")
 
-# product_reviews = [
-#     "This e-commerce platform is amazing and so easy to use!",
-#     "The product arrived broken and customer service was unhelpful.",
-#     "It's an okay product, nothing special but gets the job done.",
-#     "I absolutely love the new features, a must-buy!"
-# ]
+product_reviews = [
+    "This e-commerce platform is amazing and so easy to use!",
+    "The product arrived broken and customer service was unhelpful.",
+    "It's an okay product, nothing special but gets the job done.",
+    "I absolutely love the new features, a must-buy!"
+]
 
-# results = sentiment_analyzer(product_reviews)
-# for review, result in zip(product_reviews, results):
-#     print(f"Review: \"{review}\"")
-#     print(f"Sentiment: {result['label']} (Score: {result['score']:.4f})\n")
+results = sentiment_analyzer(product_reviews)
+for review, result in zip(product_reviews, results):
+    print(f"Review: \"{review}\"")
+    print(f"Sentiment: {result['label']} (Score: {result['score']:.4f})\n")
 
 # Example: Zero-shot classification for product categorization
-# zero_shot_classifier = pipeline("zero-shot-classification")
-# product_description = "High-performance laptop with 16GB RAM and a fast SSD, perfect for gaming and professional work."
-# candidate_categories = ["electronics", "books", "clothing", "home goods", "sports equipment"]
-# classification_results = zero_shot_classifier(product_description, candidate_labels=candidate_categories)
-# print(f"\nProduct Description: \"{product_description}\"")
-# print("Predicted Categories:")
-# for label, score in zip(classification_results['labels'], classification_results['scores']):
-#     print(f"- {label}: {score:.4f}")
+zero_shot_classifier = pipeline("zero-shot-classification")
+product_description = "High-performance laptop with 16GB RAM and a fast SSD, perfect for gaming and professional work."
+candidate_categories = ["electronics", "books", "clothing", "home goods", "sports equipment"]
+classification_results = zero_shot_classifier(product_description, candidate_labels=candidate_categories)
+print(f"\nProduct Description: \"{product_description}\"")
+print("Predicted Categories:")
+for label, score in zip(classification_results['labels'], classification_results['scores']):
+    print(f"- {label}: {score:.4f}")
 
 # Placeholder if transformers isn't fully set up for execution
 if 'pipeline' not in locals() or 'sentiment_analyzer' not in locals():
@@ -113,26 +113,26 @@ import pandas as pd
 
 # Load a pre-trained model and tokenizer (e.g., BERT)
 model_name = "bert-base-uncased"
-# tokenizer = AutoTokenizer.from_pretrained(model_name)
-# model = AutoModel.from_pretrained(model_name) # Use AutoModelForSequenceClassification for classification tasks etc.
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModel.from_pretrained(model_name) # Use AutoModelForSequenceClassification for classification tasks etc.
 
-# product_descriptions = [
-#     "High-quality cotton t-shirt, comfortable and durable.",
-#     "Latest smartphone with advanced camera and long battery life."
-# ]
+product_descriptions = [
+    "High-quality cotton t-shirt, comfortable and durable.",
+    "Latest smartphone with advanced camera and long battery life."
+]
 
 # Tokenize the descriptions
-# inputs = tokenizer(product_descriptions, padding=True, truncation=True, return_tensors="pt") # "pt" for PyTorch, "tf" for TensorFlow
-# print("\nTokenized Inputs:", inputs['input_ids'])
+inputs = tokenizer(product_descriptions, padding=True, truncation=True, return_tensors="pt") # "pt" for PyTorch, "tf" for TensorFlow
+print("\nTokenized Inputs:", inputs['input_ids'])
 
 # Get embeddings (contextual word/sentence embeddings)
-# with torch.no_grad(): # Disable gradient calculations for inference
-#     outputs = model(**inputs)
+with torch.no_grad(): # Disable gradient calculations for inference
+    outputs = model(**inputs)
 
 # The 'last_hidden_state' provides token-level embeddings.
 # For a sentence embedding, a common approach is to average the token embeddings or use the [CLS] token's embedding.
-# sentence_embedding_cls = outputs.last_hidden_state[:, 0, :] # Embedding of [CLS] token
-# print("Shape of [CLS] token embeddings:", sentence_embedding_cls.shape) # (batch_size, hidden_size)
+sentence_embedding_cls = outputs.last_hidden_state[:, 0, :] # Embedding of [CLS] token
+print("Shape of [CLS] token embeddings:", sentence_embedding_cls.shape) # (batch_size, hidden_size)
 
 # Placeholder if model/tokenizer aren't loaded
 if 'tokenizer' not in locals() or 'model' not in locals():

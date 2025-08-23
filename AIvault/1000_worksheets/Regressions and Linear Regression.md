@@ -678,10 +678,14 @@ Python
 # class in scikit-learn. They often require specialized packages or
 # custom implementations using expectation-maximization (EM) algorithms.
 # The code below is a conceptual illustration.
+```
 
+```python
 from sklearn.mixture import GaussianMixture
 import numpy as np
+```
 
+```python
 # Conceptual Example:
 # 1. You have data that comes from two different linear processes.
 # 2. You could first use a clustering algorithm (like GaussianMixture) to
@@ -694,15 +698,20 @@ import numpy as np
 
 # This is a highly simplified conceptual stand-in:
 # Assume we pre-clustered data into two groups
+
 X = np.random.rand(100, 1) * 10
 y = np.zeros_like(X.flatten())
 mask = X.flatten() > 5
 # Group 1: y = 2x + noise
 y[~mask] = 2 * X[~mask].flatten() + np.random.randn(sum(~mask))
+
 # Group 2: y = -3x + 30 + noise
 y[mask] = -3 * X[mask].flatten() + 30 + np.random.randn(sum(mask))
 
 # In a real model, we would learn these groups. Here we assume we know them.
+````
+
+```python
 from sklearn.linear_model import LinearRegression
 model1 = LinearRegression().fit(X[~mask], y[~mask])
 model2 = LinearRegression().fit(X[mask], y[mask])

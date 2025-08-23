@@ -79,104 +79,104 @@ wavelet_name = 'db4' # Daubechies 4 wavelet
 # Single level DWT
 coeffs = pywt.dwt(signal, wavelet=wavelet_name)
 cA, cD = coeffs # Approximation and Detail coefficients
-# print(f"Wavelet: {wavelet_name}")
-# print("Original signal length:", len(signal))
-# print("Approximation coeffs (cA) length:", len(cA))
-# print("Detail coeffs (cD) length:", len(cD))
-# print("cA:", cA)
-# print("cD:", cD)
+print(f"Wavelet: {wavelet_name}")
+print("Original signal length:", len(signal))
+print("Approximation coeffs (cA) length:", len(cA))
+print("Detail coeffs (cD) length:", len(cD))
+print("cA:", cA)
+print("cD:", cD)
 
 # Single level IDWT (reconstruction)
 reconstructed_signal = pywt.idwt(cA, cD, wavelet=wavelet_name)
-# print("Reconstructed signal:", reconstructed_signal)
-# print("Reconstruction close to original:", np.allclose(signal, reconstructed_signal[:len(signal)])) # May need slicing due to padding
+print("Reconstructed signal:", reconstructed_signal)
+print("Reconstruction close to original:", np.allclose(signal, reconstructed_signal[:len(signal)])) # May need slicing due to padding
 
 # Multilevel DWT (e.g., 3 levels)
 coeffs_multilevel = pywt.wavedec(signal, wavelet=wavelet_name, level=3)
 cA3, cD3, cD2, cD1 = coeffs_multilevel # cA3 is the approx at level 3, cD3, cD2, cD1 are details
-# print("\nMultilevel Decomposition (3 levels):")
-# print("cA3 length:", len(cA3))
-# print("cD3 length:", len(cD3))
-# print("cD2 length:", len(cD2))
-# print("cD1 length:", len(cD1))
+print("\nMultilevel Decomposition (3 levels):")
+print("cA3 length:", len(cA3))
+print("cD3 length:", len(cD3))
+print("cD2 length:", len(cD2))
+print("cD1 length:", len(cD1))
 
 # Multilevel IDWT
 reconstructed_multilevel = pywt.waverec(coeffs_multilevel, wavelet=wavelet_name)
-# print("\nReconstructed from multilevel:", reconstructed_multilevel)
-# print("Multilevel reconstruction close:", np.allclose(signal, reconstructed_multilevel[:len(signal)]))
+print("\nReconstructed from multilevel:", reconstructed_multilevel)
+print("Multilevel reconstruction close:", np.allclose(signal, reconstructed_multilevel[:len(signal)]))
 ```
 
 ### 2D Discrete Wavelet Transform (DWT) for Images
 ```python
 import pywt
 import numpy as np
-# import matplotlib.pyplot as plt
-# from skimage import data, color # Using scikit-image for sample image
+import matplotlib.pyplot as plt
+from skimage import data, color # Using scikit-image for sample image
 
-# try:
-#     image_rgb = data.astronaut()
-#     image_gray = color.rgb2gray(image_rgb)
-# except ImportError:
-#     # Create a dummy grayscale image if skimage is not available
-#     image_gray = np.random.rand(128, 128)
-# except AttributeError: # If data.astronaut() is not found
-#     image_gray = np.random.rand(128, 128)
+try:
+    image_rgb = data.astronaut()
+    image_gray = color.rgb2gray(image_rgb)
+except ImportError:
+    # Create a dummy grayscale image if skimage is not available
+    image_gray = np.random.rand(128, 128)
+except AttributeError: # If data.astronaut() is not found
+    image_gray = np.random.rand(128, 128)
 
 
-# wavelet_name_2d = 'haar' # Haar wavelet is simple for visualization
+wavelet_name_2d = 'haar' # Haar wavelet is simple for visualization
 
 # Single level 2D DWT
-# coeffs2d = pywt.dwt2(image_gray, wavelet=wavelet_name_2d)
-# cA_2d, (cH_2d, cV_2d, cD_2d) = coeffs2d
+coeffs2d = pywt.dwt2(image_gray, wavelet=wavelet_name_2d)
+cA_2d, (cH_2d, cV_2d, cD_2d) = coeffs2d
 # LL (Approximation), LH (Horizontal), HL (Vertical), HH (Diagonal)
 
 # Visualize the decomposition (requires matplotlib)
-# fig, axes = plt.subplots(2, 2, figsize=(8, 8))
-# axes[0, 0].imshow(cA_2d, cmap='gray'); axes[0, 0].set_title('Approximation (LL)')
-# axes[0, 1].imshow(cH_2d, cmap='gray'); axes[0, 1].set_title('Horizontal Detail (LH)')
-# axes[1, 0].imshow(cV_2d, cmap='gray'); axes[1, 0].set_title('Vertical Detail (HL)')
-# axes[1, 1].imshow(cD_2d, cmap='gray'); axes[1, 1].set_title('Diagonal Detail (HH)')
-# for ax_row in axes:
-#     for ax in ax_row:
-#         ax.axis('off')
-# plt.suptitle(f"2D DWT with '{wavelet_name_2d}' wavelet", fontsize=14)
-# plt.tight_layout(rect=[0, 0, 1, 0.96]); plt.show()
+fig, axes = plt.subplots(2, 2, figsize=(8, 8))
+axes[0, 0].imshow(cA_2d, cmap='gray'); axes[0, 0].set_title('Approximation (LL)')
+axes[0, 1].imshow(cH_2d, cmap='gray'); axes[0, 1].set_title('Horizontal Detail (LH)')
+axes[1, 0].imshow(cV_2d, cmap='gray'); axes[1, 0].set_title('Vertical Detail (HL)')
+axes[1, 1].imshow(cD_2d, cmap='gray'); axes[1, 1].set_title('Diagonal Detail (HH)')
+for ax_row in axes:
+    for ax in ax_row:
+        ax.axis('off')
+plt.suptitle(f"2D DWT with '{wavelet_name_2d}' wavelet", fontsize=14)
+plt.tight_layout(rect=[0, 0, 1, 0.96]); plt.show()
 ```
 
 ### Denoising Example (Conceptual)
 ```python
 import pywt
 import numpy as np
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 # Create a noisy signal
-# t = np.linspace(0, 1, 256, endpoint=False)
-# clean_signal = np.sin(2 * np.pi * 7 * t) + np.sin(2 * np.pi * 15 * t)
-# noise = 0.5 * np.random.randn(len(clean_signal))
-# noisy_signal = clean_signal + noise
+t = np.linspace(0, 1, 256, endpoint=False)
+clean_signal = np.sin(2 * np.pi * 7 * t) + np.sin(2 * np.pi * 15 * t)
+noise = 0.5 * np.random.randn(len(clean_signal))
+noisy_signal = clean_signal + noise
 
 # Decompose
-# wavelet = 'sym8'
-# level = 4
-# coeffs = pywt.wavedec(noisy_signal, wavelet, level=level)
+wavelet = 'sym8'
+level = 4
+coeffs = pywt.wavedec(noisy_signal, wavelet, level=level)
 
 # Threshold detail coefficients
-# sigma = np.median(np.abs(coeffs[-1])) / 0.6745 # Estimate noise std from finest detail
-# threshold_value = sigma * np.sqrt(2 * np.log(len(noisy_signal))) # Universal threshold
+sigma = np.median(np.abs(coeffs[-1])) / 0.6745 # Estimate noise std from finest detail
+threshold_value = sigma * np.sqrt(2 * np.log(len(noisy_signal))) # Universal threshold
 
-# thresholded_coeffs = [coeffs[0]] # Keep approximation coeffs
-# for i in range(1, len(coeffs)):
-#     thresholded_coeffs.append(pywt.threshold(coeffs[i], value=threshold_value, mode='soft'))
+thresholded_coeffs = [coeffs[0]] # Keep approximation coeffs
+for i in range(1, len(coeffs)):
+    thresholded_coeffs.append(pywt.threshold(coeffs[i], value=threshold_value, mode='soft'))
 
 # Reconstruct
-# denoised_signal = pywt.waverec(thresholded_coeffs, wavelet)
+denoised_signal = pywt.waverec(thresholded_coeffs, wavelet)
 
 # Plotting (requires matplotlib)
-# plt.figure(figsize=(12, 6))
-# plt.plot(t, noisy_signal, label='Noisy Signal', alpha=0.7)
-# plt.plot(t, denoised_signal, label='Denoised Signal (Wavelet)', linewidth=1.5)
-# plt.plot(t, clean_signal, label='Original Clean Signal', linestyle='--', color='gray')
-# plt.legend(); plt.title("Wavelet Denoising Example"); plt.show()
+plt.figure(figsize=(12, 6))
+plt.plot(t, noisy_signal, label='Noisy Signal', alpha=0.7)
+plt.plot(t, denoised_signal, label='Denoised Signal (Wavelet)', linewidth=1.5)
+plt.plot(t, clean_signal, label='Original Clean Signal', linestyle='--', color='gray')
+plt.legend(); plt.title("Wavelet Denoising Example"); plt.show()
 ```
 
 ## Common Applications

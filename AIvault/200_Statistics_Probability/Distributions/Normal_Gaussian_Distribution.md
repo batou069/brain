@@ -95,29 +95,29 @@ In `scipy.stats`, the normal distribution is represented by `norm`.
 
 ## Visualization
 ```python
-# from scipy.stats import norm
-# import matplotlib.pyplot as plt
-# import numpy as np
+from scipy.stats import norm
+import matplotlib.pyplot as plt
+import numpy as np
 
-# mu = 170
-# sigma = 10
-# x = np.linspace(mu - 4*sigma, mu + 4*sigma, 1000)
-# pdf_values = norm.pdf(x, loc=mu, scale=sigma)
+mu = 170
+sigma = 10
+x = np.linspace(mu - 4*sigma, mu + 4*sigma, 1000)
+pdf_values = norm.pdf(x, loc=mu, scale=sigma)
 
-# fig, ax = plt.subplots()
-# ax.plot(x, pdf_values, label=f'N(μ={mu}, σ={sigma})')
-# ax.set_title("Normal Distribution PDF")
-# ax.set_xlabel("Height (cm)")
-# ax.set_ylabel("Probability Density")
+fig, ax = plt.subplots()
+ax.plot(x, pdf_values, label=f'N(μ={mu}, σ={sigma})')
+ax.set_title("Normal Distribution PDF")
+ax.set_xlabel("Height (cm)")
+ax.set_ylabel("Probability Density")
 
-# # Shade the area for the question P(190 < X < 200)
-# x_fill = np.linspace(190, 200, 100)
-# y_fill = norm.pdf(x_fill, loc=mu, scale=sigma)
-# ax.fill_between(x_fill, y_fill, color='skyblue', alpha=0.5, label='P(190 < X < 200)')
+# Shade the area for the question P(190 < X < 200)
+x_fill = np.linspace(190, 200, 100)
+y_fill = norm.pdf(x_fill, loc=mu, scale=sigma)
+ax.fill_between(x_fill, y_fill, color='skyblue', alpha=0.5, label='P(190 < X < 200)')
 
-# ax.legend()
-# plt.grid(True, linestyle='--')
-# plt.show()
+ax.legend()
+plt.grid(True, linestyle='--')
+plt.show()
 ```
 
 ---

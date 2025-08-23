@@ -45,17 +45,17 @@ The `np.linalg` module contains many useful functions. Here are some prominent o
 	  ```
 	- **`np.linalg.inv(a)` ([[NumPy_linalg_inv]]):** Computes the multiplicative [[Matrix_Inverse|inverse]] of a square matrix or stack of matrices. Raises `LinAlgError` if the matrix is singular.
 	  ```python
-	  # B = np.array([, ])
-	  # B_inv = np.linalg.inv(B)
-	  # print(B @ B_inv) # Should be close to identity matrix
+	  B = np.array([, ])
+	  B_inv = np.linalg.inv(B)
+	  print(B @ B_inv) # Should be close to identity matrix
 	  ```
 	- **`np.linalg.matrix_rank(M, tol=None)`:** Returns matrix rank of array using SVD method.
 	- **`np.linalg.solve(a, b)` ([[NumPy_linalg_solve]]):** Solves a linear matrix equation `ax = b` for `x`. `a` must be square and non-singular. More stable and often faster than computing `inv(a) @ b`.
 	  ```python
 	  # Solve: x + 2y = 1; 3x + 5y = 2
-	  # A_eq = np.array([, ])
-	  # b_eq = np.array()
-	  # x_solution = np.linalg.solve(A_eq, b_eq) # x_solution = [-1.,  1.]
+	  A_eq = np.array([, ])
+	  b_eq = np.array()
+	  x_solution = np.linalg.solve(A_eq, b_eq) # x_solution = [-1.,  1.]
 	  ```
 	- **`np.linalg.lstsq(a, b, rcond=...)`:** Computes the least-squares solution to `ax = b`. Useful when `a` is not square or the system is overdetermined.
 - Decompositions

@@ -91,18 +91,18 @@ numpy.loadtxt(
 	    print("loadtxt is strict about data types in columns being read.")
 
 	# Example with converters (if data needed conversion)
-	# def convert_category(val_str):
-	#     return float(ord(val_str.strip())) # Simplistic conversion
-	# data_converted = np.loadtxt("data.csv", delimiter=',', skiprows=1,
-	#                             converters={3: convert_category})
-	# print("\nData with category converted (simplistic):")
-	# print(data_converted)
+	def convert_category(val_str):
+	    return float(ord(val_str.strip())) # Simplistic conversion
+	data_converted = np.loadtxt("data.csv", delimiter=',', skiprows=1,
+	                            converters={3: convert_category})
+	print("\nData with category converted (simplistic):")
+	print(data_converted)
 
 	# Example: if file was just numbers, e.g., numbers.txt
 	# 1.0 2.0 3.0
 	# 4.0 5.0 6.0
-	# numbers_data = np.loadtxt("numbers.txt")
-	# print("\nNumbers data:\n", numbers_data)
+ numbers_data = np.loadtxt("numbers.txt")
+ print("\nNumbers data:\n", numbers_data)
 	```
 - Output
 	For the first part, assuming `data.csv` exists:

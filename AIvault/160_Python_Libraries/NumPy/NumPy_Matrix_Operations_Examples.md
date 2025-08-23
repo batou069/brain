@@ -90,12 +90,12 @@ Shape of `a` and `b`: `(2, 2, 2)` - This means 2 "layers" (or "matrices"), each 
       - `b[1]` is a single 2x2 matrix.
       - The operation will perform `a[0] @ b[1]` and `a[1] @ b[1]`.
       ```python
-      # result_ab1 = a @ b[1]
-      # result_ab1[0] = a[0] @ b[1]
-      # result_ab1[1] = a[1] @ b[1]
-      #
-      # b[1] = [[12, 13], [14, 15]]
-      #
+      result_ab1 = a @ b[1]
+      result_ab1[0] = a[0] @ b[1]
+      result_ab1[1] = a[1] @ b[1]
+      
+      b[1] = [[12, 13], [14, 15]]
+      
       # a[0] @ b[1] = [[(0*12+1*14), (0*13+1*15)],
       #                [(2*12+3*14), (2*13+3*15)]]
       #             = [[14, 15],
@@ -118,7 +118,7 @@ Shape of `a` and `b`: `(2, 2, 2)` - This means 2 "layers" (or "matrices"), each 
       - `b[1]` shape: `(2, 2)`
       - This is a standard 2x2 matrix multiplication.
       ```python
-      # result_a1b1 = a[1] @ b[1]
+      result_a1b1 = a[1] @ b[1]
       # a[1] = [[4, 5], [6, 7]]
       # b[1] = [[12, 13], [14, 15]]
       # result_a1b1 (calculated in first tab as part of a @ b)
@@ -135,9 +135,9 @@ Shape of `a` and `b`: `(2, 2, 2)` - This means 2 "layers" (or "matrices"), each 
       - So, if `a[i,j,k]` was an element, in `a.T` it will be at `a.T[k,j,i]`.
       - The shape will also be `(2, 2, 2)`.
       ```python
-      # a = [[[0, 1], [2, 3]],
-      #      [[4, 5], [6, 7]]]
-      # a_T = a.T
+      a = [[[0, 1], [2, 3]],
+           [[4, 5], [6, 7]]]
+      a_T = a.T
       # a_T[0,0,0] = a[0,0,0] = 0
       # a_T[0,0,1] = a[1,0,0] = 4
       # a_T[0,1,0] = a[0,1,0] = 2
@@ -178,10 +178,10 @@ Shape of `a` and `b`: `(2, 2, 2)` - This means 2 "layers" (or "matrices"), each 
       - `b`'s last two dimensions are `(2,2)`. `a[:,0]`'s last two (and only) dimensions are `(2,2)`.
       - `a[:,0]` (a single 2x2 matrix) will be broadcast to multiply with each of the 2x2 matrices in `b`.
       ```python
-      # let A_slice = a[:, 0]
-      # result = A_slice @ b
-      # result[0] = A_slice @ b[0]
-      # result[1] = A_slice @ b[1]
+      let A_slice = a[:, 0]
+      result = A_slice @ b
+      result[0] = A_slice @ b[0]
+      result[1] = A_slice @ b[1]
       #
       # A_slice = [[0, 1], [4, 5]]
       # b[0] = [[8, 9], [10, 11]]
@@ -203,10 +203,10 @@ Shape of `a` and `b`: `(2, 2, 2)` - This means 2 "layers" (or "matrices"), each 
         - The operation effectively multiplies each 2x2 matrix in `a` by the vector `b[:,0,0]`.
       ```python
       # let B_vec = b[:, 0, 0]  (which is [8, 12])
-      # result = a @ B_vec
-      # result[0] = a[0] @ B_vec
-      # result[1] = a[1] @ B_vec
-      #
+      result = a @ B_vec
+      result[0] = a[0] @ B_vec
+      result[1] = a[1] @ B_vec
+      
       # a[0] = [[0, 1], [2, 3]]
       # B_vec = [8, 12]
       # a[0] @ B_vec = [(0*8+1*12), (2*8+3*12)] = [12, 52]
@@ -234,10 +234,10 @@ Shape of `a` and `b`: `(2, 2, 2)` - This means 2 "layers" (or "matrices"), each 
       - `b[:,0]` will be broadcast across the first dimension of `a`.
       ```python
       # let B_slice = b[:, 0]  which is [[ 8,  9], [12, 13]]
-      # result = a - B_slice (broadcasted)
-      # result[0] = a[0] - B_slice
-      # result[1] = a[1] - B_slice
-      #
+      result = a - B_slice (broadcasted)
+      result[0] = a[0] - B_slice
+      result[1] = a[1] - B_slice
+      
       # a[0] = [[0, 1], [2, 3]]
       # result[0] = [[0-8, 1-9], [2-12, 3-13]] = [[-8, -8], [-10, -10]]
       #

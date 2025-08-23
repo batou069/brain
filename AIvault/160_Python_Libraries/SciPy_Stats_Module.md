@@ -80,29 +80,29 @@ height_dist = norm(loc=mu, scale=sigma)
 
 # 1. Generate 5 random heights from this distribution
 random_heights = height_dist.rvs(size=5)
-# print(f"Random heights: {np.round(random_heights, 2)}")
+print(f"Random heights: {np.round(random_heights, 2)}")
 
 # 2. What is the probability density at 175cm?
-# pdf_at_175 = height_dist.pdf(175)
-# print(f"PDF at 175cm: {pdf_at_175:.4f}")
+pdf_at_175 = height_dist.pdf(175)
+print(f"PDF at 175cm: {pdf_at_175:.4f}")
 
 # 3. What is the probability a person is shorter than or equal to 180cm? (CDF)
 prob_shorter_than_180 = height_dist.cdf(180)
-# print(f"P(height <= 180cm): {prob_shorter_than_180:.4f}")
+print(f"P(height <= 180cm): {prob_shorter_than_180:.4f}")
 
 # 4. What is the probability a person is taller than 190cm? (Survival Function)
 prob_taller_than_190 = height_dist.sf(190)
-# print(f"P(height > 190cm): {prob_taller_than_190:.4f}")
+print(f"P(height > 190cm): {prob_taller_than_190:.4f}")
 
 # 5. What height corresponds to the 90th percentile? (PPF)
 height_90th_percentile = height_dist.ppf(0.90)
-# print(f"90th percentile height: {height_90th_percentile:.2f} cm")
+print(f"90th percentile height: {height_90th_percentile:.2f} cm")
 
 # 6. Fit parameters from a sample dataset
-# sample_data = norm.rvs(loc=172, scale=12, size=1000) # Generate some sample data
-# estimated_mu, estimated_sigma = norm.fit(sample_data)
-# print(f"Estimated mean from data: {estimated_mu:.2f} (True was 172)")
-# print(f"Estimated std dev from data: {estimated_sigma:.2f} (True was 12)")
+sample_data = norm.rvs(loc=172, scale=12, size=1000) # Generate some sample data
+estimated_mu, estimated_sigma = norm.fit(sample_data)
+print(f"Estimated mean from data: {estimated_mu:.2f} (True was 172)")
+print(f"Estimated std dev from data: {estimated_sigma:.2f} (True was 12)")
 ```
 
 ## Example: Statistical Test (`ttest_ind`)
@@ -115,16 +115,16 @@ group_a_ratings = norm.rvs(loc=3.5, scale=0.8, size=50, random_state=42)
 group_b_ratings = norm.rvs(loc=3.9, scale=0.8, size=50, random_state=101)
 
 # Perform an independent t-test to see if the means are significantly different
-# t_statistic, p_value = ttest_ind(group_a_ratings, group_b_ratings)
+t_statistic, p_value = ttest_ind(group_a_ratings, group_b_ratings)
 
-# print(f"T-test results:")
-# print(f"  T-statistic: {t_statistic:.4f}")
-# print(f"  P-value: {p_value:.4f}")
+print(f"T-test results:")
+print(f"  T-statistic: {t_statistic:.4f}")
+print(f"  P-value: {p_value:.4f}")
 
-# if p_value < 0.05:
-#     print("The difference in mean ratings is statistically significant (p < 0.05).")
-# else:
-#     print("The difference in mean ratings is not statistically significant (p >= 0.05).")
+if p_value < 0.05:
+    print("The difference in mean ratings is statistically significant (p < 0.05).")
+else:
+    print("The difference in mean ratings is not statistically significant (p >= 0.05).")
 ```
 
 The `scipy.stats` module is an indispensable tool for performing statistical analysis, working with probability distributions, and conducting hypothesis tests in Python.
