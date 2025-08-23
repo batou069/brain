@@ -416,29 +416,31 @@ graph TD;
 4.  **Examples:**
     * **Analogy:** Imagine you're building a fence (`boundary`) around a herd of sheep (`normal data`) to protect them. The One-Class SVM algorithm tries to build the smallest possible fence that encloses most of the sheep. Any animal found outside the fence is then considered a "novelty" (e.g., a wolf or a lost sheep). The `nu` parameter is like telling the fence-builder "it's okay if you leave up to 1% of the sheep outside the fence to make the fence shape simpler and tighter." 
     * **Code (Scikit-learn):**
+ 
     ```python
-import numpy as np
-from sklearn.svm import OneClassSVM
-
-# Generate normal training data
-X_train = np.random.randn(200, 2) - 1
-
-# Fit the model on normal data only
-# nu=0.01 means we expect up to 1% of our training data to be outliers
-oc_svm = OneClassSVM(gamma='auto', nu=0.01)
-oc_svm.fit(X_train)
-
-# Create some new data points to test
-X_test_normal = np.array([[-1.2, -0.8]])
-X_test_novel = np.array([[3.0, 3.0]])
-
-# Predict if they are inliers (1) or outliers (-1)
-pred_normal = oc_svm.predict(X_test_normal)
-pred_novel = oc_svm.predict(X_test_novel)
-
-print(f"Prediction for normal point: {pred_normal[0]}")  # Expected: 1
-print(f"Prediction for novel point: {pred_novel[0]}")    # Expected: -1
+    import numpy as np
+    from sklearn.svm import OneClassSVM
+    
+    # Generate normal training data
+    X_train = np.random.randn(200, 2) - 1
+    
+    # Fit the model on normal data only
+    # nu=0.01 means we expect up to 1% of our training data to be outliers
+    oc_svm = OneClassSVM(gamma='auto', nu=0.01)
+    oc_svm.fit(X_train)
+    
+    # Create some new data points to test
+    X_test_normal = np.array([[-1.2, -0.8]])
+    X_test_novel = np.array([[3.0, 3.0]])
+    
+    # Predict if they are inliers (1) or outliers (-1)
+    pred_normal = oc_svm.predict(X_test_normal)
+    pred_novel = oc_svm.predict(X_test_novel)
+    
+    print(f"Prediction for normal point: {pred_normal[0]}")  # Expected: 1
+    print(f"Prediction for novel point: {pred_novel[0]}")    # Expected: -1
     ```
+
     
 5.  **Math:** The algorithm tries to solve the following optimization problem:
     $$

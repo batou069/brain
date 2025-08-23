@@ -609,11 +609,11 @@ SMOTE is one of the most popular and effective methods for dealing with class im
 
 ***
 
-## **Models**
+# **Models**
 
 *Note: The format for this section is the same as for Keywords.*
 
-### 1. k-Nearest Neighbors Classifier
+## 1. k-Nearest Neighbors Classifier
 
 A non-parametric, instance-based algorithm that classifies a new data point based on the majority class of its 'k' nearest neighbors in the feature space.
 
@@ -652,7 +652,7 @@ print(f"KNN Classifier Accuracy: {accuracy:.4f}")
 
 The k-Nearest Neighbors algorithm is one of the simplest classification algorithms to understand. Its core assumption is that similar things exist in close proximity. When a prediction is needed for a new data point, the algorithm calculates the distance from this new point to every single point in the training data. It then identifies the 'k' points with the smallest distances (the "nearest neighbors"). The new point is assigned the class that is most common among those 'k' neighbors. The main advantages of KNN are its simplicity and the fact that it makes no assumptions about the underlying data distribution. Its main disadvantages are its slow prediction speed on large datasets (as it must compute many distances) and its poor performance in high-dimensional spaces (the "curse of dimensionality").
 
-### 2. Logistic Regression
+## 2. Logistic Regression
 
 A linear model used for binary classification that predicts the probability of an outcome by fitting the data to a logistic (sigmoid) function.
 
@@ -694,7 +694,7 @@ print(f"Model Coefficients: {log_reg.coef_}")
 
 Logistic Regression is a fundamental classification algorithm. It works by finding a linear decision boundary that best separates the classes. The model learns a set of coefficients, one for each feature, similar to linear regression. A positive coefficient means that an increase in that feature's value increases the probability of the sample belonging to the positive class, while a negative coefficient means the opposite. This makes the model highly interpretable. Because it is a linear model, it cannot capture complex, non-linear relationships in the data, but its simplicity, speed, and interpretability make it an excellent first model to try on any classification problem.
 
-### 3. SVM Classifier
+## 3. SVM Classifier
 
 A powerful and versatile classification model that works by finding the optimal hyperplane that best separates the classes in the feature space.
 
@@ -735,7 +735,7 @@ print(f"SVM Classifier Accuracy: {accuracy:.4f}")
 
 Support Vector Machines are a powerful class of models. The core idea of maximizing the margin makes the resulting decision boundary robust. The real power of SVMs comes from the kernel trick. Kernels are functions that take the original low-dimensional data and map it into a much higher-dimensional space. In this higher-dimensional space, the data might become linearly separable, even if it wasn't in the original space. The "trick" is that the algorithm can calculate the decision boundary in this high-dimensional space without ever actually having to compute the coordinates of the data points there, making it computationally efficient. Common kernels include 'linear', 'poly', and 'rbf' (Radial Basis Function), with 'rbf' being a popular and powerful default choice.
 
-### 4. Naive Bayes Classifier
+## 4. Naive Bayes Classifier
 
 A probabilistic classifier based on applying Bayes' theorem with a strong ("naive") assumption that all features are independent of each other.
 
@@ -769,7 +769,7 @@ print(f"Naive Bayes Classifier Accuracy: {accuracy:.4f}")
 
 The Naive Bayes classifier works by using the famous Bayes' theorem: `P(Class | Features) = (P(Features | Class) * P(Class)) / P(Features)`. In simple terms, it calculates the probability of a class being correct, given the evidence provided by the input features. The key simplification—the "naive" part—is the assumption that all features are conditionally independent. For example, in classifying an email, the model would assume that the word "money" appearing has no bearing on whether the word "free" also appears. While this is clearly not true in reality, the assumption dramatically simplifies the computation, making the algorithm extremely fast and efficient. It often serves as a great baseline model, especially for problems involving text data where it can handle a very large number of features (e.g., a vocabulary of thousands of words).
 
-#### 5. Random Forest Classifier
+## 5. Random Forest Classifier
 
 An ensemble learning method that operates by constructing a multitude of decision trees during training and outputting the majority vote of the individual trees.
 
@@ -803,7 +803,7 @@ print(f"Random Forest Classifier Accuracy: {accuracy:.4f}")
 
 A Random Forest is one of the most popular and powerful "out-of-the-box" classifiers. It directly addresses the main weakness of a single decision tree: its tendency to overfit the training data. By building hundreds of trees, each on a slightly different version of the data and with slightly different rules (due to the random feature subsetting), the errors of the individual trees tend to cancel each other out. The final prediction is determined by a democratic vote among all the trees. This ensemble approach makes Random Forests highly accurate, robust to outliers, and less sensitive to hyperparameter tuning than many other models. They can also naturally provide measures of feature importance by evaluating how much each feature contributes to reducing impurity across all the trees in the forest.
 
-#### 6. AdaBoost/LGBM/CatBoost/XGBoost Classifier
+## 6. AdaBoost/LGBM/CatBoost/XGBoost Classifier
 
 A family of powerful ensemble models based on the "boosting" technique, where models are built sequentially, with each new model focusing on correcting the errors of the previous ones.
 
@@ -839,7 +839,7 @@ print(f"XGBoost Classifier Accuracy: {accuracy:.4f}")
 
 Boosting models represent the pinnacle of performance for many tabular data problems. The core idea is to learn from mistakes. The first tree makes some predictions, and the algorithm identifies all the samples it got wrong. The second tree is then trained with a specific focus on getting these difficult samples right. The third tree focuses on the remaining errors from the combined first two trees, and so on. This sequential, error-correcting process allows the model to build a highly nuanced and accurate decision function. Implementations like XGBoost and LightGBM add numerous optimizations on top of this core idea, including regularization to prevent overfitting, efficient tree-building algorithms, and the ability to handle missing values, making them the go-to choice for competitive data science.
 
-#### 7. Kernel Approximation
+## 7. Kernel Approximation
 
 A technique used to preprocess data, allowing linear models to learn non-linear relationships on a very large scale.
 
@@ -882,7 +882,7 @@ Kernel Approximation solves a critical scalability problem. Kernel methods like 
 
 ***
 
-### **Questions**
+# **Questions**
 
 #### 1. Why use a loss function or fancy algorithms? Can't accuracy be optimized directly?
 
