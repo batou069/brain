@@ -21,5 +21,7 @@
   "obsidian-git",
   "mermaid-themes",
   "obsidian-local-rest-api",
-  "editing-toolbar"
+  "editing-toolbar",
+  "css-snippets",
+  "settings-management"
 ]

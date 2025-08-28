@@ -9,12 +9,100 @@ you are provided with a worksheet filled with keywords and questions.
 For the following keywords , provide answers in bullet point format and the following answers if applicable.
 
 1) Short Description/what is it/one-sentence
+2) What is it good for? Why is# Input
+
+New Worksheet, new chapter: "Collaborative Filtering" in context of our project of "Movie recommendation system" which we built the infrastructure for, based on the movielens100k data set
+
+you are provided with a worksheet filled with keywords and questions.
+
+For the following keywords , provide answers in bullet point format and the following answers if applicable.
+
+1) Short Description/what is it/one-sentence
 2) What is it good for? Why is it done?
 3) 3-5 bullet points with more details, dont just stretch sentences, actually inject more information
 4) Examples, can be conceptual, analogy, or (preferred) real python code, if possible both a ready  implementation by a library like sklearn, and a from-scratch version.
 5) If possible some math, using Latex and explanations. It should explain how it works, why it works, etc
 6) if applicaple a mermaid diagram/graph compliant with obsidians mermaid version: no spaces in names, dont get too crazy with styling, keep it minimal and functional 
 7) If you mention any new term that is not part of the worksheet (like a specific type of a high-level keyword - for example keyword is optimization and your answer mentions 2 examples for optimization techniques), then make a seperate "chapter" for that new keyword in the same format (point 1-5) - never mention something datascience related or machine learning related without properly explaining it
+
+IMPORTANT: The output will be copied into obsidian, therefore your answer should be markdown inside a 4-backtick codeblock, such that following embedded 3tick codeblocks won't be disturbed
+
+For the questions, provide a short answer and a long answer
+
+```
+# Keywords
+
+1. Matrix Factorization
+2. Singular Value Decomposition
+3. Latent vectors
+4. Alternating Least Squares
+5. Implicit vs. explicit feedback
+6. Cold start problem
+7. Normalized Discounted Cumulative Gain
+8. Mean Reciprocal Rank
+9. Concept Drift
+
+# Questions
+
+1. When would you prefer to use ALS rather than SGD?
+2. When would you move users from the “cold start" group to the "I know you" group?
+3. Are there material differences when using MF vs. SVD for the use case of CF?
+4. Does MF work better for binary data rather than, i.e. 1-10 score a user ranked an item?
+5. How do you decide on the size of the vector to represent a user/item?
+6. What can you do if you want to incorporate additional data to the model? e.g. movie length, is it technicolor, or did Sean Connery appear in it?
+7. How would adding a row/column of zeros (user/item cold start) affect MF?
+8. Would you use any of these methods if you had 10m items to recommend?
+9. Why/how is regularization important in this domain?
+10. Are the latent vectors meaningful in any way?
+11. How would you decide on the retraining schedule for your model?
+```
+
+---
+
+​￼# Output
+​￼## Chapter: Collaborative Filtering
+
+​￼### Keywords
+
+​￼#### 1. Matrix Factorization
+1.  **Short Description:** Matrix Factorization (MF) is a class of collaborative filtering algorithms that decomposes a large user-item interaction matrix into two smaller, lower-dimensional matrices representing latent user and item features.
+2.  **What is it good for?** It's excellent at finding latent (hidden) features that explain the observed user-item interactions (like movie ratings), enabling the prediction of missing ratings and thus, generating personalized recommendations. It's also computationally efficient and scalable for sparse matrices, which are common in recommendation scenarios.
+​￼3.  **Details:**
+    * The core idea is that user preferences can be modeled by a small number of hidden factors. For movies, these could be genres, actor preferences, director styles, or more abstract concepts the model learns on its own.
+    * The two resulting matrices are the "user-feature matrix" (P) and the "item-feature matrix" (Q). Matrix P has a row for each user and k columns for the latent features. Matrix Q has a row for each item and k columns for the same latent features.
+    * To predict a user's rating for an item, you compute the dot product of that user's vector from P and that item's vector from Q.
+    * The process of finding P and Q is an optimization problem: we want to find matrices P and Q such that their product, P @ Q.T, is as close as possible to the original ratings matrix R for the known ratings.
+​￼4.  **Examples:**
+    * **Analogy:** Imagine you have a grid of people's ratings for different foods. Matrix factorization is like discovering that the underlying factors driving these ratings are "sweetness" and "spiciness". It then gives each person a score for how much they like sweetness vs. spiciness, and each food a score for how sweet and spicy it is. To predict if someone will like a new food, you just see how well their preferences align with the food's characteristics.
+    ​￼* **Python (Library - `scikit-learn` using `TruncatedSVD` as a proxy):**
+        ```python
+        import numpy as np
+        from sklearn.decomposition import TruncatedSVD
+
+        # User-Item Matrix (Users x Movies), 0 means not rated
+        ​￼R = np.array([
+            [5, 3, 0, 1],
+            [4, 0, 0, 1],
+            [1, 1, 0, 5],
+            [1, 0, 0, 4],
+            [0, 1, 5, 4],
+        ])
+
+        # Use TruncatedSVD which works on sparse matrices
+        # n_components is the number of latent factors (k)
+        svd = TruncatedSVD(n_components=2, random_state=42)
+        
+        # Factorize the matrix
+        user_features = svd.fit_transform(R) # This is our P matrix
+        item_features = svd.components_      # This is our Q matrix
+
+        # Predict all ratings (including the ones we already know)
+    * **Normalized DCG (NDCG):** An improvement on DCG. It normalizes the DCG score by the score of the *ideal* ranking (IDCG), which is the best possible DCG for that user. This makes the score fall between 0 and 1, allowing  it done?
+1) 3-5 bullet points with more details, dont just stretch sentences, actually inject more information
+2) Examples, can be conceptual, analogy, or (preferred) real python code, if possible both a ready  implementation by a library like sklearn, and a from-scratch version.
+3) If possible some math, using Latex and explanations. It should explain how it works, why it works, etc
+4) if applicaple a mermaid diagram/graph compliant with obsidians mermaid version: no spaces in names, dont get too crazy with styling, keep it minimal and functional 
+5) If you mention any new term that is not part of the worksheet (like a specific type of a high-level keyword - for example keyword is optimization and your answer mentions 2 examples for optimization techniques), then make a seperate "chapter" for that new keyword in the same format (point 1-5) - never mention something datascience related or machine learning related without properly explaining it
 
 IMPORTANT: The output will be copied into obsidian, therefore your answer should be markdown inside a 4-backtick codeblock, such that following embedded 3tick codeblocks won't be disturbed
 

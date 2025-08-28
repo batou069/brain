@@ -310,7 +310,7 @@ The required amount of data also depends on the complexity of the problem: the n
     * **Pros/Cons:** It's very fast to compute but can be biased. It tends to inflate the importance of high-cardinality features and continuous features.
 
 2.  **Permutation Importance:** This is a more robust and reliable method.
-    * **How it works:** First, you train the forest and calculate its accuracy (or another score) on a validation set. Then, for a single feature, you randomly shuffle its values in the validation set, breaking the relationship between that feature and the target. You then re-evaluate the model's accuracy on this shuffled data. The "importance" of the feature is the amount by which the model's accuracy dropped. This is repeated for all features.
+    * **How it works:** First, you train the forest and calculate its accuracy (or another score) on a validation set. Then, for a single feature, you randomly shuffle its values in the validation set, breaking the relationship between that feature and the target. You then re-evaluate the model's accuracy on this shuffled data. The "importance" of the feature is the amount by which tature is the amount by which the model's accuracy dropped.he model's accuracy dropped. This is repeated for all features.
     * **Pros/Cons:** It's much less biased and more directly measures a feature's impact on predictive performance. However, it is much more computationally expensive.
 
 ---
