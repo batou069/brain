@@ -1,3 +1,11 @@
+---
+tags:
+  - article
+  - ensemble_methods
+  - boosting
+  - gradient_boosting
+  - adaboost
+---
 # Tree-based ensemble algorithms
 
 **Ensemble algorithms and particularly those that utilize decision trees as weak learners have multiple advantages compared to other algorithms:**

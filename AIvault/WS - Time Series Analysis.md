@@ -713,8 +713,6 @@ https://www.geeksforgeeks.org/python/how-to-deal-with-missing-values-in-a-timese
 
 ## Models
 
----
-
 ### 1. Naive Model
 1.  **Short Description:** The Naive Model is the simplest forecasting method where the forecast for the next period is simply the value from the current period.
 2.  **What is it good for?:** It serves as a crucial **baseline** for evaluating more complex models. If your sophisticated model cannot perform better than the naive forecast, it is not adding any value.
@@ -745,7 +743,160 @@ https://www.geeksforgeeks.org/python/how-to-deal-with-missing-values-in-a-timese
 
 ---
 
-### 3. Autoregression (AR, ARMA, ARIMA, SARIMA, VAR)
+### 3. Autoregression and Related Models (AR, MA, ARMA, ARIMA, SARIMA, VAR)
+
+#### Comparison of Autoregressive Time Series Models
+
+| Feature                            | AR (Autoregressive)                                                                    | MA (Moving Average)                                                                              | ARMA (Autoregressive Moving Average)                                                  | ARIMA (Autoregressive Integrated M.A.)                                                      | SARIMA (Seasonal ARIMA)                                                                                                | VAR (Vector Autoregression)                                                                                                              |
+| :--------------------------------- | :------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
+| **Full Name**                      | Autoregressive Model                                                                   | Moving Average Model                                                                             | Autoregressive Moving Average Model                                                   | Autoregressive Integrated Moving Average Model                                              | Seasonal Autoregressive Integrated Moving Average Model                                                                | Vector Autoregressive Model                                                                                                              |
+| **Core Idea**                      | The current value is a linear combination of its own **past values**. Models momentum. | The current value is a linear combination of **past forecast errors**. Models short-term shocks. | Combines both AR and MA components. Models momentum and shocks together.              | An ARMA model applied to **differenced data**. It integrates differencing to handle trends. | An ARIMA model with additional **seasonal components** to handle seasonality.                                          | Models multiple time series together, where each variable depends on its own past values **and** the past values of the other variables. |
+| **Best Use Case**                  | For stationary series with persistent, momentum-like effects.                          | For stationary series that are affected by random, short-lived shocks.                           | For complex stationary series that have both momentum and shock-like characteristics. | For **non-stationary** series with a clear **trend** but no obvious seasonality.            | For **non-stationary** series with both a **trend and clear seasonality**. The workhorse for many real-world datasets. | For **multivariate** stationary series where variables are believed to influence each other.                                             |
+| **Data Requirements**              | **Stationary**                                                                         | **Stationary**                                                                                   | **Stationary**                                                                        | **Non-Stationary** (handles trend)                                                          | **Non-Stationary** (handles trend & seasonality)                                                                       | All series must be **Stationary**                                                                                                        |
+| **Parameters**                     | `p`: AR order (from PACF)                                                              | `q`: MA order (from ACF)                                                                         | `p`: AR order <br> `q`: MA order                                                      | `p`: AR order <br> `d`: Differencing order <br> `q`: MA order                               | `(p,d,q)`: Non-seasonal orders <br> `(P,D,Q)m`: Seasonal orders & period                                               | `p`: AR order (for the entire system)                                                                                                    |
+| **Univariate /<br> Multivariate?** | Univariate                                                                             | Univariate                                                                                       | Univariate                                                                            | Univariate                                                                                  | Univariate                                                                                                             | **Multivariate**                                                                                                                         |
+
+---
+
+#### • AR (Autoregressive) Model
+1.  **Short Description:** An autoregressive (AR) model predicts future behavior based on past behavior, assuming the current value of a series is a linear combination of its own prior values.
+2.  **What is it good for?:** It's excellent for modeling time series that exhibit **momentum** or inertia, where a value observed in one period is likely to be similar to the value in the preceding period.
+3.  **Details:**
+    * The "auto" part means "self"; it's a regression of the series against itself.
+    * The model's order, denoted as **p** in **AR(p)**, specifies how many previous (lagged) values are included in the model.
+    * The appropriate order `p` is typically determined by inspecting the **Partial Autocorrelation (PACF)** plot, looking for a sharp cutoff.
+    * AR models require the time series to be **stationary** before they can be applied.
+4.  **Examples:**
+    * **Conceptual:** Forecasting the temperature for the next hour. The most important predictor is the temperature from the previous hour. An AR(1) model would capture this relationship directly.
+    * **Analogy:** Think of a large ship turning. Its position and heading in the next minute are heavily dependent on its position and heading from the last minute due to its immense momentum. An AR model captures this persistence.
+5.  **The Math Corner:**
+    An AR(p) model is mathematically defined as:
+    $$
+    Y_t = c + \phi_1 Y_{t-1} + \phi_2 Y_{t-2} + ... + \phi_p Y_{t-p} + \epsilon_t
+    $$
+    Where:
+    * $Y_t$ is the value of the series at time $t$.
+    * $c$ is a constant (intercept).
+    * $\phi_i$ are the model parameters for each lag.
+    * $Y_{t-i}$ are the past values (lags) of the series.
+    * $\epsilon_t$ is the white noise error term at time $t$.
+
+---
+
+#### • MA (Moving Average) Model
+1.  **Short Description:** A Moving Average (MA) model assumes the current value is a linear combination of past **forecast errors**, effectively modeling the "shocks" to the system.
+2.  **What is it good for?:** It's used to model unpredictable events whose effects are felt for a short, finite period. It captures dependencies between an observation and the residual errors from previous periods.
+3.  **Details:**
+    * This is fundamentally different from the "moving average" used for smoothing. An MA model is a regression-like model based on past white noise error terms.
+    * The model's order, denoted as **q** in **MA(q)**, specifies how many past error terms are included. An MA(q) model's memory of past shocks is limited to `q` periods.
+    * The appropriate order `q` is typically determined by inspecting the **Autocorrelation (ACF)** plot, looking for a sharp cutoff.
+    * MA models are always stationary, regardless of the values of their parameters.
+4.  **Examples:**
+    * **Conceptual:** A company's stock price might experience a sudden drop due to unexpected bad news. An MA model could capture how this "shock" (error) affects the stock price for a few days before its effect dissipates.
+    * **Analogy:** The ripple effect after tossing a pebble into a calm pond. The initial "shock" (the pebble) creates a disturbance that is visible for a few subsequent ripples (the MA terms), but soon after, the pond returns to its calm state. The model remembers the pebble's impact for a short while.
+5.  **The Math Corner:**
+    An MA(q) model is defined as:
+    $$
+    Y_t = \mu + \epsilon_t + \theta_1 \epsilon_{t-1} + ... + \theta_q \epsilon_{t-q}
+    $$
+    Where:
+    * $\mu$ is the mean of the series.
+    * $\epsilon_t$ is the current error term.
+    * $\theta_i$ are the model parameters for each past error term.
+    * $\epsilon_{t-i}$ are the past error terms.
+
+---
+
+#### • ARMA (Autoregressive Moving Average) Model
+1.  **Short Description:** An ARMA model combines both Autoregressive (AR) and Moving Average (MA) components into a single, more flexible model.
+2.  **What is it good for?:** It's used for modeling complex stationary time series that exhibit characteristics of both momentum (AR) and short-term shocks (MA).
+3.  **Details:**
+    * It describes a series based on a linear combination of its past values (the AR part) and its past forecast errors (the MA part).
+    * The model order is defined by two parameters: **ARMA(p, q)**, where `p` is the order of the AR part and `q` is the order of the MA part.
+    * Like AR models, ARMA models require the time series to be **stationary**.
+    * It provides a more parsimonious (simpler) model for certain series than a pure AR or pure MA model might.
+4.  **Examples:**
+    * **Conceptual:** Forecasting daily website traffic. The traffic at 9 AM is related to the traffic at 8 AM (AR part), but it's also affected by the "shock" of a marketing email sent out at 8:30 AM (MA part).
+    * **Analogy:** Driving a car in gusty wind. Your future position depends on your recent position and speed (AR part), but it's also affected by the random, short-lived gusts of wind that push the car around (MA part).
+
+5.  **The Math Corner:**
+    An ARMA(p,q) model combines the equations of the AR(p) and MA(q) models:
+    $$
+    Y_t = c + \phi_1 Y_{t-1} + ... + \phi_p Y_{t-p} + \epsilon_t + \theta_1 \epsilon_{t-1} + ... + \theta_q \epsilon_{t-q}
+    $$
+
+---
+
+#### • ARIMA (Autoregressive Integrated Moving Average) Model
+1.  **Short Description:** An ARIMA model is an extension of ARMA that includes an "Integrated" (I) component, which involves differencing the data to handle non-stationarity.
+2.  **What is it good for?:** ARIMA is the workhorse of classical forecasting. It can model **non-stationary** time series that have a clear **trend** (but not seasonality).
+3.  **Details:**
+    * The model order is defined by three parameters: **ARIMA(p, d, q)**.
+        * **p:** The order of the AR part.
+        * **d:** The order of differencing. This is the number of times the data is differenced to become stationary.
+        * **q:** The order of the MA part.
+    * The core idea is simple: if a series has a trend, first difference it one or more times to remove the trend and make it stationary. Then, apply an ARMA(p, q) model to the resulting stationary series.
+4.  **Examples:**
+    * **Conceptual:** Forecasting a country's GDP, which has a clear upward trend. An ARIMA model would first look at the year-over-year *growth* of GDP (which is more stationary than the GDP level itself), and then model that growth series.
+    * **Python Code:**
+    ```python
+    from statsmodels.tsa.arima.model import ARIMA
+    
+    # Assume 'time_series' is a pandas Series with a trend
+    # We choose order (p=1, d=1, q=1)
+    model = ARIMA(time_series, order=(1, 1, 1))
+    model_fit = model.fit()
+    print(model_fit.summary())
+    # Generate forecast
+    forecast = model_fit.forecast(steps=12)
+    ```
+
+---
+
+#### • SARIMA (Seasonal ARIMA) Model
+1.  **Short Description:** A SARIMA model is a powerful extension of ARIMA that adds seasonal components to model time series with predictable, recurring patterns.
+2.  **What is it good for?:** It is the go-to statistical model for data with both a **trend and seasonality**, such as retail sales, energy consumption, or airline passenger data.
+3.  **Details:**
+    * The model includes a second set of parameters for the seasonal part: **SARIMA(p,d,q)(P,D,Q)m**.
+        * **(p, d, q):** The non-seasonal ARIMA parameters.
+        * **(P, D, Q):** The seasonal parameters. `P` is the seasonal AR order, `D` is the seasonal differencing order, and `Q` is the seasonal MA order.
+        * **m:** The number of time steps in a single seasonal period (e.g., m=12 for monthly data with yearly seasonality).
+    * For example, a seasonal AR(1) component would mean the current value is related to the value from one full season ago ($Y_{t-m}$).
+4.  **Examples:**
+    * **Conceptual:** Forecasting monthly ice cream sales. The model needs to account for the general year-over-year increase in sales (the ARIMA part) as well as the predictable spike that occurs every summer (the SARIMA part).
+    * **Python Code:**
+    ```python
+    # Assume 'seasonal_time_series' is a monthly pandas Series
+    # We choose non-seasonal order (1,1,1) and seasonal order (1,1,1,12)
+    model = ARIMA(seasonal_time_series, 
+                  order=(1, 1, 1), 
+                  seasonal_order=(1, 1, 1, 12))
+    model_fit = model.fit()
+    forecast = model_fit.forecast(steps=12)
+    ```
+
+---
+
+#### • VAR (Vector Autoregression) Model
+1.  **Short Description:** A Vector Autoregression (VAR) model is a multivariate forecasting algorithm that models the interdependencies among multiple time series.
+2.  **What is it good for?:** It's used when you have several variables that influence each other over time and you want to forecast them all simultaneously. It's common in econometrics and finance.
+3.  **Details:**
+    * In a VAR model, each variable is modeled as a linear combination of its own past values **and** the past values of all other variables in the system.
+    * It's essentially a system of simultaneous AR models, one for each variable.
+    * It's great for analyzing how a shock to one variable spreads through the system to affect the other variables (known as impulse response analysis).
+    * All series in the VAR model must be stationary.
+4.  **Examples:**
+    * **Conceptual:** Modeling the relationship between interest rates, inflation, and unemployment. A change in interest rates today is expected to affect future inflation and unemployment, and vice-versa. A VAR model can capture these complex, dynamic relationships.
+    * **Analogy:** Modeling a predator-prey ecosystem (e.g., foxes and rabbits). The future rabbit population depends on both the past rabbit population (reproduction) and the past fox population (predation). Similarly, the future fox population depends on both. VAR models this two-way, interconnected system.
+5.  **The Math Corner:**
+    For a simple two-variable VAR(1) model (with variables $Y_1$ and $Y_2$), the system of equations is:
+    $$
+    Y_{1,t} = c_1 + \phi_{11,1} Y_{1,t-1} + \phi_{12,1} Y_{2,t-1} + \epsilon_{1,t}
+    $$
+    $$
+    Y_{2,t} = c_2 + \phi_{21,1} Y_{1,t-1} + \phi_{22,1} Y_{2,t-1} + \epsilon_{2,t}
+    $$
+    Notice how the current value of each variable ($Y_{1,t}$ and $Y_{2,t}$) depends on the lagged values of **both** variables.
 
 ---
 
@@ -965,8 +1116,6 @@ https://www.geeksforgeeks.org/python/how-to-deal-with-missing-values-in-a-timese
 
 
 # Datasets
-
-Below is a list of time series datasets available on Kaggle that can be used for time series problems, along with a brief description of each, including whether they are univariate or multivariate. These datasets are suitable for practicing time series analysis and forecasting, as outlined in the "Time Series" worksheet context. The selection focuses on datasets relevant for statistical and machine learning approaches, excluding neural network-specific applications as per your requirements.
 
 ## Time Series Datasets on Kaggle
 

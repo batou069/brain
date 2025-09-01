@@ -11,6 +11,7 @@ tags:
   - concept
   - differencing
   - stationarity
+  - sktime
 aliases:
   - ARIMA Models
   - ARMA
@@ -18,6 +19,9 @@ aliases:
   - MA
   - ARIMA
   - Autoregressive Integrated Moving Average
+  - ARIMA(p
+  - d
+  - q)
 related:
   - "[[_Time_Series_Analysis_MOC|_Time_Series_Analysis_MOC]]"
   - "[[TS_Autoregressive_AR_Model]]"
@@ -50,22 +54,22 @@ The models are built from three main components:
 ## The Models
 
 [list2tab|#ARIMA Family]
-- [[TS_Autoregressive_AR_Model|AR(p) - Autoregressive Model]]
+- AR(p) - Autoregressive Model
     -   **Concept:** A regression of the variable against its own past (lagged) values. The current value $Y_t$ is a linear combination of its previous $p$ values plus a white noise error term.
     -   **Equation:** $Y_t = c + \phi_1 Y_{t-1} + \phi_2 Y_{t-2} + \dots + \phi_p Y_{t-p} + \epsilon_t$
     -   **Parameter ($p$):** The order of the AR model, representing the number of lag observations included.
     -   **Identification:** The [[TS_Autocorrelation_ACF_PACF|PACF plot]] cuts off after lag $p$.
-- [[TS_Moving_Average_MA_Model|MA(q) - Moving Average Model]]
+- MA(q) - Moving Average Model
     -   **Concept:** The current value $Y_t$ is a linear combination of the current and past white noise error terms. It models the "shocks" or random errors of the process.
     -   **Equation:** $Y_t = \mu + \epsilon_t + \theta_1 \epsilon_{t-1} + \theta_2 \epsilon_{t-2} + \dots + \theta_q \epsilon_{t-q}$
     -   **Parameter ($q$):** The order of the MA model, representing the number of lagged forecast errors in the prediction equation.
     -   **Identification:** The [[TS_Autocorrelation_ACF_PACF|ACF plot]] cuts off after lag $q$.
-- [[TS_ARMA_Model|ARMA(p,q) - Autoregressive Moving Average Model]]
+- ARMA(p,q) - Autoregressive Moving Average Model
     -   **Concept:** A combination of AR and MA models. It models the current value $Y_t$ based on both its own past values and past error terms.
     -   **Equation:** Combines the AR and MA equations.
     -   **Parameters ($p, q$):** The orders of the AR and MA components, respectively.
     -   **Identification:** Both ACF and PACF plots tail off gradually.
-- [[TS_ARIMA_Model|ARIMA(p,d,q) - Autoregressive Integrated Moving Average Model]]
+- ARIMA(p,d,q) - Autoregressive Integrated Moving Average Model
     -   **Concept:** An extension of the ARMA model that can be applied to **non-stationary** time series.
     -   **Parameter ($d$):** The **order of differencing**. It represents the number of times the raw observations are differenced to make the series stationary before fitting the ARMA(p,q) model.
     -   **Process:**
@@ -73,7 +77,7 @@ The models are built from three main components:
         2.  Identify the $p$ and $q$ orders for the differenced series using ACF/PACF plots.
         3.  Fit the ARMA(p,q) model to the differenced series.
         4.  To forecast, the model's predictions for the differenced series are "integrated" (undifferenced) to return them to the original scale.
-- [[TS_SARIMA_Model|SARIMA(p,d,q)(P,D,Q)m - Seasonal ARIMA]]
+- SARIMA(p,d,q)(P,D,Q)m - Seasonal ARIMA
     -   **Concept:** An extension of ARIMA that explicitly supports time series data with a **seasonal component**.
     -   **Parameters:**
         -   `(p,d,q)`: The non-seasonal part of the model (as in ARIMA).
@@ -176,26 +180,26 @@ data = co2.load_pandas().data
 y = data['co2'].resample('MS').mean().ffill()
 
 # 1. Identification
-# y.plot(title='Monthly CO2 Levels')
-# plt.show() # Shows a clear upward trend -> non-stationary
+y.plot(title='Monthly CO2 Levels')
+plt.show() # Shows a clear upward trend -> non-stationary
 
 # Check for stationarity
-# adf_result = adfuller(y)
-# print(f'ADF Test p-value: {adf_result:.4f}') # p-value will be high -> non-stationary
+adf_result = adfuller(y)
+print(f'ADF Test p-value: {adf_result:.4f}') # p-value will be high -> non-stationary
 
 # Difference the data to make it stationary
-# y_diff = y.diff().dropna()
-# y_diff.plot(title='First-Differenced CO2 Levels')
-# plt.show() # Trend is gone, but seasonality remains
+y_diff = y.diff().dropna()
+y_diff.plot(title='First-Differenced CO2 Levels')
+plt.show() # Trend is gone, but seasonality remains
 
-# adf_result_diff = adfuller(y_diff)
-# print(f'ADF Test p-value on differenced data: {adf_result_diff:.4f}') # p-value will be low -> stationary
+adf_result_diff = adfuller(y_diff)
+print(f'ADF Test p-value on differenced data: {adf_result_diff:.4f}') # p-value will be low -> stationary
 
 # Now, find p and q from ACF/PACF of the differenced series
-# fig, axes = plt.subplots(1, 2, figsize=(16, 4))
-# plot_acf(y_diff, ax=axes, lags=40)
-# plot_pacf(y_diff, ax=axes, lags=40)
-# plt.show()
+fig, axes = plt.subplots(1, 2, figsize=(16, 4))
+plot_acf(y_diff, ax=axes, lags=40)
+plot_pacf(y_diff, ax=axes, lags=40)
+plt.show()
 # The ACF/PACF plots will show significant spikes at seasonal lags (12, 24),
 # indicating that a SARIMA model is actually more appropriate.
 # However, for a simple ARIMA example, we might observe the non-seasonal part.
@@ -204,39 +208,39 @@ y = data['co2'].resample('MS').mean().ffill()
 # 2. Estimation
 # Fit an ARIMA(1,1,1) model to the original data
 # The model will handle the d=1 differencing internally.
-# try:
-#     model = ARIMA(y, order=(1, 1, 1))
-#     model_fit = model.fit()
-# except Exception as e:
-#     print(f"Model fitting failed, likely due to data issues or statsmodels version: {e}")
-#     model_fit = None # Ensure it's defined
+try:
+    model = ARIMA(y, order=(1, 1, 1))
+    model_fit = model.fit()
+except Exception as e:
+    print(f"Model fitting failed, likely due to data issues or statsmodels version: {e}")
+    model_fit = None # Ensure it's defined
 
 # 3. Diagnostic Checking
-# if model_fit:
-#     print(model_fit.summary())
-#     # Plot residuals
-#     residuals = pd.DataFrame(model_fit.resid)
-#     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12,4))
-#     residuals.plot(title="Residuals", ax=ax1)
-#     plot_acf(residuals, ax=ax2, title="Residuals ACF")
-#     plt.show()
-#     # We would still see seasonality in the residuals, confirming SARIMA is better.
+if model_fit:
+    print(model_fit.summary())
+    # Plot residuals
+    residuals = pd.DataFrame(model_fit.resid)
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12,4))
+    residuals.plot(title="Residuals", ax=ax1)
+    plot_acf(residuals, ax=ax2, title="Residuals ACF")
+    plt.show()
+    # We would still see seasonality in the residuals, confirming SARIMA is better.
 
 # 4. Forecasting
-# if model_fit:
-#     # Forecast the next 36 months (3 years)
-#     forecast = model_fit.get_forecast(steps=36)
-#     forecast_ci = forecast.conf_int() # Get confidence intervals
+if model_fit:
+    # Forecast the next 36 months (3 years)
+    forecast = model_fit.get_forecast(steps=36)
+    forecast_ci = forecast.conf_int() # Get confidence intervals
 
-#     ax = y.plot(label='Observed', figsize=(12, 6))
-#     forecast.predicted_mean.plot(ax=ax, label='Forecast')
-#     ax.fill_between(forecast_ci.index,
-#                     forecast_ci.iloc[:, 0],
-#                     forecast_ci.iloc[:, 1], color='k', alpha=.25)
-#     ax.set_xlabel('Date')
-#     ax.set_ylabel('CO2 Levels')
-#     plt.legend()
-#     plt.show()
+    ax = y.plot(label='Observed', figsize=(12, 6))
+    forecast.predicted_mean.plot(ax=ax, label='Forecast')
+    ax.fill_between(forecast_ci.index,
+                    forecast_ci.iloc[:, 0],
+                    forecast_ci.iloc[:, 1], color='k', alpha=.25)
+    ax.set_xlabel('Date')
+    ax.set_ylabel('CO2 Levels')
+    plt.legend()
+    plt.show()
 ```
 > **Note:** This example intentionally uses a simple ARIMA on seasonal data to illustrate the process. The diagnostic step correctly reveals that a [[TS_SARIMA_Model|SARIMA]] model would be a better choice to capture the seasonality.
 
@@ -375,5 +379,123 @@ y = data['co2'].resample('MS').mean().ffill()
 > **Note:** This example intentionally uses a simple ARIMA on seasonal data to illustrate the process. The diagnostic step correctly reveals that a [[TS_SARIMA_Model|SARIMA]] model would be a better choice to capture the seasonality.
 
 ARIMA models are a powerful and flexible class of models for univariate time series forecasting, especially for data with trends.
+
+---
+
+# ARIMA (Autoregressive Integrated Moving Average) Model
+
+## Definition
+An **Autoregressive Integrated Moving Average (ARIMA)** model is a generalization of the simpler [[TS_ARMA_Model|Autoregressive Moving Average (ARMA)]] model. ARIMA models are a class of statistical models for analyzing and forecasting time series data. They are particularly powerful because they can be applied to **non-stationary** time series, which are common in real-world scenarios.
+
+The model is specified by three order parameters: **(p, d, q)**.
+
+## Components of ARIMA(p, d, q)
+1.  **AR(p) - Autoregressive Component:**
+    -   Refers to the use of past values of the time series to predict the current value.
+    -   **$p$** is the **order of the autoregressive part**, indicating how many lagged observations are included in the model. This is determined by the [[TS_Autocorrelation_ACF_PACF|PACF plot]].
+2.  **I(d) - Integrated Component:**
+    -   Refers to the **degree of differencing** applied to the time series to make it stationary.
+    -   **$d$** is the **order of differencing**.
+        -   $d=0$: The series is already stationary (model is ARMA).
+        -   $d=1$: The series is differenced once ($y'_t = y_t - y_{t-1}$) to remove a linear trend.
+        -   $d=2$: The series is differenced twice to remove a quadratic trend.
+    -   This component is what allows ARIMA to handle non-stationary data.
+3.  **MA(q) - Moving Average Component:**
+    -   Refers to the use of past forecast errors (random shocks) to predict the current value.
+    -   **$q$** is the **order of the moving average part**, indicating how many lagged forecast errors are included in the model. This is determined by the [[TS_Autocorrelation_ACF_PACF|ACF plot]].
+
+In essence, an ARIMA(p,d,q) model is an ARMA(p,q) model fitted to the time series after it has been differenced $d$ times.
+
+## The Box-Jenkins Methodology for ARIMA Modeling
+This is the standard iterative process for fitting an ARIMA model:
+
+1.  **Model Identification:**
+    -   **Plot the data:** Visually inspect the time series for trends, seasonality, and other patterns.
+    -   **Check for [[TS_Stationarity|Stationarity]]:** Use visual inspection (slowly decaying ACF) and statistical tests (e.g., ADF test) to determine if the series is stationary.
+    -   **Difference if necessary:** If the series is non-stationary, apply first-order differencing. Re-test for stationarity. If still not stationary, consider second-order differencing. The number of times you difference gives you the **$d$** parameter.
+    -   **Identify $p$ and $q$:** Plot the ACF and PACF of the now-stationary (differenced) series.
+        -   Look for a cut-off in the **PACF** to identify the AR order **$p$**.
+        -   Look for a cut-off in the **ACF** to identify the MA order **$q$**.
+        -   If both tail off, an ARMA model is suggested.
+2.  **Parameter Estimation:**
+    -   Fit the identified ARIMA(p,d,q) model to the original time series data.
+    -   The model uses numerical optimization methods (like Maximum Likelihood Estimation) to find the best values for the coefficients ($\phi$'s for AR part, $\theta$'s for MA part).
+3.  **Diagnostic Checking:**
+    -   Evaluate the fitted model to ensure it's adequate.
+    -   **Analyze Residuals:** The residuals of a good model should be [[TS_White_Noise_and_Random_Walks|white noise]] (i.e., have zero mean, constant variance, and no autocorrelation).
+    -   Plot the ACF of the residuals. There should be no significant spikes.
+    -   Use statistical tests like the Ljung-Box test to formally check for autocorrelation in the residuals.
+    -   If the model is inadequate, return to the identification step to try a different model order.
+    -   Compare different candidate models using information criteria like AIC (Akaike Information Criterion) or BIC (Bayesian Information Criterion), where lower values are better.
+4.  **Forecasting:**
+    -   Use the validated model to make forecasts for future time periods.
+    -   The model automatically handles the "integration" (un-differencing) to return forecasts on the original scale of the data.
+
+## Python Example with `sktime`
+`sktime` provides a convenient wrapper for `statsmodels`' ARIMA implementation, as well as `AutoARIMA` which automates the order selection process.
+
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sktime.datasets import load_airline
+from sktime.forecasting.arima import ARIMA, AutoARIMA
+from sktime.forecasting.base import ForecastingHorizon
+from sktime.utils.plotting import plot_series
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+
+# 1. Load and Split Data
+y = load_airline()
+y_train = y[y.index < "1960-01-01"]
+y_test = y[y.index >= "1960-01-01"]
+
+# 2. Identification Step (Manual)
+# The airline data has a trend and seasonality. For a non-seasonal ARIMA,
+# we need to difference it. A seasonal difference is most appropriate,
+# but for a pure ARIMA example, let's try a first difference.
+y_diff = y_train.diff().dropna()
+fig, axes = plt.subplots(1, 2, figsize=(16, 4))
+plot_acf(y_diff, ax=axes, lags=30)
+plot_pacf(y_diff, ax=axes, lags=30, method='ywm')
+plt.show()
+# The plots are complex due to remaining seasonality, but let's hypothesize
+# an ARIMA(2,1,1) based on some spikes.
+
+# 3. Fit a manually specified ARIMA model
+forecaster_manual = ARIMA(
+    order=(2, 1, 1), # (p, d, q)
+    suppress_warnings=True
+)
+forecaster_manual.fit(y_train)
+print("--- Manual ARIMA(2,1,1) Model Summary ---")
+print(forecaster_manual.summary())
+
+# 4. Fit an AutoARIMA model for comparison
+# AutoARIMA will search for the best p,d,q (and seasonal P,D,Q if sp is set)
+forecaster_auto = AutoARIMA(
+    start_p=1, start_q=1,
+    max_p=3, max_q=3,
+    d=1, # We can guide it that one difference is needed
+    suppress_warnings=True,
+    stepwise=True
+)
+print("\nFitting AutoARIMA model...")
+forecaster_auto.fit(y_train)
+print("AutoARIMA fitting complete.")
+print(f"\n--- Best Non-Seasonal ARIMA order found by AutoARIMA ---")
+print(forecaster_auto.get_fitted_params())
+
+# 5. Forecast and Evaluate
+fh = ForecastingHorizon(y_test.index, is_relative=False)
+y_pred_auto = forecaster_auto.predict(fh)
+
+# 6. Visualize
+plot_series(y_train, y_test, y_pred_auto, labels=["Train", "Test", "ARIMA Forecast"])
+plt.title("ARIMA Forecast with sktime's AutoARIMA")
+plt.show()
+```
+> **Note on `sklearn` and `tsfresh`:** `scikit-learn` does not have a native ARIMA implementation. To use an `sklearn` regressor for a non-stationary series, you would first make the series stationary using a transformer like `sktime.transformations.series.difference.Differencer`, then perform [[TS_Feature_Engineering_for_ML|feature engineering]] (e.g., creating lags of the differenced series), and finally train the `sklearn` model. `tsfresh` could be used to extract features from the differenced (stationary) series.
+
+ARIMA models are a powerful and flexible class of models for univariate time series forecasting, especially for data with trends. For data with seasonality, the [[TS_SARIMA_Model|SARIMA]] model is the appropriate extension.
 
 ---

@@ -34,22 +34,24 @@ This note outlines a comprehensive workflow using a combination of `pandas`, `nu
 
 ```mermaid
 graph TD
-    A[1. Problem Definition and Data Gathering] --> B[2. Exploratory Data Analysis]
-    B --> C[3. Data Preprocessing and Splitting]
+    A[Problem Definition and Data Gathering] --> B[Exploratory Data Analysis]
+    B --> C[Data Preprocessing and Splitting]
     C --> D{Model Selection Strategy}
-    D -->|Classical Models| E1[4a. Classical Modeling]
-    D -->|Machine Learning| E2[4b. ML Modeling]
-    E1 --> F[5. Model Evaluation]
+    D -->|Classical Models| E1[Classical Modeling]
+    D -->|Machine Learning| E2[ML Modeling]
+    E1 --> F[Model Evaluation]
     E2 --> F
     F --> G{Is Performance Adequate?}
     G -->|No| C
-    G -->|Yes| H[6. Final Model Training and Forecasting]
-    H --> I[7. Deployment and Monitoring]
+    G -->|Yes| H[Final Model Training and Forecasting]
+    H --> I[Deployment and Monitoring]
 
     subgraph Legend
         L1[Process Step]
         L2{Decision Point}
     end
+
+
 
     linkStyle 0,1,2,3,4,5,6,7,8 stroke:#FF0000,stroke-width:2px
 ```
@@ -86,12 +88,12 @@ The goal of EDA is to understand the characteristics of your time series.
         y.index = y.index.to_timestamp() # Convert to timestamp for easier plotting
 
         # Simple time series plot
-        # fig, ax = plt.subplots(figsize=(12, 5))
-        # y.plot(ax=ax, title="Airline Passengers Over Time")
-        # ax.set_xlabel("Year")
-        # ax.set_ylabel("Number of Passengers")
-        # plt.grid(True)
-        # plt.show()
+        fig, ax = plt.subplots(figsize=(12, 5))
+        y.plot(ax=ax, title="Airline Passengers Over Time")
+        ax.set_xlabel("Year")
+        ax.set_ylabel("Number of Passengers")
+        plt.grid(True)
+        plt.show()
         ```
 - Decompose the Series
     -   **Action:** Use a decomposition method to separate the series into trend, seasonal, and residual components.
@@ -104,10 +106,10 @@ The goal of EDA is to understand the characteristics of your time series.
         from statsmodels.tsa.seasonal import STL
 
         # STL is a robust decomposition method
-        # stl_result = STL(y, period=12).fit()
-        # fig = stl_result.plot()
-        # fig.suptitle("STL Decomposition of Airline Data", y=1.02)
-        # plt.show()
+        stl_result = STL(y, period=12).fit()
+        fig = stl_result.plot()
+        fig.suptitle("STL Decomposition of Airline Data", y=1.02)
+        plt.show()
         ```
 - Check for Stationarity
     -   **Action:** Use visual plots (ACF) and statistical tests (ADF, KPSS) to check for [[TS_Stationarity|stationarity]].
@@ -118,14 +120,27 @@ The goal of EDA is to understand the characteristics of your time series.
         ```python
         from statsmodels.tsa.stattools import adfuller
         from statsmodels.graphics.tsaplots import plot_acf
-
-        # adf_p_value = adfuller(y)
-        # print(f"ADF Test p-value on original data: {adf_p_value:.4f}") # Will be high
-
-        # fig, ax = plt.subplots(figsize=(10, 4))
-        # plot_acf(y, ax=ax, lags=40)
-        # plt.title("ACF of Original Airline Data (Slow Decay)")
-        # plt.show()
+        
+        # Perform the Augmented Dickey-Fuller test
+        adf_result = adfuller(y)
+        
+        # The adfuller function returns a tuple:
+        # 0: The ADF statistic
+        # 1: The p-value
+        # 2: The number of lags used
+        # 3: The number of observations used for the ADF regression and critical values calculation
+        # 4: Critical values for different significance levels (1%, 5%, 10%)
+        # 5: The maximum information criterion specified
+        
+        # Access the p-value from the tuple
+        adf_p_value = adf_result[1]
+        
+        print(f"ADF Test p-value on original data: {adf_p_value:.4f}") # Will be high
+        
+        fig, ax = plt.subplots(figsize=(10, 4))
+        plot_acf(y, ax=ax, lags=40)
+        plt.title("ACF of Original Airline Data (Slow Decay)")
+        plt.show()
         ```
 - Analyze Autocorrelation (ACF/PACF)
     -   **Action:** Plot the ACF and PACF of the *stationary* (e.g., differenced) series.
@@ -146,8 +161,8 @@ The goal of EDA is to understand the characteristics of your time series.
     # Using the airline data 'y'
     y_train = y[y.index < "1958-01-01"]
     y_test = y[y.index >= "1958-01-01"]
-    # plot_series(y_train, y_test, labels=["Train", "Test"])
-    # plt.show()
+    plot_series(y_train, y_test, labels=["Train", "Test"])
+    plt.show()
     ```
 
 ---
@@ -163,8 +178,8 @@ This is a decision point. You can pursue classical statistical models, machine l
     from sktime.forecasting.arima import AutoARIMA
     from sktime.forecasting.base import ForecastingHorizon
 
-    # forecaster_arima = AutoARIMA(sp=12, suppress_warnings=True)
-    # forecaster_arima.fit(y_train)
+    forecaster_arima = AutoARIMA(sp=12, suppress_warnings=True)
+    forecaster_arima.fit(y_train)
     ```
 
 ### 4b. Machine Learning Modeling (e.g., `sktime` with `sklearn` backend)
@@ -178,9 +193,9 @@ This is a decision point. You can pursue classical statistical models, machine l
     from sktime.forecasting.compose import make_reduction
 
     # This wraps the sklearn regressor and automatically creates lag features
-    # regressor = RandomForestRegressor(random_state=42)
-    # forecaster_rf = make_reduction(regressor, window_length=15, strategy="recursive")
-    # forecaster_rf.fit(y_train)
+    regressor = RandomForestRegressor(random_state=42)
+    forecaster_rf = make_reduction(regressor, window_length=15, strategy="recursive")
+    forecaster_rf.fit(y_train)
     ```
 
 ---

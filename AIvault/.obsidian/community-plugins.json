@@ -23,5 +23,7 @@
   "obsidian-local-rest-api",
   "editing-toolbar",
   "css-snippets",
-  "settings-management"
+  "settings-management",
+  "mermaid-tools",
+  "diagram-zoom-drag"
 ]

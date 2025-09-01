@@ -98,11 +98,12 @@ ma_params = np.array([]) # No MA component
 ar_process = ArmaProcess(ar=np.r_[1, -ar_params], ma=np.r_[1, ma_params])
 ar_data = ar_process.generate_sample(nsample=500)
 
-# fig, axes = plt.subplots(1, 2, figsize=(12, 4))
-# plot_acf(ar_data, ax=axes, lags=20, title='ACF of AR(2) Process')
-# plot_pacf(ar_data, ax=axes, lags=20, title='PACF of AR(2) Process', method='ywm')
-# plt.suptitle('AR(2) Process: ACF Tails Off, PACF Cuts Off at 2', y=1.02)
-# plt.tight_layout(); plt.show()
+fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+plot_acf(ar_data, ax=axes, lags=20, title='ACF of AR(2) Process')
+plot_pacf(ar_data, ax=axes, lags=20, title='PACF of AR(2) Process', method='ywm')
+plt.suptitle('AR(2) Process: ACF Tails Off, PACF Cuts Off at 2', y=1.02)
+plt.tight_layout()
+plt.show()
 # The PACF plot should show significant spikes at lags 1 and 2, then cut off.
 
 # --- Example 2: MA(2) Process ---
@@ -112,23 +113,25 @@ ma_params_ma = np.array([0.6, 0.3])
 ma_process = ArmaProcess(ar=np.r_[1, -ar_params_ma], ma=np.r_[1, ma_params_ma])
 ma_data = ma_process.generate_sample(nsample=500)
 
-# fig, axes = plt.subplots(1, 2, figsize=(12, 4))
-# plot_acf(ma_data, ax=axes, lags=20, title='ACF of MA(2) Process')
-# plot_pacf(ma_data, ax=axes, lags=20, title='PACF of MA(2) Process', method='ywm')
-# plt.suptitle('MA(2) Process: ACF Cuts Off at 2, PACF Tails Off', y=1.02)
-# plt.tight_layout(); plt.show()
+fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+plot_acf(ma_data, ax=axes, lags=20, title='ACF of MA(2) Process')
+plot_pacf(ma_data, ax=axes, lags=20, title='PACF of MA(2) Process', method='ywm')
+plt.suptitle('MA(2) Process: ACF Cuts Off at 2, PACF Tails Off', y=1.02)
+plt.tight_layout()
+plt.show()
 # The ACF plot should show significant spikes at lags 1 and 2, then cut off.
 
 # --- Example 3: Non-Stationary Process (Random Walk) ---
 # A random walk is non-stationary
-# np.random.seed(1)
-# random_walk = np.random.randn(500).cumsum()
+np.random.seed(1)
+random_walk = np.random.randn(500).cumsum()
 
-# fig, axes = plt.subplots(1, 2, figsize=(12, 4))
-# plot_acf(random_walk, ax=axes, lags=40, title='ACF of Non-Stationary Process')
-# plot_pacf(random_walk, ax=axes, lags=40, title='PACF of Non-Stationary Process', method='ywm')
-# plt.suptitle('Non-Stationary Process: ACF Decays Very Slowly', y=1.02)
-# plt.tight_layout(); plt.show()
+fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+plot_acf(random_walk, ax=axes, lags=40, title='ACF of Non-Stationary Process')
+plot_pacf(random_walk, ax=axes, lags=40, title='PACF of Non-Stationary Process', method='ywm')
+plt.suptitle('Non-Stationary Process: ACF Decays Very Slowly', y=1.02)
+plt.tight_layout()
+plt.show()
 # The ACF plot will show a very slow, linear decay, a classic sign of non-stationarity.
 ```
 
