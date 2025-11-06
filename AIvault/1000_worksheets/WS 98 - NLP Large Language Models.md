@@ -1,5 +1,4 @@
-## Keywords
----
+# Keywords
 
 ## **1 Pre-training**
 
@@ -1509,7 +1508,7 @@ RLHF is the critical alignment technique that bridges the gap between a model th
 ---
 ---
 
-## Questions
+# Questions
 
 ---
 

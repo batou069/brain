@@ -1,6 +1,5 @@
 # Automating mail grab
 
-api: AIzaSyDQQZwh8mWYbFaBceCTtTZmu_0CR8IJ2vI
 ### \#\# Part 1: Google API Setup (One-Time Task)
 
 This is the most tedious part, but you only have to do it once. We need to create "credentials" so our script can log in to Gmail on your behalf without storing your password.
