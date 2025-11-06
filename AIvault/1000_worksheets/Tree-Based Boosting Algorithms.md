@@ -150,7 +150,9 @@ New Sample Weight = **Sample Weight * Beta**
 
 There are two misclassified samples, Here sample weight of both sample is 0.1 and the amount of say is 0.69. New Sample Weight for both sample = 0.1 * exp(0.69) = 0.1 (1.99) = 0.2
 
-There are eight correctly classified samples, Here sample weight of all theses samples is 1/10 and the amount of say is 0.69 New Sample Weight = 0.1 * exp(-0.69) = 0.1(0.5) = 0.05 for all the 8 samples
+There are eight correctly classified samples, Here sample weigh
+​￼**Parallel Processing**
+    Z1 = np.dot(W1, X) + b1t of all theses samples is 1/10 and the amount of say is 0.69 New Sample Weight = 0.1 * exp(-0.69) = 0.1(0.5) = 0.05 for all the 8 samples
 
 ## Step 5
 
@@ -222,7 +224,13 @@ print("Accuracy:",metrics.accuracy_score(y_test, y_pred))
 
 # Gradient Boosting
 
-_As the name suggests, Gradient Boosting means Gradient Descent + Boosting. This is another very popular Boosting algorithm whose work basis is just like what we’ve seen for AdaBoost.The difference lies in what it does with the underfitted values of its predecessor. Contrary to AdaBoost, which tweaks the instance weights at every interaction, this method tries to_ **_fit the new predictor to the residual errors made by the previous predictor_**_._
+_As the name suggests, Gradient Boosting means Gradient Descent + Boosting. This is another very popular Boosting algorithm whose work basis is just like what we’ve seen for AdaBoost.The difference lies in what it does with the underfitted values of its predecessor. Contrary to AdaBoost, which tweaks the instance weights at every interaction, this method tries to_ **_fit the new predictor to the residual errors made by the previous predictor_**_.    Z1 = np.dot(W1, X) + b1
+    A1 = relu(Z1)  # Use ReLU for the hidden layer
+    Z2 = np.dot(W2, A1) + b2
+    A2 = sigmoid(Z2) # Use Sigmoid for the binary output
+    
+    cache = {"Z1": Z1, "A1": A1, "Z2": Z2, "A2": A2}
+    return A2, cache_
 
 Gradient boosting re-defines boosting as a numerical optimization problem where the objective is to **minimize the loss function** of the model by adding weak learners using a **gradient-descent like procedure**.
 
@@ -274,11 +282,14 @@ Hence the residuals for a given model are the negative gradients of the [mean sq
 
 **Gradient boosting does not modify the sample distribution as weak learners train on the remaining residual errors of a strong learner (i.e, pseudo-residuals).**
 
-```
+```python
 from sklearn.ensemble import GradientBoostingClassifier  
+
 clf = GradientBoostingClassifier()clf.fit(X_train,y_train)  
 y_pred = clf.predict(X_test)  
+
 print("Accuracy:",metrics.accuracy_score(y_test, y_pred))  
+
 #Accuracy: 0.9210526315789473
 ```
 
@@ -329,16 +340,22 @@ If None, then max_features=n_features.
 _Extreme Gradient Boosting is an advanced implementation of the Gradient Boosting. This algorithm is designed to “push the extreme of the computation limits of machines to provide a scalable , portable and accurate library.”. Moreover, It includes a variety of regularization which reduces overfitting and improves overall performance._
 
 **Parallel Processing**
-
+    Z1 = np.dot(W1, X) + b1
+    A1 = relu(Z1)  # Use ReLU for the hidden layer
+    Z2 = np.dot(W2, A1) + b2
+    A2 = sigmoid(Z2) # Use Sigmoid for the binary output
+    
+    cache = {"Z1": Z1, "A1": A1, "Z2": Z2, "A2": A2}
+    return A2, cache
 Xgboost doesn’t run multiple trees in parallel like you noted, you need predictions after each tree to update gradients.
 
 The parallelisation happens during the construction of each trees, at a very low level. Each independent branches of the tree are trained separately.
 
 ## Finding Best Split
 
-The key challenge in training a GBDT is the process of finding the best split for each leaf. When naively done, this step requires the algorithm to go through every feature of every data point. The computational complexity is thus O(n{data}n{features}).
+The key challenge in training a GBDT is the process of finding the best split for each leaf. When naively done, this step requires the algorithm to go through every feature of every data point. The computational complexity is thus $O(n\{data\}n\{features\})$.
 
-**Histogram-based methods** Often, small changes in the split don’t make much of a difference in the performance of the tree. Histogram-based methods take advantage of this fact by grouping features into a set of bins and perform splitting on the bins instead of the features. This is equivalent to sub-sampling the number of splits that the model evaluates. Since the features can be binned before building each tree, this method can greatly speed up training, reducing the computational complexity to O(n{data}n{bins}).
+**Histogram-based methods** Often, small changes in the split don’t make much of a difference in the performance of the tree. Histogram-based methods take advantage of this fact by grouping features into a set of bins and perform splitting on the bins instead of the features. This is equivalent to sub-sampling the number of splits that the model evaluates. Since the features can be binned before building each tree, this method can greatly speed up training, reducing the computational complexity to $O(n\{data\}n\{bins\})$.
 
 ## Pros of XGB:
 
@@ -365,6 +382,8 @@ print("Accuracy:",metrics.accuracy_score(y_test, y_pred))
 ```
 
 ## Hyper-parameters
+​**Parallel Processing**
+    Z1 = np.dot(W1, X) + b1
 
 **eta:** [default=0.3, alias: learning_rate], range: [0,1]
 
@@ -445,549 +464,3 @@ The type of predictor algorithm to use. Provides the same results but allows the
 - If nothing is passed in cat_features argument, CatBoost will treat all the columns as numerical variables.
 - Catboost deals with categorical features by, “generating random permutations of the dataset and for each sample computing the average label value for the sample with the same category value placed before the given one in the permutation”.
 - They also process the data with GPU acceleration, and do feature discretization into a fixed number of bins (128 and 32).
-
-[
-
-Boosting
-
-](https://medium.com/tag/boosting?source=post_page-----e7d2dbc4e4ca---------------------------------------)
-
-[
-
-Gradient Boosting
-
-](https://medium.com/tag/gradient-boosting?source=post_page-----e7d2dbc4e4ca---------------------------------------)
-
-[
-
-Adaboost
-
-](https://medium.com/tag/adaboost?source=post_page-----e7d2dbc4e4ca---------------------------------------)
-
-[
-
-Xgboost
-
-](https://medium.com/tag/xgboost?source=post_page-----e7d2dbc4e4ca---------------------------------------)
-
-[
-
-Extreme Gradient Boosting
-
-](https://medium.com/tag/extreme-gradient-boosting?source=post_page-----e7d2dbc4e4ca---------------------------------------)
-
-[
-
-![Divya Gera](https://miro.medium.com/v2/resize:fill:96:96/0*CNhn7q41GwLsI5my)
-
-
-
-](https://medium.com/@divyagera2402?source=post_page---post_author_info--e7d2dbc4e4ca---------------------------------------)
-
-[
-
-## Written by Divya Gera
-
-](https://medium.com/@divyagera2402?source=post_page---post_author_info--e7d2dbc4e4ca---------------------------------------)
-
-[33 followers](https://medium.com/@divyagera2402/followers?source=post_page---post_author_info--e7d2dbc4e4ca---------------------------------------)
-
-·[6 following](https://medium.com/@divyagera2402/following?source=post_page---post_author_info--e7d2dbc4e4ca---------------------------------------)
-
-Senior Data Scientist at VMware
-
-## No responses yet
-
-[](https://policy.medium.com/medium-rules-30e5502c4eb4?source=post_page---post_responses--e7d2dbc4e4ca---------------------------------------)
-
-![Laurent Flaster](https://miro.medium.com/v2/resize:fill:32:32/0*HzJwlL0JyTJ7C-rN.)
-
-Laurent Flaster
-
-﻿
-
-## More from Divya Gera
-
-![Encoding Categorical Data and Dummy Variable Trap in Regression](https://miro.medium.com/v2/resize:fit:679/253d1ac7271c0a7cc8f41cd8f9de7fb7148297ef9c17b11e085fd6559557c22b)
-
-[
-
-![Divya Gera](https://miro.medium.com/v2/resize:fill:20:20/0*CNhn7q41GwLsI5my)
-
-
-
-](https://medium.com/@divyagera2402?source=post_page---author_recirc--e7d2dbc4e4ca----0---------------------efa8a10a_99ed_44e9_9f78_c3f2c09baefd--------------)
-
-[
-
-Divya Gera
-
-](https://medium.com/@divyagera2402?source=post_page---author_recirc--e7d2dbc4e4ca----0---------------------efa8a10a_99ed_44e9_9f78_c3f2c09baefd--------------)
-
-[
-
-## Encoding Categorical Data and Dummy Variable Trap in Regression
-
-### Today’s world is full of data and data can be either in quantitative (numerical) or qualitative (categorical) form. The statistics or…
-
-
-
-](https://medium.com/@divyagera2402/encoding-categorical-data-and-dummy-variable-trap-in-regression-830f728c1382?source=post_page---author_recirc--e7d2dbc4e4ca----0---------------------efa8a10a_99ed_44e9_9f78_c3f2c09baefd--------------)
-
-Jul 5, 2019
-
-[
-
-](https://medium.com/@divyagera2402/encoding-categorical-data-and-dummy-variable-trap-in-regression-830f728c1382?source=post_page---author_recirc--e7d2dbc4e4ca----0---------------------efa8a10a_99ed_44e9_9f78_c3f2c09baefd--------------)
-
-[
-
-33
-
-
-
-
-
-
-
-](https://medium.com/@divyagera2402/encoding-categorical-data-and-dummy-variable-trap-in-regression-830f728c1382?source=post_page---author_recirc--e7d2dbc4e4ca----0---------------------efa8a10a_99ed_44e9_9f78_c3f2c09baefd--------------)
-
-![Data journey from acquisition to feeding it into a model — Steps from Data Cleaning, Handling, EDA…](https://miro.medium.com/v2/resize:fit:679/0*LzsxkTtqkFtq_rSD.jpeg)
-
-[
-
-![Divya Gera](https://miro.medium.com/v2/resize:fill:20:20/0*CNhn7q41GwLsI5my)
-
-
-
-](https://medium.com/@divyagera2402?source=post_page---author_recirc--e7d2dbc4e4ca----1---------------------efa8a10a_99ed_44e9_9f78_c3f2c09baefd--------------)
-
-[
-
-Divya Gera
-
-](https://medium.com/@divyagera2402?source=post_page---author_recirc--e7d2dbc4e4ca----1---------------------efa8a10a_99ed_44e9_9f78_c3f2c09baefd--------------)
-
-[
-
-## Data journey from acquisition to feeding it into a model — Steps from Data Cleaning, Handling, EDA…
-
-### I am going to discuss summary of Data journey which starts after acquiring the data till being fed to a model. There are multiple steps…
-
-
-
-](https://medium.com/@divyagera2402/data-journey-from-acquiring-it-to-feeding-it-in-a-model-steps-from-data-cleaning-handling-eda-4eacf9d316f1?source=post_page---author_recirc--e7d2dbc4e4ca----1---------------------efa8a10a_99ed_44e9_9f78_c3f2c09baefd--------------)
-
-Jul 19, 2020
-
-[
-
-](https://medium.com/@divyagera2402/data-journey-from-acquiring-it-to-feeding-it-in-a-model-steps-from-data-cleaning-handling-eda-4eacf9d316f1?source=post_page---author_recirc--e7d2dbc4e4ca----1---------------------efa8a10a_99ed_44e9_9f78_c3f2c09baefd--------------)
-
-[
-
-13
-
-
-
-
-
-
-
-](https://medium.com/@divyagera2402/data-journey-from-acquiring-it-to-feeding-it-in-a-model-steps-from-data-cleaning-handling-eda-4eacf9d316f1?source=post_page---author_recirc--e7d2dbc4e4ca----1---------------------efa8a10a_99ed_44e9_9f78_c3f2c09baefd--------------)
-
-![Basic fundaments of Text Extraction from images](https://miro.medium.com/v2/resize:fit:679/253d1ac7271c0a7cc8f41cd8f9de7fb7148297ef9c17b11e085fd6559557c22b)
-
-[
-
-![Divya Gera](https://miro.medium.com/v2/resize:fill:20:20/0*CNhn7q41GwLsI5my)
-
-
-
-](https://medium.com/@divyagera2402?source=post_page---author_recirc--e7d2dbc4e4ca----2---------------------efa8a10a_99ed_44e9_9f78_c3f2c09baefd--------------)
-
-[
-
-Divya Gera
-
-](https://medium.com/@divyagera2402?source=post_page---author_recirc--e7d2dbc4e4ca----2---------------------efa8a10a_99ed_44e9_9f78_c3f2c09baefd--------------)
-
-[
-
-## Basic fundaments of Text Extraction from images
-
-### The image content is classified into two categories: perceptual content and semantic content. Perceptual contents include colors, shapes…
-
-
-
-](https://medium.com/@divyagera2402/basic-fundaments-of-text-extraction-from-images-548ebe2fb4a5?source=post_page---author_recirc--e7d2dbc4e4ca----2---------------------efa8a10a_99ed_44e9_9f78_c3f2c09baefd--------------)
-
-Oct 14, 2018
-
-[
-
-](https://medium.com/@divyagera2402/basic-fundaments-of-text-extraction-from-images-548ebe2fb4a5?source=post_page---author_recirc--e7d2dbc4e4ca----2---------------------efa8a10a_99ed_44e9_9f78_c3f2c09baefd--------------)
-
-[
-
-16
-
-](https://medium.com/@divyagera2402/basic-fundaments-of-text-extraction-from-images-548ebe2fb4a5?source=post_page---author_recirc--e7d2dbc4e4ca----2---------------------efa8a10a_99ed_44e9_9f78_c3f2c09baefd--------------)
-
-[
-
-1
-
-
-
-
-
-
-
-](https://medium.com/@divyagera2402/basic-fundaments-of-text-extraction-from-images-548ebe2fb4a5?source=post_page---author_recirc--e7d2dbc4e4ca----2---------------------efa8a10a_99ed_44e9_9f78_c3f2c09baefd--------------)
-
-[
-
-See all from Divya Gera
-
-](https://medium.com/@divyagera2402?source=post_page---author_recirc--e7d2dbc4e4ca---------------------------------------)
-
-## Recommended from Medium
-
-![What are Decision Trees, Random Forest and Gradient Boosting Models?](https://miro.medium.com/v2/resize:fit:679/0*iiWqoqRh_3m8zvux)
-
-[
-
-![Damini Vadrevu](https://miro.medium.com/v2/resize:fill:20:20/1*aZoSPQCTS09ntMEqG4A_cg.jpeg)
-
-
-
-](https://medium.com/@daminivadrevu?source=post_page---read_next_recirc--e7d2dbc4e4ca----0---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-[
-
-Damini Vadrevu
-
-](https://medium.com/@daminivadrevu?source=post_page---read_next_recirc--e7d2dbc4e4ca----0---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-[
-
-## What are Decision Trees, Random Forest and Gradient Boosting Models?
-
-### An all about Ensemble.
-
-
-
-](https://medium.com/@daminivadrevu/what-are-decision-trees-random-forest-and-gradient-boosting-models-02cf3925af0e?source=post_page---read_next_recirc--e7d2dbc4e4ca----0---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-Mar 26
-
-[
-
-](https://medium.com/@daminivadrevu/what-are-decision-trees-random-forest-and-gradient-boosting-models-02cf3925af0e?source=post_page---read_next_recirc--e7d2dbc4e4ca----0---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-[
-
-6
-
-
-
-
-
-
-
-](https://medium.com/@daminivadrevu/what-are-decision-trees-random-forest-and-gradient-boosting-models-02cf3925af0e?source=post_page---read_next_recirc--e7d2dbc4e4ca----0---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-![10 ML Algorithms Every Data Scientist Should Know — Part 1](https://miro.medium.com/v2/resize:fit:679/1*lPuRae1B1MhOHoFeszuZvw.jpeg)
-
-[
-
-![Learning Data](https://miro.medium.com/v2/resize:fill:20:20/1*2h_G6zLH23eg9t6lkN_sZg.jpeg)
-
-
-
-](https://medium.com/learning-data?source=post_page---read_next_recirc--e7d2dbc4e4ca----1---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-In
-
-[
-
-Learning Data
-
-](https://medium.com/learning-data?source=post_page---read_next_recirc--e7d2dbc4e4ca----1---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-by
-
-[
-
-Rita Angelou
-
-](https://medium.com/@ritaaggelou?source=post_page---read_next_recirc--e7d2dbc4e4ca----1---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-[
-
-## 10 ML Algorithms Every Data Scientist Should Know — Part 1
-
-### I understand well that machine learning might sound intimidating. But once you break down the common algorithms, you’ll see they’re not.
-
-
-
-](https://medium.com/learning-data/10-ml-algorithms-every-data-scientist-should-know-part-1-2deced7f325f?source=post_page---read_next_recirc--e7d2dbc4e4ca----1---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-Jun 10
-
-[
-
-](https://medium.com/learning-data/10-ml-algorithms-every-data-scientist-should-know-part-1-2deced7f325f?source=post_page---read_next_recirc--e7d2dbc4e4ca----1---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-[
-
-16
-
-
-
-
-
-
-
-](https://medium.com/learning-data/10-ml-algorithms-every-data-scientist-should-know-part-1-2deced7f325f?source=post_page---read_next_recirc--e7d2dbc4e4ca----1---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-![Understand skip-trigram in a one-layer attention-only transformer with Pytorch](https://miro.medium.com/v2/resize:fit:679/1*81Wc39qY4tRUI8pLYZYQUg.png)
-
-[
-
-![Manyi](https://miro.medium.com/v2/resize:fill:20:20/1*PRRJs0q0QzXuHtHYKUh-Mg.jpeg)
-
-
-
-](https://medium.com/@manyi.yim?source=post_page---read_next_recirc--e7d2dbc4e4ca----0---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-[
-
-Manyi
-
-](https://medium.com/@manyi.yim?source=post_page---read_next_recirc--e7d2dbc4e4ca----0---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-[
-
-## Understand skip-trigram in a one-layer attention-only transformer with Pytorch
-
-### The classic Anthropic’s paper “A Mathematical Framework for Transformer Circuits” looked into the functions of one-layer attention-only…
-
-
-
-](https://medium.com/@manyi.yim/understand-skip-trigram-in-a-one-layer-attention-only-transformer-with-pytorch-4f47eb8d42c0?source=post_page---read_next_recirc--e7d2dbc4e4ca----0---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-Jul 15
-
-[](https://medium.com/@manyi.yim/understand-skip-trigram-in-a-one-layer-attention-only-transformer-with-pytorch-4f47eb8d42c0?source=post_page---read_next_recirc--e7d2dbc4e4ca----0---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-![Logistic Regression Explained: ML Coding for Interviews](https://miro.medium.com/v2/resize:fit:679/0*rbSrwwSTfT20sOr1.png)
-
-[
-
-![Nailing the AI ML Interview](https://miro.medium.com/v2/resize:fill:20:20/1*ekTFdrRzc-bOUGCy5tvs1A.jpeg)
-
-
-
-](https://medium.com/nailing-the-ai-ml-interview?source=post_page---read_next_recirc--e7d2dbc4e4ca----1---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-In
-
-[
-
-Nailing the AI ML Interview
-
-](https://medium.com/nailing-the-ai-ml-interview?source=post_page---read_next_recirc--e7d2dbc4e4ca----1---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-by
-
-[
-
-Dr. R. Li
-
-](https://medium.com/@Dr.R.B.LI?source=post_page---read_next_recirc--e7d2dbc4e4ca----1---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-[
-
-## Logistic Regression Explained: ML Coding for Interviews
-
-### When training a machine learning model, choosing the right loss function is critical to ensuring effective learning. In linear regression…
-
-
-
-](https://medium.com/nailing-the-ai-ml-interview/selection-of-the-loss-functions-for-logistic-regression-ed2077f7075e?source=post_page---read_next_recirc--e7d2dbc4e4ca----1---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-Mar 8
-
-[
-
-](https://medium.com/nailing-the-ai-ml-interview/selection-of-the-loss-functions-for-logistic-regression-ed2077f7075e?source=post_page---read_next_recirc--e7d2dbc4e4ca----1---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-[
-
-2
-
-
-
-
-
-
-
-](https://medium.com/nailing-the-ai-ml-interview/selection-of-the-loss-functions-for-logistic-regression-ed2077f7075e?source=post_page---read_next_recirc--e7d2dbc4e4ca----1---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-![From Black Box to Fair Lending: Explaining Credit Risk Models with SHAP](https://miro.medium.com/v2/resize:fit:679/1*rJcX0q8c-yBR2oq3x5ui0A.png)
-
-[
-
-![Rahul Nair](https://miro.medium.com/v2/resize:fill:20:20/0*5qta69hTK-De5sbB)
-
-
-
-](https://medium.com/@nair.rahul90?source=post_page---read_next_recirc--e7d2dbc4e4ca----2---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-[
-
-Rahul Nair
-
-](https://medium.com/@nair.rahul90?source=post_page---read_next_recirc--e7d2dbc4e4ca----2---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-[
-
-## From Black Box to Fair Lending: Explaining Credit Risk Models with SHAP
-
-### Why your AI’s ‘why’ is critical for banks, regulators, and customers.
-
-
-
-](https://medium.com/@nair.rahul90/from-black-box-to-fair-lending-explaining-credit-risk-models-with-shap-fe1643559402?source=post_page---read_next_recirc--e7d2dbc4e4ca----2---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-Jul 7
-
-[](https://medium.com/@nair.rahul90/from-black-box-to-fair-lending-explaining-credit-risk-models-with-shap-fe1643559402?source=post_page---read_next_recirc--e7d2dbc4e4ca----2---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-![Master Hyperparameter Tuning in Machine Learning](https://miro.medium.com/v2/resize:fit:679/0*qqtfc-vs3-BYuDp2)
-
-[
-
-![Towards AI](https://miro.medium.com/v2/resize:fill:20:20/1*JyIThO-cLjlChQLb6kSlVQ.png)
-
-
-
-](https://medium.com/towards-artificial-intelligence?source=post_page---read_next_recirc--e7d2dbc4e4ca----3---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-In
-
-[
-
-Towards AI
-
-](https://medium.com/towards-artificial-intelligence?source=post_page---read_next_recirc--e7d2dbc4e4ca----3---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-by
-
-[
-
-Kuriko Iwai
-
-](https://medium.com/@kuriko-iwai?source=post_page---read_next_recirc--e7d2dbc4e4ca----3---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-[
-
-## Master Hyperparameter Tuning in Machine Learning
-
-### Explore strategies and practical implementation on tuning an ML model to achieve the optimal performance
-
-
-
-](https://medium.com/towards-artificial-intelligence/mastering-hyperparameter-tuning-in-machine-learning-252ce466b472?source=post_page---read_next_recirc--e7d2dbc4e4ca----3---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-Jul 3
-
-[
-
-](https://medium.com/towards-artificial-intelligence/mastering-hyperparameter-tuning-in-machine-learning-252ce466b472?source=post_page---read_next_recirc--e7d2dbc4e4ca----3---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-[
-
-361
-
-](https://medium.com/towards-artificial-intelligence/mastering-hyperparameter-tuning-in-machine-learning-252ce466b472?source=post_page---read_next_recirc--e7d2dbc4e4ca----3---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-[
-
-4
-
-
-
-
-
-
-
-](https://medium.com/towards-artificial-intelligence/mastering-hyperparameter-tuning-in-machine-learning-252ce466b472?source=post_page---read_next_recirc--e7d2dbc4e4ca----3---------------------5af3e097_10ce_46d4_a36a_a6f82e673b71--------------)
-
-[
-
-See more recommendations
-
-](https://medium.com/?source=post_page---read_next_recirc--e7d2dbc4e4ca---------------------------------------)
-
-[
-
-Help
-
-](https://help.medium.com/hc/en-us?source=post_page-----e7d2dbc4e4ca---------------------------------------)
-
-[
-
-Status
-
-](https://medium.statuspage.io/?source=post_page-----e7d2dbc4e4ca---------------------------------------)
-
-[
-
-About
-
-](https://medium.com/about?autoplay=1&source=post_page-----e7d2dbc4e4ca---------------------------------------)
-
-[
-
-Careers
-
-](https://medium.com/jobs-at-medium/work-at-medium-959d1a85284e?source=post_page-----e7d2dbc4e4ca---------------------------------------)
-
-[
-
-Press
-
-](mailto:pressinquiries@medium.com)
-
-[
-
-Blog
-
-](https://blog.medium.com/?source=post_page-----e7d2dbc4e4ca---------------------------------------)
-
-[
-
-Privacy
-
-](https://policy.medium.com/medium-privacy-policy-f03bf92035c9?source=post_page-----e7d2dbc4e4ca---------------------------------------)
-
-[
-
-Rules
-
-](https://policy.medium.com/medium-rules-30e5502c4eb4?source=post_page-----e7d2dbc4e4ca---------------------------------------)
-
-[
-
-Terms
-
-](https://policy.medium.com/medium-terms-of-service-9db0094a1e0f?source=post_page-----e7d2dbc4e4ca---------------------------------------)
-
-[
-
-Text to speech
-
-](https://speechify.com/medium?source=post_page-----e7d2dbc4e4ca---------------------------------------)
